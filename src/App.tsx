@@ -6,6 +6,7 @@ import { Home } from './components/Home'
 import { PlanPage } from './components/PlanPage'
 import { SettingsDialog } from './components/SettingsDialog'
 import { BUILTIN_CITIES } from './data'
+import { aiAvailable } from './lib/ai'
 import { planFromShare, planTrip } from './lib/planner'
 import { decodeShare, readShareFromHash } from './lib/share'
 import { loadAiCities, loadPlans, loadSettings, saveAiCities, savePlans, saveSettings, type Settings } from './lib/storage'
@@ -148,7 +149,7 @@ export default function App() {
         <Home
           cities={cities}
           savedPlans={saved}
-          hasApiKey={Boolean(settings.apiKey.trim())}
+          hasApiKey={aiAvailable(settings.apiKey)}
           onSelectCity={openCity}
           onOpenPlan={openSaved}
           onDeletePlan={(id) => setSaved((s) => s.filter((p) => p.id !== id))}

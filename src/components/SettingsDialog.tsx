@@ -1,6 +1,6 @@
 import { Eye, EyeOff, KeyRound, Map as MapIcon, MapPin, Sparkles, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-import { AI_MODELS } from '../lib/ai'
+import { AI_MODELS, AI_PROXY_URL } from '../lib/ai'
 import type { Settings, TileSource } from '../lib/storage'
 import { Button, Modal } from './ui'
 
@@ -47,9 +47,24 @@ export function SettingsDialog({
         <section>
           <h3 className="flex items-center gap-1.5 text-sm font-bold text-ink"><Sparkles size={15} /> AI 生成任意城市</h3>
           <p className="mt-1 text-xs text-muted">
-            填入你自己的 Anthropic API Key 后，可以为内置列表之外的城市即时生成景点与美食数据。Key 只保存在这台电脑的浏览器里，直接从浏览器请求 Anthropic，不经过任何第三方服务器。
+            {AI_PROXY_URL
+              ? '本站已提供 AI 额度（每位访客每天有限次数），不填 Key 也能用。填入自己的 Anthropic API Key 则不受限制，Key 只保存在这台设备的浏览器里，直接从浏览器请求 Anthropic。'
+              : '填入你自己的 Anthropic API Key 后，可以为内置列表之外的城市即时生成景点与美食数据。Key 只保存在这台电脑的浏览器里，直接从浏览器请求 Anthropic，不经过任何第三方服务器。'}
           </p>
-          <label className="mt-3 block text-xs font-medium text-muted">API Key</label>
+          {AI_PROXY_URL && (
+            <>
+              <label className="mt-3 block text-xs font-medium text-muted">邀请码（站长设置了才需要填）</label>
+              <input
+                type="text"
+                value={settings.accessCode}
+                onChange={(e) => onChange({ ...settings, accessCode: e.target.value })}
+                placeholder="没有可留空"
+                autoComplete="off"
+                className="mt-1 h-10 w-full rounded-xl border border-line bg-white px-3 text-sm outline-none"
+              />
+            </>
+          )}
+          <label className="mt-3 block text-xs font-medium text-muted">{AI_PROXY_URL ? '自己的 API Key（可选）' : 'API Key'}</label>
           <div className="mt-1 flex items-center gap-2 rounded-xl border border-line bg-white px-3">
             <KeyRound size={15} className="text-muted" />
             <input

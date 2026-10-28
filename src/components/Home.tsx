@@ -80,7 +80,7 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
           <div className="flex-1">
             <div className="font-bold text-ink">还没有「{q.trim()}」的内置数据</div>
             <div className="mt-0.5 text-sm text-muted">
-              {hasApiKey ? '可以用 Claude 即时生成这座城市的景点与美食数据（约 1-3 分钟），之后就能像内置城市一样规划。' : '填入 Anthropic API Key 后，可以用 Claude 为任意城市生成数据。点击下方按钮开始。'}
+              {hasApiKey ? '可以用 AI 即时生成这座城市的景点与美食数据（约 1-3 分钟），之后就能像内置城市一样规划。' : '填入 Anthropic API Key 后，可以用 Claude 为任意城市生成数据。点击下方按钮开始。'}
             </div>
           </div>
           <Button onClick={() => onAiCity(q.trim())}>

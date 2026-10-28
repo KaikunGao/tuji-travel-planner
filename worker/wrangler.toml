@@ -1,0 +1,23 @@
+name = "tuji-ai-proxy"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# 每日额度计数（部署前用 `npx wrangler kv namespace create QUOTA` 创建，把返回的 id 填到这里）
+[[kv_namespaces]]
+binding = "QUOTA"
+id = "REPLACE_WITH_KV_ID"
+
+[vars]
+# 允许调用的网页来源（逗号分隔）
+ALLOWED_ORIGINS = "https://kaikungao.github.io,http://localhost:5173"
+# 每个访客每天最多生成几座城市（一次生成 = 2 个请求，这里按「次」算）
+DAILY_IP_LIMIT = "3"
+# 全站每天最多生成几座城市（兜底防刷）
+DAILY_GLOBAL_LIMIT = "40"
+# 允许的模型（逗号分隔）；访客选了别的会被换成第一个
+ALLOWED_MODELS = "claude-sonnet-5-5,claude-haiku-5-5"
+# 单次请求的 max_tokens 上限
+MAX_TOKENS_CAP = "48000"
+
+# 机密用 `npx wrangler secret put ANTHROPIC_API_KEY` 设置，不要写在这里
+# 可选：`npx wrangler secret put ACCESS_CODE` 设一个邀请码，设了之后网页里要填对才能用

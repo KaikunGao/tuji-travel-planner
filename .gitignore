@@ -5,3 +5,6 @@ dist
 .env
 .env.*
 .claude/
+.dev.vars
+worker/node_modules
+worker/.wrangler

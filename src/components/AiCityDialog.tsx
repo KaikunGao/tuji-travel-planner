@@ -1,7 +1,7 @@
 import { Loader2, Settings2, Sparkles } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { City } from '../types'
-import { describeAiError, generateCity, type GenerateProgress } from '../lib/ai'
+import { AI_PROXY_URL, aiAvailable, describeAiError, generateCity, type GenerateProgress } from '../lib/ai'
 import type { Settings } from '../lib/storage'
 import { Button, Modal } from './ui'
 
@@ -54,7 +54,7 @@ export function AiCityDialog({
 
   const run = async () => {
     if (!name.trim()) return
-    if (!settings.apiKey.trim()) {
+    if (!aiAvailable(settings.apiKey)) {
       setError('还没有填写 API Key，请先去设置')
       return
     }
@@ -66,6 +66,7 @@ export function AiCityDialog({
       const city = await generateCity(name.trim(), {
         apiKey: settings.apiKey,
         model: settings.model,
+        accessCode: settings.accessCode,
         signal: ac.signal,
         onProgress: setProgress,
       })
@@ -99,12 +100,17 @@ export function AiCityDialog({
             className="mt-1 h-11 w-full rounded-xl border border-line bg-white px-3 text-base outline-none focus:border-brand"
           />
         </label>
-        {!settings.apiKey.trim() && (
+        {!settings.apiKey.trim() && !AI_PROXY_URL && (
           <div className="flex items-center justify-between gap-3 rounded-xl bg-amber-50 p-3 text-sm text-amber-800">
             <span>需要先填写 Anthropic API Key。</span>
             <Button size="sm" variant="secondary" onClick={onOpenSettings}>
               <Settings2 size={14} /> 去设置
             </Button>
+          </div>
+        )}
+        {!settings.apiKey.trim() && AI_PROXY_URL && (
+          <div className="rounded-xl bg-teal-soft p-3 text-xs text-teal">
+            使用站长提供的 AI 额度：每位访客每天可生成数座城市，全站也有每日上限。想不受限制，可在设置里填自己的 API Key。
           </div>
         )}
         {running && progress && (
@@ -123,7 +129,7 @@ export function AiCityDialog({
         )}
         {error && <div className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{error}</div>}
         <div className="flex items-center justify-between gap-2">
-          <span className="text-[11px] text-muted">模型：{settings.model}</span>
+          <span className="text-[11px] text-muted">{settings.apiKey.trim() ? `模型：${settings.model}` : AI_PROXY_URL ? '站长额度 · 模型由代理决定' : `模型：${settings.model}`}</span>
           <div className="flex gap-2">
             {running ? (
               <Button variant="secondary" onClick={stop}>取消</Button>

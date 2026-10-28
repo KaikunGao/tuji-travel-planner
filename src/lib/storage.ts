@@ -8,6 +8,8 @@ export interface Settings {
   model: string
   /** 高德 Web 服务 Key（可选，用于酒店 / 地址搜索） */
   amapKey: string
+  /** 站长代理的邀请码（站长设置了才需要） */
+  accessCode: string
   tileSource: TileSource
   /** 出行人数，用于预算 */
   people: number
@@ -19,6 +21,7 @@ export const DEFAULT_SETTINGS: Settings = {
   apiKey: '',
   model: 'claude-opus-5-5',
   amapKey: '',
+  accessCode: '',
   tileSource: 'amap',
   people: 2,
   hotelPerNight: 0,

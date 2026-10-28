@@ -13,6 +13,14 @@ export const AI_MODELS = [
   { id: 'claude-haiku-5-5', name: 'Claude Haiku 5.5（最便宜）' },
 ] as const
 
+/** 站长在构建时配置的代理地址（Cloudflare Worker）；没有则只能用访客自己的 Key */
+export const AI_PROXY_URL: string = (import.meta.env.VITE_AI_PROXY_URL as string | undefined)?.replace(/\/+$/, '') ?? ''
+
+/** 当前是否能用 AI：有自己的 Key，或站长配了代理 */
+export function aiAvailable(apiKey: string): boolean {
+  return Boolean(apiKey.trim()) || Boolean(AI_PROXY_URL)
+}
+
 export interface GenerateProgress {
   phase: 'attractions' | 'restaurants' | 'parsing'
   chars: number
@@ -240,13 +248,16 @@ interface JsonCallOptions {
   user: string
   signal?: AbortSignal
   onChars: (chars: number) => void
+  /** 走代理时：第一步请求标记为一次生成的开始（代理按次计额度） */
+  viaProxy: boolean
+  generationStart?: boolean
 }
 
 /**
  * 请求一段 JSON：优先用结构化输出保证格式；若 API 报 schema 语法过大，自动退回纯文本 JSON 模式。
  */
 async function requestJson(o: JsonCallOptions): Promise<Record<string, unknown>> {
-  const supportsFallback = /opus-5-5|sonnet-5-5|fable-5/.test(o.model)
+  const supportsFallback = !o.viaProxy && /opus-5-5|sonnet-5-5|fable-5/.test(o.model)
   const run = async (structured: boolean) => {
     const stream = o.client.beta.messages.stream(
       {
@@ -267,7 +278,7 @@ async function requestJson(o: JsonCallOptions): Promise<Record<string, unknown>>
         ],
         ...(supportsFallback ? { betas: ['server-side-fallback-2026-07-01'], fallbacks: 'default' as const } : {}),
       },
-      { signal: o.signal },
+      { signal: o.signal, headers: o.viaProxy && o.generationStart ? { 'x-tuji-generation': 'start' } : undefined },
     )
     stream.on('text', (_delta, snapshot) => o.onChars(snapshot.length))
     const message = await stream.finalMessage()
@@ -294,15 +305,20 @@ async function requestJson(o: JsonCallOptions): Promise<Record<string, unknown>>
  */
 export async function generateCity(
   cityName: string,
-  opts: { apiKey: string; model: string; signal?: AbortSignal; onProgress?: (p: GenerateProgress) => void },
+  opts: { apiKey: string; model: string; accessCode?: string; signal?: AbortSignal; onProgress?: (p: GenerateProgress) => void },
 ): Promise<City> {
-  if (!opts.apiKey.trim()) throw new AiGenerateError('请先在设置里填写 Anthropic API Key')
+  const ownKey = opts.apiKey.trim()
+  const viaProxy = !ownKey && Boolean(AI_PROXY_URL)
+  if (!ownKey && !viaProxy) throw new AiGenerateError('请先在设置里填写 Anthropic API Key')
   const started = Date.now()
   const report = (phase: GenerateProgress['phase'], chars: number) =>
     opts.onProgress?.({ phase, chars, elapsedMs: Date.now() - started })
 
   const client = new Anthropic({
-    apiKey: opts.apiKey.trim(),
+    // 走代理时 Key 由代理持有，这里只是占位；用自己的 Key 时直接请求 Anthropic
+    apiKey: viaProxy ? 'tuji-proxy' : ownKey,
+    baseURL: viaProxy ? AI_PROXY_URL : undefined,
+    defaultHeaders: viaProxy && opts.accessCode?.trim() ? { 'x-access-code': opts.accessCode.trim() } : undefined,
     dangerouslyAllowBrowser: true, // 个人工具：Key 只存在用户自己的浏览器里
     maxRetries: 1,
   })
@@ -316,6 +332,8 @@ export async function generateCity(
     user: ATTRACTIONS_PROMPT(cityName, today),
     signal: opts.signal,
     onChars: (c) => report('attractions', c),
+    viaProxy,
+    generationStart: true,
   })
   const attractionsRaw = (Array.isArray(step1.attractions) ? (step1.attractions as Record<string, unknown>[]) : [])
     .filter((a) => typeof a.name === 'string' && typeof a.lat === 'number' && typeof a.lng === 'number')
@@ -334,6 +352,7 @@ export async function generateCity(
     ),
     signal: opts.signal,
     onChars: (c) => report('restaurants', c),
+    viaProxy,
   })
 
   report('parsing', 0)
@@ -343,11 +362,17 @@ export async function generateCity(
 }
 
 /** 把 SDK 的错误翻译成用户能看懂的提示 */
+/** 代理 / API 返回的错误体里的 message */
+function apiMessage(err: unknown): string | undefined {
+  const e = err as { error?: { error?: { message?: string }; message?: string } }
+  return e?.error?.error?.message ?? e?.error?.message
+}
+
 export function describeAiError(err: unknown): string {
   if (err instanceof AiGenerateError) return err.message
-  if (err instanceof Anthropic.AuthenticationError) return 'API Key 无效，请检查设置'
-  if (err instanceof Anthropic.PermissionDeniedError) return '这个 Key 没有权限使用所选模型'
-  if (err instanceof Anthropic.RateLimitError) return '请求太频繁，稍等一下再试'
+  if (err instanceof Anthropic.AuthenticationError) return apiMessage(err) ?? 'API Key 无效，请检查设置'
+  if (err instanceof Anthropic.PermissionDeniedError) return apiMessage(err) ?? '这个 Key 没有权限使用所选模型'
+  if (err instanceof Anthropic.RateLimitError) return apiMessage(err) ?? '请求太频繁，稍等一下再试'
   if (err instanceof Anthropic.BadRequestError) return `请求参数有误：${err.message}`
   if (err instanceof Anthropic.APIConnectionError) return '连不上 Anthropic API，请检查网络'
   if (err instanceof Anthropic.APIError) return `API 错误 ${err.status ?? ''}：${err.message}`
