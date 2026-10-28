@@ -6,7 +6,7 @@
 
 ---
 
-## 一、当前功能一览（v0.5.0）
+## 一、当前功能一览（v0.6.0）
 
 | 模块 | 内容 |
 | --- | --- |
@@ -21,11 +21,21 @@
 | 美食 | 每家餐厅「综合评价」面板（一句话总评、大家喜欢、注意与吐槽、适合场景）+ 必点菜 + 排队提示 + 避雷 + 「去小红书看真实笔记」链接 |
 | 预算 / 贴士 | 门票、餐饮、交通按人估算，可设人数与住宿；最佳季节、预约清单、交通、避雷、自动打包清单 |
 | 保存 / 导出 / 分享 | 本机保存多份行程；复制 / 下载 Markdown；打印；导出 .ics 日历；分享链接（含二维码，打开即还原行程） |
-| AI 任意城市 | 填入自己的 Anthropic API Key 后，用 Claude 分两步生成景点与餐厅数据（结构化输出，超限自动退回文本模式） |
+| AI 任意城市 | 访客直接可用（走站长的 Cloudflare 代理，每人每天 3 次、全站每天 40 次），也可填自己的 Key 不受限制；Claude 分两步生成景点与餐厅数据（结构化输出，超限自动退回文本模式） |
 
 ---
 
 ## 二、更新记录（倒序）
+
+### v0.6.0 · 2026-10-28 · 访客免 Key 使用 AI（Cloudflare Worker 代理）
+- **问题**：让访客自己填 API Key 太不方便；但直接把 Key 放网页里会被人刷额度。
+- **改动**：
+  - 新增 `worker/`：Cloudflare Worker 代理，持有站长的 Anthropic Key（存在 Cloudflare 机密里），转发 `/v1/messages` 并流式返回。
+  - 防刷：只接受来自网站的请求；每位访客（IP 哈希）每天 3 次、全站每天 40 次；模型白名单（Sonnet / Haiku）；max_tokens 封顶；上游失败退回额度；可选邀请码 `ACCESS_CODE`。
+  - 前端：构建时配置 `VITE_AI_PROXY_URL` 后默认走代理，不填 Key 也能生成；自带 Key 的访客仍可绕过限制；设置里可填邀请码。
+  - 部署：`npx wrangler deploy`，代理地址 https://tuji-ai-proxy.tuji-ai-proxy.workers.dev ；网站仓库变量 `AI_PROXY_URL` 指向它，推送后自动生效。
+- **验证**：本地用假 Key 验证来源校验 / 顺序校验 / 限流 / 错误回显；线上实测「南京」生成成功（16 个景点，约 2 分钟），走的是站长额度。
+- **运维**：调额度改 `worker/wrangler.toml` 里的 `DAILY_IP_LIMIT` / `DAILY_GLOBAL_LIMIT` / `ALLOWED_MODELS` 后 `cd worker && npx wrangler deploy`；换 Key 用 `npx wrangler secret put ANTHROPIC_API_KEY`；设邀请码 `npx wrangler secret put ACCESS_CODE`；用量在 Cloudflare 控制台 Workers → tuji-ai-proxy 看请求数，在 Anthropic Console 看花费。
 
 ### v0.5.1 · 2026-10-28 · 上线
 - 代码托管到 GitHub 公开仓库 https://github.com/KaikunGao/tuji-travel-planner ，GitHub Actions 自动构建并发布到 GitHub Pages。
