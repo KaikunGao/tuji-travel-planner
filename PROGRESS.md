@@ -6,7 +6,7 @@
 
 ---
 
-## 一、当前功能一览（v0.6.0）
+## 一、当前功能一览（v0.6.1）
 
 | 模块 | 内容 |
 | --- | --- |
@@ -26,6 +26,11 @@
 ---
 
 ## 二、更新记录（倒序）
+
+### v0.6.1 · 2026-10-28 · 开源整理（让更多人看到）
+- GitHub 仓库补了描述、主页链接和主题标签（travel、trip-planner、route-optimization、tsp、react、leaflet…），方便搜索发现。
+- README 改为中英双语：徽章、两张线上截图（`docs/screenshots/`）、工作原理流程、本地运行、GitHub Pages + Cloudflare 代理部署步骤、贡献城市数据指引。
+- 新增 MIT 许可证（`LICENSE`，`package.json` 加 `license` 字段）。
 
 ### v0.6.0 · 2026-10-28 · 访客免 Key 使用 AI（Cloudflare Worker 代理）
 - **问题**：让访客自己填 API Key 太不方便；但直接把 Key 放网页里会被人刷额度。

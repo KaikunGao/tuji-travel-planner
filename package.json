@@ -1,6 +1,7 @@
 {
   "name": "tuji-travel-planner",
   "private": true,
+  "license": "MIT",
   "version": "0.1.0",
   "description": "途迹 · 不走回头路的城市旅行规划助手",
   "type": "module",
