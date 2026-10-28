@@ -5,7 +5,7 @@ compatibility_date = "2026-10-01"
 # 每日额度计数（部署前用 `npx wrangler kv namespace create QUOTA` 创建，把返回的 id 填到这里）
 [[kv_namespaces]]
 binding = "QUOTA"
-id = "REPLACE_WITH_KV_ID"
+id = "13bc121250144120bc419b7439aa90b1"
 
 [vars]
 # 允许调用的网页来源（逗号分隔）
