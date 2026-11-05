@@ -262,7 +262,7 @@ export function PlanForm({
       )}
 
       <Button type="submit" size="lg" className="w-full">
-        生成不走回头路的路线 →
+        生成行程和预案 →
       </Button>
     </form>
   )

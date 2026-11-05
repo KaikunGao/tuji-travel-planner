@@ -1,4 +1,4 @@
-import { ArrowRight, Clock3, MapPinned, Route, Search, Sparkles, Trash2, Utensils } from 'lucide-react'
+import { ArrowRight, Clock3, LifeBuoy, MapPinned, Route, Search, Sparkles, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import type { City, SavedPlan } from '../types'
 import { FEATURES } from '../lib/features'
@@ -31,13 +31,14 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
         <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-brand/40 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-teal/40 blur-3xl" />
         <div className="relative max-w-2xl">
-          <Badge tone="brand" className="bg-white/10 text-white">不走回头路的城市漫游规划</Badge>
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl">
-            说一个城市，<br className="sm:hidden" />
-            剩下的交给<span className="text-brand">途迹</span>
+          <Badge tone="brand" className="bg-white/10 text-white">改得动的旅行行程</Badge>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl sm:leading-tight">
+            别人帮你排一次，
+            <br />
+            途迹帮你<span className="text-brand">扛住变化</span>
           </h1>
           <p className="mt-3 max-w-xl text-sm text-white/75 sm:text-base">
-            按地理位置把景点聚成每一天，再用最短路径算法排出顺序；沿途自动安排午餐晚餐，附上网上综合整理的美食评价{FEATURES.budgetTab ? '、预算' : ''}和避雷提示。
+            先说清哪些必去、哪些可以放弃，途迹排出行程，并把下雨、排队、走不动时的预案提前算好。路上出了状况，只改受影响的那一段，代价算给你看：少看什么、腾出多久、后面哪几站跟着变。
           </p>
           <form
             className="mt-6 flex flex-col gap-2 sm:flex-row"
@@ -144,9 +145,9 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
       {/* 怎么用 */}
       <section className="mt-12 grid gap-4 sm:grid-cols-3">
         {[
-          { icon: <MapPinned className="text-brand" />, t: '1. 选城市，勾必去', d: '内置城市有真实景点与餐厅数据；点名几个必去的，其他交给算法。' },
-          { icon: <Route className="text-teal" />, t: '2. 设天数和节奏', d: '按位置聚类分天，Held-Karp 精确求最短路径，上午景点在前、夜景在后。' },
-          { icon: <Utensils className="text-xhs" />, t: '3. 沿途吃好喝好', d: '午餐晚餐就近安排，附综合评价、必点菜、排队提示和避雷。' },
+          { icon: <MapPinned className="text-brand" />, t: '1. 选城市，分三档', d: '必去的怎么改都保住，可放弃的时间不够先砍，没标的由途迹按兴趣和评分挑；然后排出每天的路线和用餐。' },
+          { icon: <LifeBuoy className="text-teal" />, t: '2. 出发前看预案', d: '下雨、走不动了、某个点去不了、排队太久，各有方案和代价。下不下雨由你说了算，途迹不接天气数据。' },
+          { icon: <Route className="text-xhs" />, t: '3. 路上只改必要的', d: '走完一站点一下，之后的改动只重算没走的那一段；每次改动都告诉你代价，不满意可以撤销。' },
         ].map((s) => (
           <Card key={s.t} className="p-5">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-paper">{s.icon}</div>
@@ -157,7 +158,7 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
       </section>
       <p className="mt-8 text-center text-xs text-muted">
         <Clock3 size={12} className="mr-1 inline" />
-        门票、营业时间和价格为编写时的参考值，出行前请以官方最新信息为准；美食评价为根据公开资料综合整理的参考。
+        门票、营业时间和价格为编写时的参考值，出行前请以官方最新信息为准；路上的时间按直线距离估算，只看量级；美食评价为根据公开资料综合整理的参考。
       </p>
     </div>
   )

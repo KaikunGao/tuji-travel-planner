@@ -137,7 +137,7 @@ export default function App() {
               <Compass size={18} />
             </span>
             <span className="text-lg font-extrabold tracking-tight text-ink">途迹</span>
-            <span className="hidden text-xs text-muted sm:inline">· 不走回头路的旅行规划</span>
+            <span className="hidden text-xs text-muted sm:inline">· 改得动的旅行行程</span>
           </button>
           <div className="flex items-center gap-1">
             {view.name !== 'home' && (

@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "version": "0.1.0",
-  "description": "途迹 · 不走回头路的城市旅行规划助手",
+  "description": "途迹 · 改得动的旅行行程：先分必去 / 可选 / 可放弃，出状况时只改必要的，并把代价算清楚",
   "type": "module",
   "scripts": {
     "dev": "vite",
