@@ -730,6 +730,38 @@ function scheduleOrdered(
   return { plan, usedRestaurants: usedNow, violations }
 }
 
+/**
+ * 在不改变每天内容的前提下重排天序，使落在闭馆日上的景点（按分数加权）最少；
+ * 并列时尽量保持原顺序（原顺序已按分数高的天在前、相邻天地理相近排好）。
+ */
+function arrangeDaysForClosures(days: { items: Scored[]; suburb: boolean }[], startDate: string): typeof days {
+  const n = days.length
+  if (n <= 1 || n > 7) return days
+  const conflictAt = (d: (typeof days)[number], di: number): number => {
+    const wd = weekdayOf(addDays(startDate, di))
+    return d.items.reduce((s, it) => s + (it.a.closedOn?.includes(wd) ? it.score : 0), 0)
+  }
+  const total = (perm: number[]) => perm.reduce((s, di, pos) => s + conflictAt(days[di], pos), 0)
+  const identity = days.map((_, i) => i)
+  let best = identity
+  let bestScore = total(identity)
+  if (bestScore === 0) return days
+  const displacement = (perm: number[]) => perm.reduce((s, di, pos) => s + Math.abs(di - pos), 0)
+  const visit = (perm: number[], rest: number[]) => {
+    if (!rest.length) {
+      const sc = total(perm)
+      if (sc < bestScore || (sc === bestScore && displacement(perm) < displacement(best))) {
+        bestScore = sc
+        best = perm
+      }
+      return
+    }
+    for (let i = 0; i < rest.length; i++) visit([...perm, rest[i]], rest.filter((_, j) => j !== i))
+  }
+  visit([], identity)
+  return best.map((di) => days[di])
+}
+
 function describeDay(items: Attraction[], suburb?: boolean): { title: string; theme: string } {
   if (!items.length) return { title: '自由活动', theme: '🛋️ 休息、购物或补漏' }
   if (suburb) {
@@ -965,7 +997,7 @@ export function planTrip(city: City, rawParams: PlanParams, options: PlanOptions
   // 先决定天序，再处理闭馆日
   const nonEmpty = clusters.filter((c) => c.length)
   const emptyCount = clusters.length - nonEmpty.length
-  const ordered: { items: Scored[]; suburb: boolean }[] = []
+  let ordered: { items: Scored[]; suburb: boolean }[] = []
   if (nonEmpty.length) {
     const totalScore = (c: Scored[]) => c.reduce((s, it) => s + it.score, 0)
     const first = nonEmpty.reduce((m, c) => (totalScore(c) > totalScore(m) ? c : m), nonEmpty[0])
@@ -993,6 +1025,8 @@ export function planTrip(city: City, rawParams: PlanParams, options: PlanOptions
     suburbDays.forEach((s) => ordered.push({ items: s, suburb: true }))
   }
   for (let i = 0; i < emptyCount; i++) ordered.push({ items: [], suburb: false })
+  // 有出发日期时，先挑一个闭馆冲突最少的天序，再做逐个景点的闭馆日调整（否则热门景点可能因为落在闭馆日被整个丢掉）
+  if (params.startDate) ordered = arrangeDaysForClosures(ordered, params.startDate)
 
   if (params.startDate) {
     for (let di = 0; di < ordered.length; di++) {
