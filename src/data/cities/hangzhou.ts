@@ -59,6 +59,7 @@ export const hangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['断桥桥面看保俶塔', '白堤中段看雷峰塔倒影', '平湖秋月水榭'],
     },
     {
@@ -82,6 +83,7 @@ export const hangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['蛤蟆峰看西湖全景', '保俶塔下俯瞰断桥白堤', '初阳台日落'],
     },
     {
@@ -101,6 +103,7 @@ export const hangzhou: City = {
       tips: ['荷花季早上 7-9 点开得最好，中午花会闭合', '岳王庙 07:30-17:30 开放，单独收 25 元门票', '园子西侧出去就是苏堤北口，可以直接接着走苏堤'],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
     },
     {
       id: 'su-causeway',
@@ -123,6 +126,7 @@ export const hangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'any',
+      exposure: 'outdoor',
       photoSpots: ['压堤桥看雷峰塔', '花港观鱼红鱼池', '苏堤南口看保俶塔'],
     },
     {
@@ -142,6 +146,7 @@ export const hangzhou: City = {
       tips: ['从茅家埠的「上香古道」可以一路步行到灵隐，约 4 公里', '郭庄（门票 10 元）是西湖边最精致的私家园林，就在杨公堤上', '傍晚骑车从曲院风荷沿杨公堤到花港观鱼，是环湖最舒服的一段'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'santan-yinyue',
@@ -164,6 +169,7 @@ export const hangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['岛西南角看三塔', '九曲桥荷池'],
     },
     {
@@ -183,6 +189,7 @@ export const hangzhou: City = {
       tips: ['日落前 1 小时上塔，能同时拍到日落和亮灯；冬季 17:30 闭园', '塔下遗址区别错过，是真正的千年古塔砖', '对面的净慈寺「南屏晚钟」门票 10 元，可以顺路'],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['塔顶看苏堤和三潭印月', '长桥公园看雷峰塔倒影'],
     },
     {
@@ -202,6 +209,7 @@ export const hangzhou: City = {
       tips: ['19:00 前到湖滨三公园栏杆边占位，第一排视角最好', '喷泉南侧的一公园、北侧的六公园人少一半，看侧面效果一样好', '看完直接在 in77 解决晚饭，知味观、新白鹿都在步行范围内'],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['湖滨三公园正面看喷泉', '湖滨路看保俶塔夜景'],
     },
     {
@@ -226,6 +234,7 @@ export const hangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['飞来峰弥勒造像', '天王殿前的香炉与古树'],
     },
@@ -246,6 +255,7 @@ export const hangzhou: City = {
       tips: ['门票 10 元含三支清香，杭州寺庙年票可用；旺季需在「杭州寺院参观预约平台」预约', '每年 3 月中旬 500 岁古玉兰开花，是全年最美也最挤的两周', '从灵隐寺步行天竺路过来约 30 分钟，一路有法镜寺、法净寺可顺访'],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['黄墙与古玉兰', '山门前红丝带'],
     },
     {
@@ -270,6 +280,7 @@ export const hangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['龙井村口茶园梯田', '九溪烟树溪流石阶'],
     },
     {
@@ -289,6 +300,7 @@ export const hangzhou: City = {
       tips: ['门票 80 元，电瓶船 60 元/人另付；摇橹船按船计价约 200 元/小时，4 人以内最划算', '园区很大，只走一个入口附近的核心区即可，周家村主入口的船线最全', '秋天 10-11 月芦花、春天 3-4 月梅花和柿子最好看，夏天蚊虫多带驱蚊'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
     },
     {
       id: 'hefang-street',
@@ -307,6 +319,7 @@ export const hangzhou: City = {
       tips: ['主街商业化重，往南拐进中山中路（南宋御街）和十五奎巷才是本地气息', '胡庆余堂中药博物馆 10 元门票值得进去看一眼', '吴山上的城隍阁（30 元）能俯瞰西湖和老城夜景，20:30 前上山', '定胜糕、葱包烩在街上现做现卖的摊位可以试，但散装藕粉和茶叶别买'],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['河坊街牌楼夜景', '南宋御街玻璃地面遗址'],
     },
     {
@@ -332,6 +345,7 @@ export const hangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
     },
     {
       id: 'gongchen-bridge',
@@ -350,6 +364,7 @@ export const hangzhou: City = {
       tips: ['地铁 5 号线拱宸桥东站出来步行 10 分钟，先逛桥东的运河广场和大运河博物馆（周一闭馆、免费）', '桥西的刀剪剑博物馆、伞博物馆、扇博物馆都免费且适合带孩子', '可以从拱宸桥坐水上巴士沿运河到武林门，4 元一趟，是最便宜的运河游'],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['桥西直街看拱宸桥夜景', '桥顶拍过往货船'],
     },
     {
@@ -369,6 +384,7 @@ export const hangzhou: City = {
       tips: ['灯光秀一般 19:30 和 20:30 各一场（周日至周四多为 20:30 一场），以「杭州发布」当季公告为准', '地铁 4 号线市民中心站 D 口出，步行 10 分钟', '江边风大，秋冬多带一件外套；万象城和来福士就在旁边解决晚饭'],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['城市阳台主平台看对岸大莲花', '市民中心「日月同辉」夜景'],
     },
     {
@@ -388,6 +404,7 @@ export const hangzhou: City = {
       tips: ['茑屋书店周末人多，工作日下午最舒服', '天目里美术馆（BY ART MATTERS）常有国际级当代艺术展，门票 60-100 元', '和西溪湿地只隔 3 公里，可以上午西溪、下午天目里'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['中庭竹林与水景', '茑屋书店书墙'],
     },
     {
@@ -407,6 +424,7 @@ export const hangzhou: City = {
       tips: ['地铁 1 号线湘湖站出来骑共享单车 15 分钟到湖边，环湖绿道约 12 公里', '跨湖桥遗址博物馆免费、周一闭馆，独木舟值得专门看', '周末下午家庭野餐的人多，带垫子和零食可以在草坪待一下午'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'liangzhu',
@@ -430,6 +448,7 @@ export const hangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
       suburb: true,
       needBooking: true,
     },
@@ -455,6 +474,7 @@ export const hangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       suburb: true,
       photoSpots: ['西栅通安桥夜景', '染坊晒布场'],
     },

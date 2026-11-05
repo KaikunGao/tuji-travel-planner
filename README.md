@@ -47,7 +47,7 @@
 
 ### 城市
 
-首页开放北京、成都、西安（68 个景点、60 家餐厅，景点都标了室内 / 半室内 / 露天）。
+内置北京、上海、成都、重庆、西安、杭州、长沙、广州、厦门 9 座城市（198 个景点、172 家餐厅，景点都标了室内 / 半室内 / 露天）。
 
 ### 已收起的功能
 
@@ -57,7 +57,6 @@
 - 多方案对比（切换方案会丢掉手动调整）
 - 预算页、贴士页（含打包清单）；每天和整份行程的花费合计仍然显示
 - 分享二维码（分享链接保留）
-- 上海、重庆、杭州、长沙、广州、厦门六座城市（数据仍在仓库里，已保存的行程和分享链接照常能打开）
 
 ### 工作原理
 
@@ -113,7 +112,7 @@ npx tsx scripts/try-contingency.ts src/data/cities/beijing.ts 3 moderate 2026-11
 
 1. 复制 `src/data/cities/beijing.ts` 作为模板，按 `src/types.ts` 里的注释填写（坐标用 WGS-84；`exposure` 标室内 / 半室内 / 露天，雨天预案要用）
 2. `npm run validate -- src/data/cities/<id>.ts` 做到 0 个错误
-3. 在 `src/data/index.ts` 的 `BUILTIN_CITIES` 里注册；要在首页列出，再把 id 加进 `src/lib/features.ts` 的 `FOCUS_CITY_IDS`
+3. 在 `src/data/index.ts` 的 `BUILTIN_CITIES` 里注册
 
 欢迎通过 Pull Request 贡献城市数据。
 
@@ -181,11 +180,11 @@ The real cost of an itinerary is not making it, it is being afraid to touch it a
 
 ### Cities
 
-Beijing, Chengdu and Xi'an are open on the home page (68 attractions, 60 restaurants, each attraction tagged indoor / semi-indoor / outdoor).
+Beijing, Shanghai, Chengdu, Chongqing, Xi'an, Hangzhou, Changsha, Guangzhou and Xiamen — 198 attractions and 172 restaurants, each attraction tagged indoor / semi-indoor / outdoor.
 
 ### Features that are switched off
 
-To focus on change handling, these older features are hidden but not removed; flip the matching switch in `src/lib/features.ts` to bring one back: AI generation of arbitrary cities, plan-variant comparison, the budget and tips tabs, the share QR code, and six more cities (Shanghai, Chongqing, Hangzhou, Changsha, Guangzhou, Xiamen — their data is still in the repo, and saved plans or share links for them still open).
+To focus on change handling, these older features are hidden but not removed; flip the matching switch in `src/lib/features.ts` to bring one back: AI generation of arbitrary cities, plan-variant comparison, the budget and tips tabs, and the share QR code.
 
 ### How it works
 

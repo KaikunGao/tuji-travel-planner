@@ -59,6 +59,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['碑下仰拍环绕的摩天楼', '国泰艺术中心红色外立面'],
     },
     {
@@ -83,6 +84,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['千厮门大桥上俯拍全景', '江北嘴大剧院对岸远眺', '1 楼嘉滨路仰拍吊脚楼'],
     },
     {
@@ -107,6 +109,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['车厢靠江一侧拍来福士', '南岸站出口回望渝中半岛'],
     },
@@ -132,6 +135,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['广场最前端拍两江交汇', '对岸弹子石回拍来福士全景'],
     },
     {
@@ -155,6 +159,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
     },
     {
       id: 'baixiangju',
@@ -177,6 +182,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['15 楼连廊拍东水门大桥', '天桥入口拍楼体与长江'],
     },
     {
@@ -200,6 +206,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'shibati',
@@ -222,6 +229,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'shancheng-trail',
@@ -245,6 +253,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['悬空栈道俯拍长江和大桥', '仁爱堂钟楼残壁'],
     },
     {
@@ -268,6 +277,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       photoSpots: ['三峡博物馆台阶正拍大礼堂', '广场西侧斜 45° 拍穹顶'],
     },
     {
@@ -293,6 +303,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -316,6 +327,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['周公馆门口的黄桷树隧道', '桂园门前的青砖小楼'],
     },
     {
@@ -340,6 +352,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'any',
+      exposure: 'outdoor',
       photoSpots: ['观景平台正拍列车穿楼', '平台右侧带嘉陵江和高架同框'],
     },
     {
@@ -363,6 +376,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['二厂天桥与嘉陵江同框', '鹅岭公园瞰胜楼顶层'],
     },
     {
@@ -387,6 +401,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['码头看嘉陵江', '宝轮寺山门石梯'],
     },
     {
@@ -411,6 +426,7 @@ export const chongqing: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['观景台顶层正拍渝中半岛', '蓝调时刻拍东水门大桥和来福士'],
     },
     {
@@ -434,6 +450,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['龙门浩老街露台拍渝中半岛', '东水门大桥南桥头'],
     },
     {
@@ -457,6 +474,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'beicang-guanyinqiao',
@@ -479,6 +497,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'jiaotong-teahouse',
@@ -501,6 +520,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['茶馆门口逆光拍老茶客', '涂鸦街的整面彩绘楼'],
     },
     {
@@ -525,6 +545,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
       photoSpots: ['大佛湾千手观音', '圆觉洞的天光'],
     },
@@ -550,6 +571,7 @@ export const chongqing: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
     },
   ],

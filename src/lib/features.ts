@@ -13,9 +13,9 @@ export const FEATURES = {
   tipsTab: false,
   /** 分享弹窗里的二维码（分享链接本身保留） */
   shareQr: false,
-  /** 首页列出全部内置城市；关掉时只列 FOCUS_CITY_IDS 里的城市 */
-  allCities: false,
+  /** 首页列出全部内置城市（九城的景点都标了室内 / 露天，预案可用）；关掉时只列 FOCUS_CITY_IDS 里的城市 */
+  allCities: true,
 }
 
-/** 先做透的三座城市。其他城市只是不在首页列出，已保存的行程和分享链接照常能打开 */
+/** allCities 关掉时首页只列这几座。没列出来的城市数据还在，已保存的行程和分享链接照常能打开 */
 export const FOCUS_CITY_IDS = ['beijing', 'chengdu', 'xian']

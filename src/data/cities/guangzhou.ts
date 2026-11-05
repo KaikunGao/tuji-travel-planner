@@ -60,6 +60,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['海心沙亚运公园看塔身正面', '花城广场中轴线上的对称机位', '临江大道江边拍倒影'],
     },
@@ -85,6 +86,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['海心沙看广州塔正面', '广州大剧院弧形外墙', '花城广场中轴线看东西双塔'],
     },
     {
@@ -110,6 +112,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -134,6 +137,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['沙面大街露德圣母堂', '沙面南街的榕树隧道', '沙面公园江边看白鹅潭'],
     },
     {
@@ -158,6 +162,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['正门屋脊的陶塑群', '聚贤堂前的石雕栏板', '侧院天井仰拍屋檐'],
     },
@@ -183,6 +188,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['粤剧艺术博物馆的水榭回廊', '恩宁路骑楼街转角', '永庆坊天台看西关屋顶'],
     },
     {
@@ -207,6 +213,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'lizhiwan',
@@ -230,6 +237,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['文塔与石桥的倒影', '泮塘五约的青砖巷'],
     },
     {
@@ -254,6 +262,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
     },
     {
       id: 'sacred-heart-cathedral',
@@ -277,6 +286,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['教堂正面双塔', '侧门看彩色玻璃花窗'],
     },
     {
@@ -302,6 +312,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -326,6 +337,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['船过猎德大桥时回望广州塔', '二层甲板拍海珠桥灯光'],
     },
@@ -351,6 +363,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['五羊石像正面', '镇海楼红墙与古城墙', '北秀湖看镇海楼'],
     },
     {
@@ -375,6 +388,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       photoSpots: ['正门广场仰拍蓝瓦与木棉', '侧面看八角屋顶'],
     },
     {
@@ -400,6 +414,7 @@ export const guangzhou: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'indoor',
       needBooking: true,
       photoSpots: ['墓室原址入口', '丝缕玉衣展柜'],
     },
@@ -425,6 +440,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['逵园红砖洋楼正面', '新河浦路的林荫道', '恤孤院路洋楼群'],
     },
     {
@@ -449,6 +465,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['T 形码头尽头看对岸白鹅潭', '红砖仓库与老吊机'],
     },
     {
@@ -473,6 +490,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['古港牌坊与石板街', '黄埔村祠堂前的池塘'],
     },
     {
@@ -497,6 +515,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['摩星岭观景台俯瞰全城', '白云索道上看山林与城市'],
     },
     {
@@ -521,6 +540,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
       suburb: true,
       needBooking: true,
     },
@@ -546,6 +566,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       suburb: true,
       photoSpots: ['留耕堂前的广场与麻石街', '蚝壳墙小巷'],
     },
@@ -571,6 +592,7 @@ export const guangzhou: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
       photoSpots: ['燕子岩石景', '莲花塔看狮子洋', '望海观音广场'],
     },

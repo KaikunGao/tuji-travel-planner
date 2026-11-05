@@ -60,6 +60,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       needBooking: true,
       photoSpots: ['岩顶俯瞰全岛与鹭江', '日光岩寺黄墙前', '登顶途中的「鼓浪洞天」石刻'],
     },
@@ -85,6 +86,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['四十四桥上回望十二洞天', '钢琴博物馆落地窗前的古董钢琴'],
     },
@@ -110,6 +112,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'any',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['八卦楼红色穹顶', '笔山路爬满三角梅的老墙', '晃岩路天主堂白色立面'],
     },
@@ -134,6 +137,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
       needBooking: true,
       photoSpots: ['覆鼎岩下仰拍郑成功像', '郑成功诗屏与海'],
     },
@@ -159,6 +163,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['五老峰半山俯瞰厦大与大海', '大悲殿前放生池', '寺后「佛」字巨石'],
     },
     {
@@ -182,6 +187,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       needBooking: true,
       photoSpots: ['上弦场看建南大会堂', '芙蓉湖畔与嘉庚楼群', '群贤楼前陈嘉庚雕像'],
     },
@@ -206,6 +212,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['隧道入口的彩绘', '隧道中段的毕业季涂鸦'],
     },
@@ -230,6 +237,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['克虏伯大炮与台湾海峡同框', '炮台城垛看白城沙滩'],
     },
     {
@@ -253,6 +261,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['平台正面拍日落与鼓浪屿剪影', '平台回望演武大桥弧线'],
     },
     {
@@ -276,6 +285,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['沙滩回望演武大桥弧线', '礁石区拍落日'],
     },
     {
@@ -300,6 +310,7 @@ export const xiamen: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['避风坞倒影与渔船', '艺术西区红砖厂房楼梯', '大学路彩色骑楼'],
     },
     {
@@ -324,6 +335,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'indoor',
     },
     {
       id: 'zengcuoan',
@@ -347,6 +359,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['主巷口的灯笼长廊', '渔村老庙圣妈宫前'],
     },
     {
@@ -371,6 +384,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['黄厝沙滩远眺大担岛', '「一国两制 统一中国」标语牌', '椰风寨的椰子树与海'],
     },
     {
@@ -394,6 +408,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['中山路骑楼街景', '鹭江道海边看鼓浪屿夜景'],
     },
     {
@@ -418,6 +433,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['开禾路海鲜摊的早晨', '开元路骑楼下的老招牌'],
     },
     {
@@ -442,6 +458,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['雨林世界喷雾中的木栈道', '多肉植物区仙人掌与红土', '万石湖倒影'],
     },
     {
@@ -465,6 +482,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['隧道口的铁轨与涂鸦', '老信号灯与三角梅'],
     },
     {
@@ -488,6 +506,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['狐尾山段俯瞰筼筜湖与海沧大桥', '空中栈道的弧形转弯处'],
     },
     {
@@ -511,6 +530,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['白鹭女神像与湖对岸灯光', '西堤看筼筜湖夜景'],
     },
     {
@@ -535,6 +555,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['龙舟池对岸拍南薰楼倒影', '集美学村地铁站跨海段', '鳌园石雕长廊'],
     },
     {
@@ -559,6 +580,7 @@ export const xiamen: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       suburb: true,
       photoSpots: ['田螺坑观景台俯拍「四菜一汤」', '裕昌楼内院歪斜的木柱', '云水谣古榕与溪边土楼'],
     },

@@ -60,6 +60,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['陈毅广场观景平台正对东方明珠', '外白渡桥上回望浦西天际线', '延安东路口拍万国建筑群全景'],
     },
     {
@@ -84,6 +85,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['陆家嘴环形天桥仰拍三座高楼', '滨江大道正对外滩万国建筑', '国金中心天桥看东方明珠'],
     },
@@ -110,6 +112,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['九曲桥与湖心亭的倒影', '豫园内玉玲珑假山', '城隍庙老街的灯笼与飞檐（傍晚亮灯后）'],
     },
     {
@@ -133,6 +136,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['永安百货门口拍霓虹招牌', '世纪广场回望步行街夜景'],
     },
     {
@@ -158,6 +162,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -182,6 +187,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['北里太仓路口的石库门门头', '一大会址红砖外墙'],
     },
     {
@@ -205,6 +211,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['思南路梧桐隧道（复兴中路口）', '思南公馆里的老洋房立面'],
     },
     {
@@ -228,6 +235,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['210 弄入口处的弄堂纵深', '二楼咖啡馆露台俯拍老虎窗屋顶'],
     },
     {
@@ -252,6 +260,7 @@ export const shanghai: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['淮海中路街角正拍武康大楼船头造型', '武康路 115 号密丹公寓', '复兴西路口的梧桐隧道'],
     },
     {
@@ -275,6 +284,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['南京西路对面拍金顶与高楼同框', '寺内天井仰拍大雄宝殿'],
     },
     {
@@ -300,6 +310,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -323,6 +334,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'm50',
@@ -345,6 +357,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['莫干山路涂鸦墙', '天安千树的「树柱」立面', '苏州河对岸回望千树'],
     },
     {
@@ -370,6 +383,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'indoor',
       photoSpots: ['书院挑高阅览大厅', '徐家汇天主堂正面双塔'],
     },
     {
@@ -395,6 +409,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       photoSpots: ['世博大道上正拍红色斗拱', '高层平台看浦江南岸天际线'],
     },
     {
@@ -420,6 +435,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['龙美术馆伞拱下的清水混凝土', '滨江塔吊与江景', '西岸美术馆外的江边草坪'],
     },
     {
@@ -443,6 +459,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['中庭仰拍螺旋牛道', '三层伞形柱廊', '西侧外立面的镂空花格窗'],
     },
     {
@@ -466,6 +483,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['国客中心滨江台阶看外滩与陆家嘴同框', '外白渡桥与浦东夜景', '上海大厦前的桥头'],
     },
     {
@@ -489,6 +507,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'disneyland',
@@ -512,6 +531,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       suburb: true,
       needBooking: true,
       photoSpots: ['米奇大街尽头正拍城堡', '疯狂动物城园区的朱迪与尼克', '晚上城堡烟花（主街中段）'],
@@ -538,6 +558,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       suburb: true,
       photoSpots: ['放生桥上俯拍漕港河两岸', '北大街临河茶楼', '课植园的回廊'],
     },
@@ -564,6 +585,7 @@ export const shanghai: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       suburb: true,
       needBooking: true,
       photoSpots: ['倒转穹顶下的圆形天光', '建筑外侧的悬挑圆洞', '馆外环形水面倒影'],

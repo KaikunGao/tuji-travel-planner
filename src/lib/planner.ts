@@ -730,7 +730,11 @@ function scheduleOrdered(
     hadLunch = true
   }
   if (!hadDinner && all.length) {
-    let added = addMeal('dinner', null, Math.max(t, DINNER_FROM + 15))
+    // 远郊日固定下来的晚餐如果在市区（首次排程时就是「先回市区再吃」），重排时走同一条路；
+    // 否则会按远郊直达餐厅来算，每重排一次晚餐时间就变一次
+    const pinnedDinner = opts.pinned?.dinner ? city.restaurants.find((r) => r.id === opts.pinned!.dinner && !used.has(r.id)) : undefined
+    const backToCityFirst = Boolean(opts.isSuburb && pinnedDinner && haversine(pos, pinnedDinner) > 10)
+    let added = backToCityFirst ? false : addMeal('dinner', null, Math.max(t, DINNER_FROM + 15))
     if (!added && opts.isSuburb) {
       // 远郊附近没有合适的餐厅：先回市区再吃
       const back = estimateLeg(pos, opts.start, transport)

@@ -77,7 +77,7 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
       {q.trim() && filtered.length === 0 && !FEATURES.aiCity && (
         <Card className="mt-6 p-5">
           <div className="font-bold text-ink">还没有「{q.trim()}」</div>
-          <div className="mt-0.5 text-sm text-muted">现在先把 {cities.map((c) => c.name).join('、')} 做透，暂时不开放其他城市。</div>
+          <div className="mt-0.5 text-sm text-muted">目前内置 {cities.length} 座城市：{cities.map((c) => c.name).join('、')}。其他城市还没有数据。</div>
         </Card>
       )}
       {q.trim() && filtered.length === 0 && FEATURES.aiCity && (

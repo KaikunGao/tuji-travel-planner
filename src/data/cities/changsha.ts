@@ -60,6 +60,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['洲头雕塑正面（人少去侧面草坡）', '问天台看橘子洲大桥', '沙滩公园看岳麓山日落'],
     },
     {
@@ -84,6 +85,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['爱晚亭（枫叶季）', '山顶观景台俯瞰湘江', '索道上看橘子洲'],
     },
     {
@@ -108,6 +110,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['大门「惟楚有材」对联', '讲堂前的庭院', '百泉轩水池'],
     },
     {
@@ -131,6 +134,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
       photoSpots: ['东方红广场主席像背靠岳麓山', '红楼'],
     },
     {
@@ -156,6 +160,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'indoor',
       needBooking: true,
       photoSpots: ['马王堆墓坑复原现场', 'T 形帛画展柜'],
     },
@@ -181,6 +186,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['太平街牌坊', '贾谊故居门口的麻石路'],
     },
     {
@@ -204,6 +210,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['火宫殿牌坊夜景', '坡子街东口看 IFS'],
     },
     {
@@ -227,6 +234,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'wuyi-square-ifs',
@@ -249,6 +257,7 @@ export const changsha: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['L7 KAWS 雕塑', '黄兴中路看 IFS 塔楼'],
     },
     {
@@ -273,6 +282,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'indoor',
       photoSpots: ['中庭仰拍霓虹楼', '顶层俯拍巷子'],
     },
     {
@@ -296,6 +306,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
     },
     {
       id: 'duzheng-street',
@@ -318,6 +329,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'dufu-pavilion',
@@ -340,6 +352,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['四楼看橘子洲日落', '江边仰拍夜景亮灯'],
     },
     {
@@ -363,6 +376,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['橘子洲大桥灯带', '对岸岳麓山电视塔'],
     },
     {
@@ -386,6 +400,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'xie-zilong-museum',
@@ -410,6 +425,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'indoor',
       needBooking: true,
       photoSpots: ['二层白色旋转楼梯', '户外坡道仰拍'],
     },
@@ -436,6 +452,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -459,6 +476,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'meixihu-arts-centre',
@@ -482,6 +500,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['湖对岸拍三馆全景', '大剧院入口曲面仰拍'],
     },
     {
@@ -506,6 +525,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'tongguan-kiln-town',
@@ -529,6 +549,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       suburb: true,
     },
     {
@@ -552,6 +573,7 @@ export const changsha: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       suburb: true,
     },
   ],
