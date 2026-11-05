@@ -7,10 +7,10 @@
  *
  * 口径与规划器一致：路程是直线 × 1.3 的估算，所以对外只说「约」，不报到分钟级的到达时间。
  */
-import type { Attraction, City, DayPlan, MealType, Restaurant, ScheduleStop, Tier, TripPlan } from '../types'
+import type { Attraction, City, DayPlan, MealType, Restaurant, ScheduleStop, Tier, TripPlan, TripProgress } from '../types'
 import { MEAL_LABEL, formatDuration, formatKm, minutesToHHMM } from './format'
 import { round1 } from './geo'
-import { attractionIdsOfDay, removeAttraction, scoreAttraction, tierOf } from './planner'
+import { attractionIdsOfDay, remainingIdsOfDay, removeAttraction, scoreAttraction, tierOf } from './planner'
 
 export const TIER_LABEL: Record<Tier, { name: string; desc: string }> = {
   must: { name: '必去', desc: '硬约束，任何改动都不会动它' },
@@ -73,6 +73,10 @@ export interface PlanDiff {
   removed: Attraction[]
   added: Attraction[]
   moved: { a: Attraction; fromDay: number; toDay: number }[]
+  /** 行中进度变了（走完了几站 / 现在几点）时，改动后的进度 */
+  progress?: { day: number; doneCount: number; now: number }
+  /** 退出了行中模式 */
+  progressCleared?: boolean
 }
 
 /** 收工时间：最后一站结束 + 回到出发点 */
@@ -80,14 +84,15 @@ export function dayEnd(day: DayPlan): number {
   return day.stops.length ? day.endTime + (day.returnLeg?.minutes ?? 0) : day.startTime
 }
 
-/** 一天里干等的时间：到了但还没开门 / 没到饭点 */
-function idleMinutes(day: DayPlan): number {
+/** 一天里干等的时间：到了但还没开门 / 没到饭点。行中重排时，还没走的第一站从「现在」算起，晚点不算干等 */
+function idleMinutes(day: DayPlan, progress?: TripProgress): number {
   let prevEnd = day.startTime
   let idle = 0
-  for (const s of day.stops) {
+  day.stops.forEach((s, i) => {
+    if (progress && i === progress.doneCount) prevEnd = Math.max(prevEnd, progress.now)
     idle += Math.max(0, s.start - (prevEnd + (s.leg?.minutes ?? 0)))
     prevEnd = s.end
-  }
+  })
   return idle
 }
 
@@ -120,7 +125,7 @@ function sameSchedule(a: DayPlan, b: DayPlan): boolean {
   return a.stops.length === b.stops.length && a.stops.every((s, i) => s.kind === b.stops[i].kind && s.id === b.stops[i].id && s.start === b.stops[i].start && s.end === b.stops[i].end)
 }
 
-function diffDay(city: City, dayIdx: number, before: DayPlan, after: DayPlan): DayDiff {
+function diffDay(city: City, dayIdx: number, before: DayPlan, after: DayPlan, progressBefore?: TripProgress, progressAfter?: TripProgress): DayDiff {
   const attraction = (id: string) => city.attractions.find((a) => a.id === id)
   const restaurant = (id?: string) => (id ? city.restaurants.find((r) => r.id === id) : undefined)
   const idsBefore = attractionIdsOfDay(before)
@@ -163,7 +168,7 @@ function diffDay(city: City, dayIdx: number, before: DayPlan, after: DayPlan): D
     travelDelta: travelMinutes(after) - travelMinutes(before),
     endFrom: dayEnd(before),
     endTo: dayEnd(after),
-    idleDelta: idleMinutes(after) - idleMinutes(before),
+    idleDelta: idleMinutes(after, progressAfter) - idleMinutes(before, progressBefore),
     distanceDelta: round1(after.distanceKm - before.distanceKm),
     walkDelta: round1(after.walkKm - before.walkKm),
     costDelta: Math.round(dayCost(after) - dayCost(before)),
@@ -193,7 +198,8 @@ export function diffPlans(city: City, before: TripPlan, after: TripPlan): PlanDi
   after.days.forEach((d, i) => {
     const j = from(i)
     if (j !== i && j > i && from(j) === i) swaps.push([d.day, after.days[j].day])
-    if (!sameSchedule(before.days[j], d)) days.push(diffDay(city, i, before.days[j], d))
+    const on = (p: TripProgress | undefined, k: number) => (p && p.dayIdx === k ? p : undefined)
+    if (!sameSchedule(before.days[j], d)) days.push(diffDay(city, i, before.days[j], d, on(before.progress, j), on(after.progress, i)))
   })
   const swapped = new Set(swaps.flat())
   const dayOf = (plan: TripPlan) => {
@@ -212,7 +218,12 @@ export function diffPlans(city: City, before: TripPlan, after: TripPlan): PlanDi
     // 跟着整天对调走的不算「挪了一天」
     if (a && fromDay !== undefined && fromDay !== toDay && !(swapped.has(fromDay) && swapped.has(toDay))) moved.push({ a, fromDay, toDay })
   }
+  const pa = after.progress
+  const pb = before.progress
+  const progressChanged = pa && (!pb || pb.dayIdx !== pa.dayIdx || pb.doneCount !== pa.doneCount || pb.now !== pa.now)
   return {
+    progress: progressChanged ? { day: after.days[pa.dayIdx]?.day ?? pa.dayIdx + 1, doneCount: pa.doneCount, now: pa.now } : undefined,
+    progressCleared: Boolean(pb && !pa),
     days,
     untouchedDays: after.days.filter((d, i) => from(i) === i && sameSchedule(before.days[i], d)).length,
     swaps,
@@ -250,6 +261,8 @@ export function summarizeDiff(diff: PlanDiff): string {
   if (parts.length) return parts.join('，')
   const d = diff.days[0]
   if (!d) return '行程没有变化'
+  if (diff.progress) return `Day ${diff.progress.day} 走完 ${diff.progress.doneCount} 站，现在 ${minutesToHHMM(diff.progress.now)}：后面的时间跟着变了`
+  if (diff.progressCleared) return `退出行中：Day ${d.day} 按原计划的出发时间重新排`
   if (d.reordered) return `调整了 Day ${d.day} 的顺序`
   if (d.meals.length) return `Day ${d.day} 换了${d.meals.map((m) => MEAL_LABEL[m.mealType]).join('、')}`
   return `Day ${d.day} 的时间有变化`
@@ -361,20 +374,21 @@ export function previewRemove(city: City, plan: TripPlan, dayIdx: number, attrac
   if (!a || !plan.days[dayIdx]) return null
   const next = removeAttraction(city, plan, dayIdx, attractionId)
   const diff = diffPlans(city, plan, next)
-  if (!diff) return null
+  // 走完的站、过去的天砍不了，行程不会变
+  if (!diff || isEmptyDiff(diff)) return null
   const d = diff.days.find((x) => x.dayIdx === dayIdx)
   return { a, tier: tierOf(plan.params, attractionId), next, diff, savedMinutes: d ? Math.max(0, -(d.visitDelta + d.travelDelta)) : 0 }
 }
 
 /**
- * 这一天想轻松点，先砍谁：必去不在候选里；可放弃排最前，其余按「损失小的在前」（打分低的先砍）。
+ * 这一天想轻松点，先砍谁：必去和已经走完的不在候选里；可放弃排最前，其余按「损失小的在前」（打分低的先砍）。
  */
 export function cutOptions(city: City, plan: TripPlan, dayIdx: number): CutOption[] {
   const day = plan.days[dayIdx]
   if (!day) return []
   const rank: Record<Tier, number> = { droppable: 0, optional: 1, must: 2 }
   const value = (a: Attraction) => scoreAttraction(a, plan.params.interests, false, plan.variant)
-  return attractionIdsOfDay(day)
+  return remainingIdsOfDay(plan, dayIdx)
     .filter((id) => tierOf(plan.params, id) !== 'must')
     .map((id) => previewRemove(city, plan, dayIdx, id))
     .filter((o): o is CutOption => !!o)

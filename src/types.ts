@@ -261,6 +261,19 @@ export interface DayPlan {
   returnLeg?: Leg
 }
 
+/**
+ * 行中进度：走到第几天、当天前几站已经走完、现在几点。
+ * 有了它，任何改动都只重算还没走的那一段；走完的站原样保留，不参与重排、替换或删除。
+ */
+export interface TripProgress {
+  /** 正在进行的是第几天（从 0 开始）；它之前的天都算已经过去 */
+  dayIdx: number
+  /** 当天时间轴上前几站（景点和用餐都算）已经走完 */
+  doneCount: number
+  /** 现在的时间（距当天 0:00 的分钟数），还没走的站从这个时间往后排 */
+  now: number
+}
+
 export interface TripPlan {
   id: string
   /** 方案变体 */
@@ -270,6 +283,8 @@ export interface TripPlan {
   skipped: { id: string; reason: string }[]
   suggestions: string[]
   createdAt: number
+  /** 行中进度（出发后才有） */
+  progress?: TripProgress
 }
 
 export interface SavedPlan {

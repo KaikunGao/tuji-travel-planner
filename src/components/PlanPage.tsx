@@ -1,4 +1,4 @@
-import { ArrowLeft, CalendarPlus, Check, Copy, Download, GitCompare, Link2, Map as MapIcon, Printer, Save, Share2, X } from 'lucide-react'
+import { ArrowLeft, BarChart3, CalendarPlus, Check, Copy, Download, GitCompare, Link2, Map as MapIcon, Printer, Save, Share2, X } from 'lucide-react'
 import QRCode from 'qrcode'
 import { useEffect, useMemo, useState } from 'react'
 import type { City, PlanVariant, Restaurant, TripPlan } from '../types'
@@ -8,6 +8,7 @@ import { INTEREST_EMOJI, PACE_LABEL, formatKm, formatMoney, minutesToHHMM } from
 import { downloadIcs, planToIcs } from '../lib/ics'
 import { VARIANT_LABEL, addAttraction, planTotals, planTrip } from '../lib/planner'
 import { encodeShare, shareUrl } from '../lib/share'
+import { changeKindOf, track } from '../lib/track'
 import type { Settings } from '../lib/storage'
 import { BudgetTab } from './BudgetTab'
 import { ChangeBanner } from './ChangeViews'
@@ -17,6 +18,7 @@ import { FoodTab } from './FoodTab'
 import { DAY_COLORS, MapView } from './MapView'
 import { RestaurantCard } from './RestaurantCard'
 import { TipsTab } from './TipsTab'
+import { TrackPanel } from './TrackPanel'
 import { Badge, Button, Modal } from './ui'
 type Tab = 'itinerary' | 'backup' | 'food' | 'budget' | 'tips'
 const TABS: { id: Tab; name: string; emoji: string }[] = [
@@ -55,15 +57,24 @@ export function PlanPage({
   const [showSuggestions, setShowSuggestions] = useState(true)
   const [compareOpen, setCompareOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
+  const [statsOpen, setStatsOpen] = useState(false)
   const [shareLink, setShareLink] = useState('')
   const [qr, setQr] = useState<string | null>(null)
   // 最近一次改动：留着改动前的行程，用来展示代价和撤销
   const [lastChange, setLastChange] = useState<{ before: TripPlan; after: TripPlan; diff: PlanDiff } | null>(null)
   const totals = useMemo(() => planTotals(plan), [plan])
   const changeLines = useMemo(() => (lastChange ? describeDiff(lastChange.diff, lastChange.after, city) : []), [lastChange, city])
+  // 最近一次改动在当前这一天影响到的站（时间变了的、新加的），地图上圈出来
+  const affected = useMemo(() => {
+    const d = lastChange?.diff.days.find((x) => x.dayIdx === activeDay)
+    return new Set(d ? [...d.shifted.map((s) => s.id), ...d.added.map((a) => a.id)] : [])
+  }, [lastChange, activeDay])
   const applyChange = (next: TripPlan) => {
     const diff = diffPlans(city, plan, next)
-    if (diff && !isEmptyDiff(diff)) setLastChange({ before: plan, after: next, diff })
+    if (diff && !isEmptyDiff(diff)) {
+      setLastChange({ before: plan, after: next, diff })
+      track('commit', undefined, { kind: changeKindOf(diff), day: diff.days[0]?.day })
+    }
     // 只改了档位等偏好、时间表没动：撤销时别把这次偏好改动一起冲掉
     else setLastChange((c) => c && { ...c, before: { ...c.before, params: next.params }, after: { ...c.after, params: next.params } })
     onPlanChange(next)
@@ -146,6 +157,9 @@ export function PlanPage({
           <Button variant="teal" size="sm" onClick={() => setCompareOpen(true)}>
             <GitCompare size={14} /> 方案对比
           </Button>
+          <Button variant="ghost" size="sm" onClick={() => setStatsOpen(true)} title="从想改到改完用了几轮">
+            <BarChart3 size={14} /> 改动统计
+          </Button>
         </div>
       </div>
 
@@ -197,7 +211,10 @@ export function PlanPage({
               <button
                 key={t.id}
                 type="button"
-                onClick={() => setTab(t.id)}
+                onClick={() => {
+                  if (t.id === 'backup' && tab !== 'backup') track('intent', 'backup')
+                  setTab(t.id)
+                }}
                 className={`flex-1 whitespace-nowrap rounded-xl px-1.5 py-2 text-sm font-medium transition sm:px-3 ${tab === t.id ? 'bg-ink text-white' : 'text-muted hover:bg-paper hover:text-ink'}`}
               >
                 <span className="mr-1">{t.emoji}</span>
@@ -235,6 +252,7 @@ export function PlanPage({
                     summary={summarizeDiff(lastChange.diff)}
                     lines={changeLines}
                     onUndo={() => {
+                      track('undo', 'banner')
                       onPlanChange(lastChange.before)
                       setLastChange(null)
                       setToast('已撤销，行程恢复到改动前')
@@ -302,8 +320,8 @@ export function PlanPage({
         {/* 右侧地图 */}
         <aside className="no-print hidden lg:block">
           <div className="sticky top-20 overflow-hidden rounded-3xl border border-line bg-white shadow-card" style={{ height: 'calc(100vh - 6.5rem)' }}>
-            <MapView city={city} tileSource={settings.tileSource} mode="plan" plan={plan} activeDay={activeDay} selectedId={selectedId} onSelect={handleSelectFromMap} />
-            <MapLegend plan={plan} activeDay={activeDay} onPick={(i) => { setActiveDay(i); setTab('itinerary') }} />
+            <MapView city={city} tileSource={settings.tileSource} mode="plan" plan={plan} activeDay={activeDay} selectedId={selectedId} onSelect={handleSelectFromMap} affected={affected} />
+            <MapLegend plan={plan} activeDay={activeDay} onPick={(i) => { setActiveDay(i); setTab('itinerary') }} affected={affected.size > 0} />
           </div>
         </aside>
       </div>
@@ -318,7 +336,7 @@ export function PlanPage({
             </button>
           </div>
           <div className="relative flex-1">
-            <MapView city={city} tileSource={settings.tileSource} mode="plan" plan={plan} activeDay={activeDay} selectedId={selectedId} onSelect={handleSelectFromMap} />
+            <MapView city={city} tileSource={settings.tileSource} mode="plan" plan={plan} activeDay={activeDay} selectedId={selectedId} onSelect={handleSelectFromMap} affected={affected} />
             <MapLegend plan={plan} activeDay={activeDay} onPick={setActiveDay} />
           </div>
         </div>
@@ -397,6 +415,11 @@ export function PlanPage({
         </div>
       </Modal>
 
+      {/* 改动轮次统计 */}
+      <Modal open={statsOpen} onClose={() => setStatsOpen(false)} title="改动统计 · 从想改到改完用了几轮" wide>
+        {statsOpen && <TrackPanel onToast={setToast} />}
+      </Modal>
+
       {/* 分享 */}
       <Modal open={shareOpen} onClose={() => setShareOpen(false)} title="分享行程">
         <p className="text-sm text-muted">把链接发给同行的人，打开就能看到这份行程（含景点顺序和餐厅）。{city.source === 'ai' ? '这是 AI 生成的城市，链接会附带完整城市数据，所以比较长。' : ''}</p>
@@ -442,9 +465,15 @@ function Stat({ n, label }: { n: number | string; label: string }) {
   )
 }
 
-function MapLegend({ plan, activeDay, onPick }: { plan: TripPlan; activeDay: number; onPick: (i: number) => void }) {
+function MapLegend({ plan, activeDay, onPick, affected }: { plan: TripPlan; activeDay: number; onPick: (i: number) => void; affected?: boolean }) {
   return (
     <div className="pointer-events-none absolute inset-x-3 bottom-3 z-[500] flex flex-wrap gap-1.5">
+      {affected && (
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-teal/40 bg-white/95 px-2.5 py-1 text-xs text-teal shadow backdrop-blur">
+          <span className="h-2.5 w-2.5 rounded-full ring-2 ring-teal" />
+          青色圈 = 这次改动影响到的站
+        </span>
+      )}
       {plan.days.map((d, i) => (
         <button
           key={d.day}

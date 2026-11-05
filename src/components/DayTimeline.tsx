@@ -1,14 +1,15 @@
 import { DndContext, KeyboardSensor, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { ArrowDown, ArrowUp, ChevronDown, ChevronUp, Coffee, GripVertical, Home, LifeBuoy, Plus, RefreshCw, Repeat, Scissors, Sparkles, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, Check, ChevronDown, ChevronUp, Coffee, GripVertical, Home, LifeBuoy, MapPin, Plus, RefreshCw, Repeat, Scissors, Sparkles, X } from 'lucide-react'
 import { useMemo, useState, type CSSProperties, type ReactNode } from 'react'
 import type { Attraction, City, DayPlan, Leg, Restaurant, ScheduleStop, Tier, TripPlan } from '../types'
 import { cutOptions, describeDiff, previewRemove, type CutOption, type DiffLine } from '../lib/change'
 import { blockedPlan, queuePlan, type Contingency } from '../lib/contingency'
-import { INTEREST_EMOJI, MEAL_LABEL, TRANSPORT_LABEL, formatDateCN, formatDuration, formatKm, formatMoney, minutesToHHMM } from '../lib/format'
+import { INTEREST_EMOJI, MEAL_LABEL, TRANSPORT_LABEL, formatDateCN, formatDuration, formatKm, formatMoney, hhmmToMinutes, minutesToHHMM, todayStr } from '../lib/format'
 import { haversine } from '../lib/geo'
-import { addAttraction, attractionIdsOfDay, mealAlternatives, moveAttraction, nearbyRestaurants, optimizeDay, pinnedMealsOf, rebuildDay, replaceMeal, tierOf, withTier } from '../lib/planner'
+import { track } from '../lib/track'
+import { addAttraction, attractionIdsOfDay, clearProgress, doneStopsOf, isPastDay, mealAlternatives, moveAttraction, nearbyRestaurants, optimizeDay, pinnedMealsOf, rebuildDay, replaceMeal, setProgress, tierOf, withTier } from '../lib/planner'
 import { CutOptionsPanel, CutPreview, TierPicker } from './ChangeViews'
 import { ContingencyBody } from './ContingencyTab'
 import { DAY_COLORS } from './MapView'
@@ -43,6 +44,18 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
   )
   const easeOptions = useMemo(() => (easing ? cutOptions(city, plan, dayIdx) : []), [easing, city, plan, dayIdx])
   const attractionIds = attractionIdsOfDay(day)
+  // 行中进度：这一天前 doneCount 站已经走完，不能再改；已经过去的天整天不能改
+  const past = isPastDay(plan, dayIdx)
+  const doneCount = past ? day.stops.length : doneStopsOf(plan, dayIdx).length
+  const doneAttractions = day.stops.slice(0, doneCount).filter((s) => s.kind === 'attraction').length
+  const inProgress = plan.progress?.dayIdx === dayIdx
+  /** 走到第 i 站了：如果行程日期就是今天，用现在的时间；否则先按这一站的计划结束时间算，之后可以手动改 */
+  const arriveAt = (i: number) => {
+    const d = new Date()
+    const clock = d.getHours() * 60 + d.getMinutes()
+    const now = day.date === todayStr() ? Math.max(clock, day.stops[i].start) : day.stops[i].end
+    onPlanChange(setProgress(city, plan, dayIdx, i + 1, now))
+  }
   const inPlan = useMemo(() => new Set(plan.days.flatMap((d) => attractionIdsOfDay(d))), [plan])
   const addable = useMemo(
     () => city.attractions.filter((a) => !inPlan.has(a.id) && !plan.params.exclude.includes(a.id) && (day.isSuburb ? true : !a.suburb)),
@@ -59,7 +72,7 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
     if (!over || active.id === over.id) return
     const from = attractionIds.indexOf(String(active.id))
     const to = attractionIds.indexOf(String(over.id))
-    if (from < 0 || to < 0) return
+    if (from < doneAttractions || to < doneAttractions) return
     onPlanChange(rebuildDay(city, plan, dayIdx, arrayMove(attractionIds, from, to), false, pinnedMealsOf(day)))
   }
 
@@ -95,19 +108,61 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
           </div>
         </div>
         <div className="no-print mt-3 flex flex-wrap gap-2">
-          <Button size="sm" variant="secondary" onClick={() => onPlanChange(optimizeDay(city, plan, dayIdx))} title="重新按最短路径排序并重新挑选餐厅">
+          <Button size="sm" variant="secondary" onClick={() => onPlanChange(optimizeDay(city, plan, dayIdx))} disabled={past} title={inProgress ? '只重排还没走的站' : '重新按最短路径排序并重新挑选餐厅'}>
             <Sparkles size={14} /> 重新优化顺序
           </Button>
-          <Button size="sm" variant="secondary" onClick={() => setAdding(true)} disabled={!addable.length}>
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => {
+              track('intent', 'add')
+              setAdding(true)
+            }}
+            disabled={past || !addable.length}
+          >
             <Plus size={14} /> 添加景点
           </Button>
-          <Button size="sm" variant="secondary" onClick={() => setEasing((v) => !v)} disabled={!attractionIds.length} title="列出这一天可以砍的点和各自的代价">
+          <Button
+            size="sm"
+            variant="secondary"
+            onClick={() => {
+              track(easing ? 'cancel' : 'intent', 'ease')
+              setEasing((v) => !v)
+            }}
+            disabled={past || attractionIds.length <= doneAttractions}
+            title="列出这一天可以砍的点和各自的代价"
+          >
             <Scissors size={14} /> 想轻松点，先砍谁
           </Button>
         </div>
       </div>
 
-      {easing && <CutOptionsPanel options={easeOptions} linesOf={linesOf} onCut={(o) => onPlanChange(o.next)} onClose={() => setEasing(false)} />}
+      {/* 行中进度 */}
+      {past && <div className="no-print rounded-2xl border border-line bg-white/70 px-4 py-3 text-sm text-muted">这一天已经过去了，不能再改。</div>}
+      {inProgress && plan.progress && (
+        <div className="no-print flex flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl border border-brand/30 bg-brand-soft px-4 py-3 text-sm text-ink">
+          <span className="inline-flex items-center gap-1 font-semibold text-brand-dark">
+            <MapPin size={15} /> 行中
+          </span>
+          <span>
+            已走完 {doneCount} / {day.stops.length} 站，后面的站从现在接着排
+          </span>
+          <label className="inline-flex items-center gap-1.5">
+            <span className="text-xs text-muted">现在</span>
+            <input
+              type="time"
+              value={minutesToHHMM(plan.progress.now)}
+              onChange={(e) => e.target.value && onPlanChange(setProgress(city, plan, dayIdx, doneCount, hhmmToMinutes(e.target.value)))}
+              className="h-8 rounded-lg border border-line bg-white px-2 text-sm tabular-nums outline-none focus:border-brand"
+            />
+          </label>
+          <button type="button" onClick={() => onPlanChange(clearProgress(city, plan))} className="ml-auto text-xs text-muted hover:text-ink hover:underline">
+            退出行中，回到原计划
+          </button>
+        </div>
+      )}
+
+      {easing && <CutOptionsPanel options={easeOptions} linesOf={linesOf} onCut={(o) => onPlanChange(o.next)} onClose={() => { track('cancel', 'ease'); setEasing(false) }} />}
 
       {/* 早餐 */}
       {breakfast && (
@@ -137,9 +192,10 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
               <StartRow label={plan.params.startPoint?.name ?? '市中心'} time={minutesToHHMM(day.startTime)} />
               {day.stops.map((s, i) => {
                 const attrIndex = s.kind === 'attraction' ? attractionIds.indexOf(s.id) : -1
+                const done = i < doneCount
                 if (s.kind === 'attraction') {
                   return (
-                    <SortableStop key={`${s.id}-${i}`} id={s.id}>
+                    <SortableStop key={`${s.id}-${i}`} id={s.id} disabled={done}>
                       {(handle) => (
                         <>
                           {s.leg && <LegRow leg={s.leg} />}
@@ -150,23 +206,32 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
                             color={color}
                             selected={selectedId === s.id}
                             onSelect={() => onSelect(s.id)}
-                            onMoveUp={attrIndex > 0 ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex - 1)) : undefined}
-                            onMoveDown={attrIndex < attractionIds.length - 1 ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex + 1)) : undefined}
+                            done={done}
+                            onArrive={done ? undefined : () => arriveAt(i)}
+                            onMoveUp={!done && attrIndex > doneAttractions ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex - 1)) : undefined}
+                            onMoveDown={!done && attrIndex < attractionIds.length - 1 ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex + 1)) : undefined}
                             tier={tierOf(plan.params, s.id)}
                             onTierChange={(t) => onPlanChange({ ...plan, params: withTier(plan.params, s.id, t) })}
                             cutPreview={cut?.a.id === s.id ? { option: cut, lines: linesOf(cut) } : undefined}
                             onAskRemove={() => {
+                              track('intent', 'cut')
                               const option = previewRemove(city, plan, dayIdx, s.id)
                               setCutting(option ? { option, base: plan } : null)
                             }}
                             onConfirmRemove={() => cut && onPlanChange(cut.next)}
-                            onCancelRemove={() => setCutting(null)}
+                            onCancelRemove={() => {
+                              track('cancel', 'cut')
+                              setCutting(null)
+                            }}
                             trouble={troubleId === s.id && trouble ? trouble : undefined}
-                            onToggleTrouble={() => setTroubleAt(troubleId === s.id ? null : { id: s.id, base: plan })}
+                            onToggleTrouble={() => {
+                              track(troubleId === s.id ? 'cancel' : 'intent', 'trouble')
+                              setTroubleAt(troubleId === s.id ? null : { id: s.id, base: plan })
+                            }}
                             onApply={onPlanChange}
                             usedRestaurants={new Set(day.stops.filter((x) => x.kind === 'meal').map((x) => x.id))}
                             onOpenRestaurant={onOpenRestaurant}
-                            dragHandle={attractionIds.length > 1 ? handle : undefined}
+                            dragHandle={!done && attractionIds.length - doneAttractions > 1 ? handle : undefined}
                           />
                         </>
                       )}
@@ -181,6 +246,8 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
                       stop={s}
                       selected={selectedId === s.id}
                       onSelect={() => onSelect(s.id)}
+                      done={done}
+                      onArrive={done ? undefined : () => arriveAt(i)}
                       alternatives={() => mealAlternatives(city, plan, dayIdx, i)}
                       onSwap={(rid) => onPlanChange(replaceMeal(city, plan, dayIdx, i, rid))}
                       onOpenRestaurant={onOpenRestaurant}
@@ -196,7 +263,15 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
       )}
 
       {/* 添加景点 */}
-      <Modal open={adding} onClose={() => setAdding(false)} title={`添加景点到 Day ${day.day}`} wide>
+      <Modal
+        open={adding}
+        onClose={() => {
+          track('cancel', 'add')
+          setAdding(false)
+        }}
+        title={`添加景点到 Day ${day.day}`}
+        wide
+      >
         {addable.length === 0 ? (
           <div className="text-sm text-muted">没有可添加的景点了。</div>
         ) : (
@@ -242,8 +317,8 @@ interface DragHandle {
   listeners: ReturnType<typeof useSortable>['listeners']
 }
 
-function SortableStop({ id, children }: { id: string; children: (handle: DragHandle) => ReactNode }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id })
+function SortableStop({ id, disabled, children }: { id: string; disabled?: boolean; children: (handle: DragHandle) => ReactNode }) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id, disabled })
   const style: CSSProperties = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -294,6 +369,8 @@ function AttractionStop({
   color,
   selected,
   onSelect,
+  done,
+  onArrive,
   onMoveUp,
   onMoveDown,
   tier,
@@ -315,6 +392,10 @@ function AttractionStop({
   color: string
   selected: boolean
   onSelect: () => void
+  /** 已经走完：只读，不能再改 */
+  done: boolean
+  /** 走到这了（把它和它之前的站都记为已走完） */
+  onArrive?: () => void
   onMoveUp?: () => void
   onMoveDown?: () => void
   tier: Tier
@@ -340,7 +421,7 @@ function AttractionStop({
     <div
       id={`stop-${stop.id}`}
       onClick={onSelect}
-      className={`relative rounded-2xl border bg-white p-4 shadow-card transition ${selected ? 'border-brand ring-2 ring-brand/20' : 'border-line'}`}
+      className={`relative rounded-2xl border bg-white p-4 shadow-card transition ${selected ? 'border-brand ring-2 ring-brand/20' : 'border-line'} ${done ? 'opacity-60' : ''}`}
     >
       <div className="flex gap-3">
         <div className="flex flex-col items-center">
@@ -359,6 +440,7 @@ function AttractionStop({
                 <h4 className="text-base font-bold leading-tight text-ink">
                   {INTEREST_EMOJI[a.category]} {a.name}
                 </h4>
+                {done && <Badge tone="green">✓ 已走完</Badge>}
                 {a.mustSee && <Badge tone="gold">经典</Badge>}
                 {a.needBooking && <Badge tone="warn">需预约</Badge>}
                 {a.closedOn && a.closedOn.length > 0 && <Badge tone="muted">{a.closedOn.map((d) => '日一二三四五六'[d]).map((d) => `周${d}`).join('、')}闭馆</Badge>}
@@ -369,8 +451,9 @@ function AttractionStop({
                 <span>· {a.price ? `门票 ¥${a.price}` : '免费'}</span>
                 <span>· {a.openHours}</span>
               </div>
-              <div className="mt-1.5 flex flex-wrap items-center gap-2">
+              {!done && <div className="mt-1.5 flex flex-wrap items-center gap-2">
                 <TierPicker value={tier} onChange={onTierChange} />
+                <ArriveButton onArrive={onArrive} />
                 <button
                   type="button"
                   onClick={(e) => {
@@ -381,9 +464,9 @@ function AttractionStop({
                 >
                   <LifeBuoy size={12} /> 出状况了
                 </button>
-              </div>
+              </div>}
             </div>
-            <div className="no-print flex shrink-0 items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
+            <div className={`no-print flex shrink-0 items-center gap-0.5 ${done ? 'hidden' : ''}`} onClick={(e) => e.stopPropagation()}>
               {dragHandle && (
                 <button
                   type="button"
@@ -472,6 +555,8 @@ function MealStop({
   stop,
   selected,
   onSelect,
+  done,
+  onArrive,
   alternatives,
   onSwap,
   onOpenRestaurant,
@@ -480,6 +565,8 @@ function MealStop({
   stop: ScheduleStop
   selected: boolean
   onSelect: () => void
+  done: boolean
+  onArrive?: () => void
   alternatives: () => Restaurant[]
   onSwap: (restaurantId: string) => void
   onOpenRestaurant: (r: Restaurant, subtitle?: string) => void
@@ -493,7 +580,7 @@ function MealStop({
     <div
       id={`stop-${stop.id}`}
       onClick={onSelect}
-      className={`rounded-2xl border border-dashed bg-[#fffaf7] p-4 transition ${selected ? 'border-xhs ring-2 ring-xhs/15' : 'border-brand/40'}`}
+      className={`rounded-2xl border border-dashed bg-[#fffaf7] p-4 transition ${selected ? 'border-xhs ring-2 ring-xhs/15' : 'border-brand/40'} ${done ? 'opacity-60' : ''}`}
     >
       <div className="flex gap-3">
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-brand bg-white text-base">{cuisineEmoji(r.cuisine)}</span>
@@ -511,11 +598,24 @@ function MealStop({
                 {r.waitTime && <span className="text-amber-700">· ⏳ {r.waitTime}</span>}
               </div>
             </div>
-            <div className="no-print flex shrink-0 gap-1" onClick={(e) => e.stopPropagation()}>
-              <Button size="sm" variant="secondary" onClick={() => setSwapping((v) => !v)} title="换一家">
-                <Repeat size={13} /> 换一家
-              </Button>
-            </div>
+            {done ? (
+              <Badge tone="green">✓ 已吃过</Badge>
+            ) : (
+              <div className="no-print flex shrink-0 flex-wrap justify-end gap-1" onClick={(e) => e.stopPropagation()}>
+                <ArriveButton onArrive={onArrive} />
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => {
+                    track(swapping ? 'cancel' : 'intent', 'meal')
+                    setSwapping((v) => !v)
+                  }}
+                  title="换一家"
+                >
+                  <Repeat size={13} /> 换一家
+                </Button>
+              </div>
+            )}
           </div>
           <div className="mt-1.5 text-[13px] text-ink/85">
             <span className="font-medium text-ink">必点：</span>
@@ -577,6 +677,24 @@ function MealStop({
         </div>
       </div>
     </div>
+  )
+}
+
+/** 行中打卡：把这一站和它之前的站都记为已走完 */
+function ArriveButton({ onArrive }: { onArrive?: () => void }) {
+  if (!onArrive) return null
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation()
+        onArrive()
+      }}
+      title="把这一站和它之前的站记为已走完；之后的改动只重算后面的站"
+      className="no-print inline-flex items-center gap-1 rounded-lg border border-line bg-white px-2 py-1 text-[11px] font-medium text-muted transition hover:border-brand hover:text-brand"
+    >
+      <Check size={12} /> 走完了
+    </button>
   )
 }
 

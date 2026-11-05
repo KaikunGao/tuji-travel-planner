@@ -8,12 +8,14 @@
  *  1. 必去的点不自动替换、不自动砍，优先给「换天」；
  *  2. 只动出状况的那一天（换天时动两天），其余原样；
  *  3. 新方案不能带来新的时间冲突（闭馆、赶不上闭园），否则不算可用。
+ *
+ * 出发以后（行程带了行中进度）：已经走完的站和已经过去的天不参与任何预案，方案只针对还没走的那一段。
  */
 import type { Attraction, City, Exposure, Tier, TripPlan } from '../types'
 import { TIER_LABEL, cutOptions, dayEnd, describeDiff, diffPlans, previewRemove, type DiffLine, type PlanDiff } from './change'
 import { formatDuration, formatKm, minutesToHHMM, weekdayOf } from './format'
 import { haversine } from './geo'
-import { attractionIdsOfDay, isSuburb, moveToDay, pinnedMealsOf, rebuildDay, replaceAttraction, swapDays, tierOf } from './planner'
+import { attractionIdsOfDay, isPastDay, isSuburb, moveToDay, pinnedMealsOf, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
 
 /* ------------------------------------------------------------------ */
 /* 淋雨程度                                                             */
@@ -66,7 +68,7 @@ function hasNewConflict(diff: PlanDiff | null): boolean {
 export function findAlternatives(city: City, plan: TripPlan, dayIdx: number, attractionId: string, opts: { rain?: boolean; limit?: number } = {}): Alternative[] {
   const day = plan.days[dayIdx]
   const o = city.attractions.find((a) => a.id === attractionId)
-  if (!day || !o) return []
+  if (!day || !o || !remainingIdsOfDay(plan, dayIdx).includes(attractionId)) return []
   const inPlan = new Set(plan.days.flatMap((d) => attractionIdsOfDay(d)))
   const weekday = day.date ? weekdayOf(day.date) : undefined
   const suburb = isSuburb(o, city)
@@ -156,6 +158,12 @@ function option(city: City, base: TripPlan, key: string, title: string, next: Tr
 
 const nameOf = (city: City, id: string) => city.attractions.find((a) => a.id === id)?.name ?? id
 
+/** 这一天没有可改的站时，说清楚是为什么 */
+function nothingLeft(plan: TripPlan, dayIdx: number): string {
+  if (isPastDay(plan, dayIdx)) return '这一天已经过去了。'
+  return attractionIdsOfDay(plan.days[dayIdx]).length ? '这一天的景点都走完了。' : '这一天没排景点，不用改。'
+}
+
 /** 一天的游览时间里露天占多少（0–1） */
 function outdoorShare(city: City, plan: TripPlan, dayIdx: number): number {
   let outdoor = 0
@@ -171,13 +179,12 @@ function outdoorShare(city: City, plan: TripPlan, dayIdx: number): number {
 
 /** 这天下雨：露天的点换成室内 / 半室内的；必去的不动，可以整天和别的天对调 */
 export function rainPlan(city: City, plan: TripPlan, dayIdx: number): Contingency {
-  const day = plan.days[dayIdx]
-  const ids = attractionIdsOfDay(day)
+  const ids = remainingIdsOfDay(plan, dayIdx)
   const attraction = (id: string) => city.attractions.find((a) => a.id === id)!
   const outdoor = ids.filter((id) => exposureOf(attraction(id)).value === 'outdoor')
   const base: Contingency = { kind: 'rain', dayIdx, title: '这天下雨', when: '出门前看到下雨，或者玩到一半下起来了', facts: [], options: [] }
-  if (!ids.length) return { ...base, note: '这一天没排景点，不用改。' }
-  if (!outdoor.length) return { ...base, note: '这一天没有露天的点，带伞照原计划走就行。' }
+  if (!ids.length) return { ...base, note: nothingLeft(plan, dayIdx) }
+  if (!outdoor.length) return { ...base, note: `${plan.progress?.dayIdx === dayIdx ? '剩下的站' : '这一天'}没有露天的点，带伞照原计划走就行。` }
   base.facts.push(`露天、会淋雨的：${outdoor.map((id) => nameOf(city, id)).join('、')}`)
   const inferred = outdoor.filter((id) => exposureOf(attraction(id)).inferred)
   if (inferred.length) base.facts.push(`其中 ${inferred.map((id) => nameOf(city, id)).join('、')} 是按分类推断的，出发前自己确认一下`)
@@ -231,12 +238,12 @@ export function rainPlan(city: City, plan: TripPlan, dayIdx: number): Contingenc
 
 /** 走不动了：按三档给出先砍谁（必去不在其中） */
 export function tiredPlan(city: City, plan: TripPlan, dayIdx: number): Contingency {
-  const ids = attractionIdsOfDay(plan.days[dayIdx])
+  const ids = remainingIdsOfDay(plan, dayIdx)
   const base: Contingency = { kind: 'tired', dayIdx, title: '走不动了', when: '同行的人累了，或者想早点回去', facts: [], options: [] }
   const options = cutOptions(city, plan, dayIdx)
   const must = ids.filter((id) => tierOf(plan.params, id) === 'must')
   if (must.length) base.facts.push(`必去的不会动：${must.map((id) => nameOf(city, id)).join('、')}`)
-  if (!options.length) return { ...base, note: ids.length ? '这一天都是必去，没有可砍的点。先把某个点改成「可选」或「可放弃」。' : '这一天没排景点。' }
+  if (!options.length) return { ...base, note: ids.length ? '剩下的都是必去，没有可砍的点。先把某个点改成「可选」或「可放弃」。' : nothingLeft(plan, dayIdx) }
   base.options = options.slice(0, 3).map((o) => ({
     key: `tired:${o.a.id}`,
     title: `砍掉 ${o.a.name}${o.savedMinutes > 0 ? `，腾出约 ${formatDuration(o.savedMinutes)}` : ''}`,
@@ -255,7 +262,7 @@ function rescheduleOptions(city: City, plan: TripPlan, dayIdx: number, stopId: s
   const a = city.attractions.find((x) => x.id === stopId)
   if (!a) return []
   const openOn = (j: number) => !(plan.days[j].date && a.closedOn?.includes(weekdayOf(plan.days[j].date!)))
-  const others = plan.days.map((_, j) => j).filter((j) => j !== dayIdx && openOn(j))
+  const others = plan.days.map((_, j) => j).filter((j) => j !== dayIdx && !isPastDay(plan, j) && openOn(j))
 
   const moves: { o: PlanOption; end: number }[] = []
   if (!plan.days[dayIdx].isSuburb) {
@@ -327,7 +334,7 @@ export interface Deadline {
 /** 给约束不给预测：算出这一站最晚几点必须进场 / 离开，否则哪一站会出问题 */
 export function deadlineOf(city: City, plan: TripPlan, dayIdx: number, stopId: string): Deadline | null {
   const stop = plan.days[dayIdx]?.stops.find((s) => s.kind === 'attraction' && s.id === stopId)
-  if (!stop) return null
+  if (!stop || !remainingIdsOfDay(plan, dayIdx).includes(stopId)) return null
   let ok = 0
   let blocker: Deadline['blocker']
   for (let d = WAIT_STEP; d <= WAIT_CAP; d += WAIT_STEP) {
@@ -389,7 +396,7 @@ export function queuePlan(city: City, plan: TripPlan, dayIdx: number, stopId: st
 
 /** 一天的全部预案 */
 export function contingenciesOf(city: City, plan: TripPlan, dayIdx: number): { rain: Contingency; tired: Contingency; blocked: Contingency[]; queue: Contingency[] } {
-  const ids = plan.days[dayIdx] ? attractionIdsOfDay(plan.days[dayIdx]) : []
+  const ids = plan.days[dayIdx] ? remainingIdsOfDay(plan, dayIdx) : []
   return {
     rain: rainPlan(city, plan, dayIdx),
     tired: tiredPlan(city, plan, dayIdx),

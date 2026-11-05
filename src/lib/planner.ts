@@ -577,6 +577,8 @@ export interface BuildDayOptions {
   variant?: PlanVariant
   /** 在某个景点门口多排队的分钟数（景点 id → 分钟），只用来推演「排队太久」的后果 */
   waits?: Record<string, number>
+  /** 行中重排：prefix 是已经走完的站（原样保留），其余的站从 now 这个时间、从最后一站的位置接着排 */
+  resume?: { prefix: ScheduleStop[]; now: number }
 }
 
 interface DayBuildResult {
@@ -597,12 +599,13 @@ function scheduleOrdered(
   const prefs = params.food ?? DEFAULT_FOOD_PREFS
   const transport: TransportPref = params.transport ?? 'balanced'
   const variant = opts.variant ?? 'balanced'
-  const stops: ScheduleStop[] = []
-  let t = opts.startMin
+  const prefix = opts.resume?.prefix ?? []
+  const stops: ScheduleStop[] = [...prefix]
+  let t = opts.resume ? opts.resume.now : opts.startMin
   let pos: LatLng = opts.start
-  let hadLunch = false
-  let hadDinner = false
-  let hadSnack = false
+  let hadLunch = prefix.some((s) => s.mealType === 'lunch')
+  let hadDinner = prefix.some((s) => s.mealType === 'dinner')
+  let hadSnack = prefix.some((s) => s.mealType === 'snack')
   let violations = 0
   const usedNow: string[] = []
   let distance = 0
@@ -635,6 +638,24 @@ function scheduleOrdered(
     tried.add(r.cuisine)
     return true
   }
+
+  // 已经走完的站：路程和花费照旧计入，位置接到最后一站
+  const doneAttractions: Attraction[] = []
+  for (const s of prefix) {
+    if (s.leg) applyLeg(s.leg)
+    const place = s.kind === 'attraction' ? city.attractions.find((a) => a.id === s.id) : city.restaurants.find((r) => r.id === s.id)
+    if (!place) continue
+    pos = place
+    if (s.kind === 'attraction') doneAttractions.push(place as Attraction)
+    else {
+      const r = place as Restaurant
+      food += r.avgPrice
+      used.add(r.id)
+      usedNow.push(r.id)
+      tried.add(r.cuisine)
+    }
+  }
+  const all = [...doneAttractions, ...ordered]
 
   const LUNCH_FROM = 11 * 60 + 30
   const LUNCH_FORCE = 13 * 60
@@ -703,12 +724,12 @@ function scheduleOrdered(
     pos = a
   }
 
-  // 收尾：补上没吃的午餐 / 晚餐
-  if (!hadLunch && ordered.length && t >= 11 * 60) {
+  // 收尾：补上没吃的午餐 / 晚餐（行中重排时，下午三点以后就不再补午餐了）
+  if (!hadLunch && ordered.length && t >= 11 * 60 && (!opts.resume || t <= 15 * 60)) {
     addMeal('lunch', null, LUNCH_FROM)
     hadLunch = true
   }
-  if (!hadDinner && ordered.length) {
+  if (!hadDinner && all.length) {
     let added = addMeal('dinner', null, Math.max(t, DINNER_FROM + 15))
     if (!added && opts.isSuburb) {
       // 远郊附近没有合适的餐厅：先回市区再吃
@@ -730,10 +751,10 @@ function scheduleOrdered(
   const returnLeg = estimateLeg(pos, opts.start, transport)
   applyLeg(returnLeg)
 
-  const tickets = ordered.reduce((s, a) => s + a.price, 0)
-  const { title, theme } = describeDay(ordered, opts.isSuburb)
-  const breakfast = ordered.length
-    ? nearbyRestaurants(city, ordered[0], 2, used).find((r) => r.mealTypes.includes('breakfast'))
+  const tickets = all.reduce((s, a) => s + a.price, 0)
+  const { title, theme } = describeDay(all, opts.isSuburb)
+  const breakfast = all.length
+    ? nearbyRestaurants(city, all[0], 2, used).find((r) => r.mealTypes.includes('breakfast'))
     : undefined
 
   const plan: DayPlan = {
@@ -1145,7 +1166,29 @@ function usedOutside(plan: TripPlan, dayIdx: number): { used: Set<string>; tried
   return { used, tried }
 }
 
-/** 用新的景点顺序重算某一天 */
+/** 当天已经走完的站（时间轴前缀）；不是正在进行的那一天则为空 */
+export function doneStopsOf(plan: TripPlan, dayIdx: number): ScheduleStop[] {
+  const p = plan.progress
+  return p && p.dayIdx === dayIdx ? plan.days[dayIdx].stops.slice(0, p.doneCount) : []
+}
+
+/** 这一天是不是已经过去了（行中进度之前的天） */
+export function isPastDay(plan: TripPlan, dayIdx: number): boolean {
+  return plan.progress !== undefined && dayIdx < plan.progress.dayIdx
+}
+
+/** 这一天还能改的景点：已经过去的天没有，正在进行的那天去掉已走完的 */
+export function remainingIdsOfDay(plan: TripPlan, dayIdx: number): string[] {
+  const day = plan.days[dayIdx]
+  if (!day || isPastDay(plan, dayIdx)) return []
+  const done = new Set(doneStopsOf(plan, dayIdx).map((s) => s.id))
+  return attractionIdsOfDay(day).filter((id) => !done.has(id))
+}
+
+/**
+ * 用新的景点顺序重算某一天。
+ * 有行中进度时：已经过去的天不动；正在进行的那天，走完的站原样保留，只重排还没走的（从「现在」接着排）。
+ */
 export function rebuildDay(
   city: City,
   plan: TripPlan,
@@ -1157,8 +1200,14 @@ export function rebuildDay(
   isSuburb: boolean | undefined = plan.days[dayIdx].isSuburb,
   waits?: Record<string, number>,
 ): TripPlan {
+  if (isPastDay(plan, dayIdx)) return plan
   const day = plan.days[dayIdx]
-  const items = attractionIds.map((id) => city.attractions.find((a) => a.id === id)!).filter(Boolean)
+  const prefix = doneStopsOf(plan, dayIdx)
+  const done = new Set(prefix.map((s) => s.id))
+  const items = attractionIds
+    .filter((id) => !done.has(id))
+    .map((id) => city.attractions.find((a) => a.id === id)!)
+    .filter(Boolean)
   const { used, tried } = usedOutside(plan, dayIdx)
   const start = plan.params.startPoint ?? city.center
   const res = buildDay(city, plan.params, items, {
@@ -1173,9 +1222,31 @@ export function rebuildDay(
     pinned,
     variant: plan.variant,
     waits,
+    resume: plan.progress && plan.progress.dayIdx === dayIdx ? { prefix, now: plan.progress.now } : undefined,
   })
   const days = plan.days.map((d, i) => (i === dayIdx ? res.plan : d))
   return { ...plan, days }
+}
+
+/**
+ * 设置行中进度：第 dayIdx 天的前 doneCount 站已经走完，现在是 now。
+ * 还没走的站顺序不变，只是从「现在」重新往后排时间。
+ */
+export function setProgress(city: City, plan: TripPlan, dayIdx: number, doneCount: number, now: number): TripPlan {
+  const day = plan.days[dayIdx]
+  if (!day) return plan
+  const count = Math.max(0, Math.min(day.stops.length, doneCount))
+  const next: TripPlan = { ...plan, progress: { dayIdx, doneCount: count, now } }
+  return rebuildDay(city, next, dayIdx, attractionIdsOfDay(day), false, pinnedMealsOf(day))
+}
+
+/** 退出行中模式：正在进行的那天按原计划的出发时间重新排一遍（顺序和餐厅不变） */
+export function clearProgress(city: City, plan: TripPlan): TripPlan {
+  if (!plan.progress) return plan
+  const { dayIdx } = plan.progress
+  const { progress: _progress, ...rest } = plan
+  const day = rest.days[dayIdx]
+  return day ? rebuildDay(city, rest, dayIdx, attractionIdsOfDay(day), false, pinnedMealsOf(day)) : rest
 }
 
 /** 从分享链接还原行程：按给定的景点顺序与餐厅逐天重建 */
@@ -1265,6 +1336,7 @@ export function moveAttraction(city: City, plan: TripPlan, dayIdx: number, from:
 }
 
 export function removeAttraction(city: City, plan: TripPlan, dayIdx: number, attractionId: string): TripPlan {
+  if (!remainingIdsOfDay(plan, dayIdx).includes(attractionId)) return plan
   const ids = attractionIdsOfDay(plan.days[dayIdx]).filter((id) => id !== attractionId)
   const next = rebuildDay(city, plan, dayIdx, ids, false, pinnedMealsOf(plan.days[dayIdx]))
   const skipped = next.skipped.filter((s) => s.id !== attractionId).concat({ id: attractionId, reason: '手动移除' })
@@ -1275,7 +1347,7 @@ export function removeAttraction(city: City, plan: TripPlan, dayIdx: number, att
 export function replaceAttraction(city: City, plan: TripPlan, dayIdx: number, fromId: string, toId: string): TripPlan {
   const day = plan.days[dayIdx]
   const ids = attractionIdsOfDay(day)
-  if (!ids.includes(fromId) || dayOfAttraction(plan, toId) >= 0) return plan
+  if (!remainingIdsOfDay(plan, dayIdx).includes(fromId) || dayOfAttraction(plan, toId) >= 0) return plan
   const next = rebuildDay(city, plan, dayIdx, ids.map((id) => (id === fromId ? toId : id)), false, pinnedMealsOf(day))
   const toName = city.attractions.find((a) => a.id === toId)?.name ?? toId
   const skipped = next.skipped.filter((s) => s.id !== fromId && s.id !== toId).concat({ id: fromId, reason: `已换成 ${toName}` })
@@ -1293,7 +1365,7 @@ function warningCount(day: DayPlan): number {
 export function moveToDay(city: City, plan: TripPlan, fromDay: number, toDay: number, attractionId: string): TripPlan {
   const from = plan.days[fromDay]
   const to = plan.days[toDay]
-  if (!from || !to || fromDay === toDay || !attractionIdsOfDay(from).includes(attractionId)) return plan
+  if (!from || !to || fromDay === toDay || isPastDay(plan, toDay) || !remainingIdsOfDay(plan, fromDay).includes(attractionId)) return plan
   const removed = rebuildDay(city, plan, fromDay, attractionIdsOfDay(from).filter((id) => id !== attractionId), false, pinnedMealsOf(from))
   const ids = attractionIdsOfDay(to)
   let best: TripPlan | null = null
@@ -1310,6 +1382,8 @@ export function swapDays(city: City, plan: TripPlan, i: number, j: number): Trip
   const a = plan.days[i]
   const b = plan.days[j]
   if (!a || !b || i === j) return plan
+  // 已经过去的天、已经走了一部分的天，不能再整天对调
+  if ([i, j].some((k) => isPastDay(plan, k) || doneStopsOf(plan, k).length > 0)) return plan
   // 先把两天清空，免得「别的天已经用过这家餐厅」把固定的餐厅挤掉
   const blank = { ...plan, days: plan.days.map((d, k) => (k === i || k === j ? { ...d, stops: [] } : d)) }
   const first = rebuildDay(city, blank, i, attractionIdsOfDay(b), false, pinnedMealsOf(b), b.isSuburb)

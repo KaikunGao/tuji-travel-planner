@@ -36,12 +36,14 @@ interface MapViewProps {
   startPoint?: (LatLng & { name: string }) | null
   /** 点击地图空白处（返回 WGS-84 坐标） */
   onMapClick?: (p: LatLng) => void
+  /** 行程模式下，最近一次改动影响到的站点 id（当前这一天的），在地图上圈出来 */
+  affected?: Set<string>
   className?: string
 }
 
-function numberIcon(n: number | string, color: string, opts: { faded?: boolean; size?: number; meal?: boolean } = {}) {
+function numberIcon(n: number | string, color: string, opts: { faded?: boolean; size?: number; meal?: boolean; affected?: boolean; done?: boolean } = {}) {
   const size = opts.size ?? 28
-  const cls = `tj-marker${opts.meal ? ' tj-marker-meal' : ''}${opts.faded ? ' tj-marker-faded' : ''}`
+  const cls = `tj-marker${opts.meal ? ' tj-marker-meal' : ''}${opts.faded ? ' tj-marker-faded' : ''}${opts.affected ? ' tj-marker-affected' : ''}${opts.done ? ' tj-marker-done' : ''}`
   return L.divIcon({
     className: '',
     html: `<div class="${cls}" style="--c:${color};width:${size}px;height:${size}px;font-size:${Math.round(size * 0.46)}px">${n}</div>`,
@@ -68,7 +70,7 @@ const CATEGORY_COLOR: Record<string, string> = {
   宗教: '#9f1239',
 }
 
-export function MapView({ city, tileSource, mode, plan, activeDay = 0, selectedId, onSelect, mustInclude, excluded, startPoint, onMapClick, className = '' }: MapViewProps) {
+export function MapView({ city, tileSource, mode, plan, activeDay = 0, selectedId, onSelect, mustInclude, excluded, startPoint, onMapClick, affected, className = '' }: MapViewProps) {
   const el = useRef<HTMLDivElement>(null)
   const clickRef = useRef(onMapClick)
   clickRef.current = onMapClick
@@ -155,26 +157,40 @@ export function MapView({ city, tileSource, mode, plan, activeDay = 0, selectedI
       const color = DAY_COLORS[di % DAY_COLORS.length]
       const active = di === activeDay
       const pts: L.LatLngExpression[] = [conv(start)]
+      // 行中进度：已经过去的天、当天已经走完的站都灰掉
+      const progress = plan.progress
+      const doneCount = !progress ? 0 : di < progress.dayIdx ? day.stops.length : di === progress.dayIdx ? progress.doneCount : 0
+      const affectedPts: L.LatLngExpression[] = []
       let n = 0
-      day.stops.forEach((s) => {
+      day.stops.forEach((s, si) => {
         const p = s.kind === 'attraction' ? city.attractions.find((a) => a.id === s.id) : city.restaurants.find((r) => r.id === s.id)
         if (!p) return
         pts.push(conv(p))
         if (active) boundsPts.push(conv(p))
+        const done = si < doneCount
+        const hit = active && !done && Boolean(affected?.has(s.id))
+        if (hit) {
+          // 受影响的那一段从它前一站开始画
+          if (!affectedPts.length) affectedPts.push(pts[pts.length - 2])
+          affectedPts.push(conv(p))
+        }
+        const note = hit ? ' · 这次改动影响到' : done ? ' · 已走完' : ''
         let marker: L.Marker
         if (s.kind === 'attraction') {
           n++
-          marker = L.marker(conv(p), { icon: numberIcon(n, color, { faded: !active, size: active ? 28 : 20 }), zIndexOffset: active ? 500 : 0, riseOnHover: true, bubblingMouseEvents: false })
-          marker.bindTooltip(`${minutesToHHMM(s.start)} · ${p.name}`, { direction: 'top', offset: [0, -14] })
+          marker = L.marker(conv(p), { icon: numberIcon(n, color, { faded: !active, size: active ? 28 : 20, affected: hit, done }), zIndexOffset: active ? 500 : 0, riseOnHover: true, bubblingMouseEvents: false })
+          marker.bindTooltip(`${minutesToHHMM(s.start)} · ${p.name}${note}`, { direction: 'top', offset: [0, -14] })
         } else {
-          marker = L.marker(conv(p), { icon: numberIcon('🍴', color, { faded: !active, meal: true, size: active ? 24 : 16 }), zIndexOffset: active ? 400 : 0, riseOnHover: true, bubblingMouseEvents: false })
-          marker.bindTooltip(`${minutesToHHMM(s.start)} · ${p.name}`, { direction: 'top', offset: [0, -12] })
+          marker = L.marker(conv(p), { icon: numberIcon('🍴', color, { faded: !active, meal: true, size: active ? 24 : 16, affected: hit, done }), zIndexOffset: active ? 400 : 0, riseOnHover: true, bubblingMouseEvents: false })
+          marker.bindTooltip(`${minutesToHHMM(s.start)} · ${p.name}${note}`, { direction: 'top', offset: [0, -12] })
         }
         marker.on('click', () => onSelect?.(s.id, s.kind))
         marker.addTo(layer)
         if (active) markersRef.current.set(s.id, marker)
       })
       pts.push(conv(start))
+      // 被这次改动影响的那一段：在路线下面垫一条粗的青色线
+      if (affectedPts.length >= 2) L.polyline(affectedPts, { color: '#1f6f78', weight: 12, opacity: 0.3, lineJoin: 'round', lineCap: 'round' }).addTo(layer)
       L.polyline(pts, {
         color,
         weight: active ? 5 : 3,
@@ -195,7 +211,7 @@ export function MapView({ city, tileSource, mode, plan, activeDay = 0, selectedI
       lastFitKey.current = key
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [city, mode, plan, activeDay, tileSource, mustInclude, excluded, startPoint])
+  }, [city, mode, plan, activeDay, tileSource, mustInclude, excluded, startPoint, affected])
 
   // 选中 → 平移
   useEffect(() => {

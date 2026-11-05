@@ -3,6 +3,7 @@ import { useMemo, type ReactNode } from 'react'
 import type { City, TripPlan } from '../types'
 import { contingenciesOf, type Contingency, type PlanOption } from '../lib/contingency'
 import { tierOf } from '../lib/planner'
+import { track } from '../lib/track'
 import { DiffLines, TierBadge } from './ChangeViews'
 import { DAY_COLORS } from './MapView'
 import { Button } from './ui'
@@ -72,7 +73,7 @@ function Card({ icon, title, when, children }: { icon: ReactNode; title: string;
 /** 针对某一站的预案：折叠成一行，展开看方案 */
 function StopRow({ c, plan, hint, onApply }: { c: Contingency; plan: TripPlan; hint: string; onApply: (next: TripPlan) => void }) {
   return (
-    <details className="group rounded-xl border border-line bg-white">
+    <details className="group rounded-xl border border-line bg-white" onToggle={(e) => e.currentTarget.open && track('intent', 'backup-row')}>
       <summary className="flex cursor-pointer list-none items-center justify-between gap-2 px-3 py-2.5">
         <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
           <span className="text-sm font-semibold text-ink">{c.title.replace(/ (去不了|排队太久)$/, '')}</span>
