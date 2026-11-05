@@ -1,6 +1,7 @@
 import { ArrowRight, Clock3, MapPinned, Route, Search, Sparkles, Trash2, Utensils } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import type { City, SavedPlan } from '../types'
+import { FEATURES } from '../lib/features'
 import { Badge, Button, Card, SectionTitle } from './ui'
 
 interface HomeProps {
@@ -36,7 +37,7 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
             剩下的交给<span className="text-brand">途迹</span>
           </h1>
           <p className="mt-3 max-w-xl text-sm text-white/75 sm:text-base">
-            按地理位置把景点聚成每一天，再用最短路径算法排出顺序；沿途自动安排午餐晚餐，附上网上综合整理的美食评价、预算和避雷提示。
+            按地理位置把景点聚成每一天，再用最短路径算法排出顺序；沿途自动安排午餐晚餐，附上网上综合整理的美食评价{FEATURES.budgetTab ? '、预算' : ''}和避雷提示。
           </p>
           <form
             className="mt-6 flex flex-col gap-2 sm:flex-row"
@@ -44,7 +45,7 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
               e.preventDefault()
               if (exact) onSelectCity(exact)
               else if (filtered.length === 1) onSelectCity(filtered[0])
-              else if (q.trim()) onAiCity(q.trim())
+              else if (q.trim() && FEATURES.aiCity) onAiCity(q.trim())
             }}
           >
             <label className="flex flex-1 items-center gap-2 rounded-2xl bg-white px-4 text-ink shadow-lg">
@@ -71,8 +72,14 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
         </div>
       </section>
 
-      {/* 没匹配到 → AI 生成 */}
-      {q.trim() && filtered.length === 0 && (
+      {/* 没匹配到 */}
+      {q.trim() && filtered.length === 0 && !FEATURES.aiCity && (
+        <Card className="mt-6 p-5">
+          <div className="font-bold text-ink">还没有「{q.trim()}」</div>
+          <div className="mt-0.5 text-sm text-muted">现在先把 {cities.map((c) => c.name).join('、')} 做透，暂时不开放其他城市。</div>
+        </Card>
+      )}
+      {q.trim() && filtered.length === 0 && FEATURES.aiCity && (
         <Card className="mt-6 flex flex-col items-start gap-3 p-5 sm:flex-row sm:items-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-soft text-2xl">
             <Sparkles className="text-brand" />
@@ -91,12 +98,12 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
 
       {/* 城市列表 */}
       <section className="mt-10">
-        <SectionTitle title="选择目的地" sub={`${cities.length} 座城市，内置数据开箱即用，其他城市可用 AI 生成`} />
+        <SectionTitle title="选择目的地" sub={`${cities.length} 座城市，内置数据开箱即用${FEATURES.aiCity ? '，其他城市可用 AI 生成' : ''}`} />
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((c) => (
             <CityCard key={c.id} city={c} onClick={() => onSelectCity(c)} onDelete={c.source === 'ai' ? () => onDeleteAiCity(c.id) : undefined} />
           ))}
-          {q.trim() && filtered.length > 0 && !exact && (
+          {FEATURES.aiCity && q.trim() && filtered.length > 0 && !exact && (
             <button
               type="button"
               onClick={() => onAiCity(q.trim())}

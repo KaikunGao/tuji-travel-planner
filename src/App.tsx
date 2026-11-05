@@ -7,6 +7,7 @@ import { PlanPage } from './components/PlanPage'
 import { SettingsDialog } from './components/SettingsDialog'
 import { BUILTIN_CITIES } from './data'
 import { aiAvailable } from './lib/ai'
+import { FEATURES, FOCUS_CITY_IDS } from './lib/features'
 import { planFromShare, planTrip } from './lib/planner'
 import { decodeShare, readShareFromHash } from './lib/share'
 import { loadAiCities, loadPlans, loadSettings, saveAiCities, savePlans, saveSettings, type Settings } from './lib/storage'
@@ -50,6 +51,11 @@ export default function App() {
 
   const cities = useMemo(() => [...BUILTIN_CITIES, ...aiCities], [aiCities])
   const findCity = useCallback((id: string) => cities.find((c) => c.id === id), [cities])
+  // 首页只列当前开放的城市；没列出来的城市数据还在，已保存的行程和分享链接照常能打开
+  const homeCities = useMemo(
+    () => [...BUILTIN_CITIES.filter((c) => FEATURES.allCities || FOCUS_CITY_IDS.includes(c.id)), ...(FEATURES.aiCity ? aiCities : [])],
+    [aiCities],
+  )
 
   useEffect(() => saveSettings(settings), [settings])
   useEffect(() => saveAiCities(aiCities), [aiCities])
@@ -148,7 +154,7 @@ export default function App() {
 
       {view.name === 'home' && (
         <Home
-          cities={cities}
+          cities={homeCities}
           savedPlans={saved}
           hasApiKey={aiAvailable(settings.apiKey)}
           onSelectCity={openCity}
@@ -199,7 +205,7 @@ export default function App() {
       />
 
       <AiCityDialog
-        open={aiDialog !== null}
+        open={FEATURES.aiCity && aiDialog !== null}
         initialName={aiDialog ?? ''}
         settings={settings}
         onClose={() => setAiDialog(null)}

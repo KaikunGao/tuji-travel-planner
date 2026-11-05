@@ -1,6 +1,7 @@
 import { Eye, EyeOff, KeyRound, Map as MapIcon, MapPin, Sparkles, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import { AI_MODELS, AI_PROXY_URL } from '../lib/ai'
+import { FEATURES } from '../lib/features'
 import type { Settings, TileSource } from '../lib/storage'
 import { Button, Modal } from './ui'
 
@@ -44,7 +45,7 @@ export function SettingsDialog({
           </div>
         </section>
 
-        <section>
+        {FEATURES.aiCity && <section>
           <h3 className="flex items-center gap-1.5 text-sm font-bold text-ink"><Sparkles size={15} /> AI 生成任意城市</h3>
           <p className="mt-1 text-xs text-muted">
             {AI_PROXY_URL
@@ -91,7 +92,7 @@ export function SettingsDialog({
               <Trash2 size={14} /> 清除 {aiCityCount} 座 AI 生成的城市
             </Button>
           )}
-        </section>
+        </section>}
 
         <section>
           <h3 className="flex items-center gap-1.5 text-sm font-bold text-ink"><MapPin size={15} /> 酒店 / 地址搜索</h3>

@@ -1,5 +1,6 @@
 import type { City, TripPlan } from '../types'
 import { INTEREST_EMOJI, MEAL_LABEL, PACE_LABEL, TRANSPORT_LABEL, formatDateCN, formatKm, formatMoney, minutesToHHMM } from './format'
+import { FEATURES } from './features'
 import { planTotals } from './planner'
 
 /** 把行程导出为 Markdown 文本 */
@@ -56,16 +57,18 @@ export function planToMarkdown(city: City, plan: TripPlan, people = 1): string {
     lines.push('')
   }
 
-  lines.push('## 预算（每人）')
-  lines.push('')
-  lines.push('| 项目 | 金额 |')
-  lines.push('| --- | --- |')
-  lines.push(`| 门票 | ${formatMoney(totals.tickets)} |`)
-  lines.push(`| 餐饮 | ${formatMoney(totals.food)} |`)
-  lines.push(`| 市内交通 | ${formatMoney(totals.transport)} |`)
-  lines.push(`| **合计** | **${formatMoney(totals.tickets + totals.food + totals.transport)}** |`)
-  if (people > 1) lines.push(`\n${people} 人合计约 ${formatMoney((totals.tickets + totals.food + totals.transport) * people)}`)
-  lines.push('')
+  if (FEATURES.budgetTab) {
+    lines.push('## 预算（每人）')
+    lines.push('')
+    lines.push('| 项目 | 金额 |')
+    lines.push('| --- | --- |')
+    lines.push(`| 门票 | ${formatMoney(totals.tickets)} |`)
+    lines.push(`| 餐饮 | ${formatMoney(totals.food)} |`)
+    lines.push(`| 市内交通 | ${formatMoney(totals.transport)} |`)
+    lines.push(`| **合计** | **${formatMoney(totals.tickets + totals.food + totals.transport)}** |`)
+    if (people > 1) lines.push(`\n${people} 人合计约 ${formatMoney((totals.tickets + totals.food + totals.transport) * people)}`)
+    lines.push('')
+  }
 
   if (plan.suggestions.length) {
     lines.push('## 建议')
@@ -73,13 +76,13 @@ export function planToMarkdown(city: City, plan: TripPlan, people = 1): string {
     plan.suggestions.forEach((s) => lines.push(`- ${s}`))
     lines.push('')
   }
-  if (city.tips.length) {
+  if (FEATURES.tipsTab && city.tips.length) {
     lines.push('## 出行贴士')
     lines.push('')
     city.tips.forEach((t) => lines.push(`- ${t}`))
     lines.push('')
   }
-  if (city.avoid.length) {
+  if (FEATURES.tipsTab && city.avoid.length) {
     lines.push('## 避雷')
     lines.push('')
     city.avoid.forEach((t) => lines.push(`- ${t}`))

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import type { City, PlanVariant, Restaurant, TripPlan } from '../types'
 import { describeDiff, diffPlans, isEmptyDiff, summarizeDiff, type PlanDiff } from '../lib/change'
 import { copyText, downloadText, planToMarkdown } from '../lib/export'
+import { FEATURES } from '../lib/features'
 import { INTEREST_EMOJI, PACE_LABEL, formatKm, formatMoney, minutesToHHMM } from '../lib/format'
 import { downloadIcs, planToIcs } from '../lib/ics'
 import { VARIANT_LABEL, addAttraction, planTotals, planTrip } from '../lib/planner'
@@ -21,13 +22,14 @@ import { TipsTab } from './TipsTab'
 import { TrackPanel } from './TrackPanel'
 import { Badge, Button, Modal } from './ui'
 type Tab = 'itinerary' | 'backup' | 'food' | 'budget' | 'tips'
-const TABS: { id: Tab; name: string; emoji: string }[] = [
+const ALL_TABS: { id: Tab; name: string; emoji: string }[] = [
   { id: 'itinerary', name: '行程', emoji: '🗺️' },
   { id: 'backup', name: '预案', emoji: '🛟' },
   { id: 'food', name: '美食', emoji: '🍜' },
   { id: 'budget', name: '预算', emoji: '💰' },
   { id: 'tips', name: '贴士', emoji: '💡' },
 ]
+const TABS = ALL_TABS.filter((t) => (t.id !== 'budget' || FEATURES.budgetTab) && (t.id !== 'tips' || FEATURES.tipsTab))
 
 export function PlanPage({
   city,
@@ -89,7 +91,7 @@ export function PlanPage({
     const url = shareUrl(encodeShare(city, plan, title))
     setShareLink(url)
     setQr(null)
-    QRCode.toDataURL(url, { width: 220, margin: 1 }).then(setQr).catch(() => setQr(null))
+    if (FEATURES.shareQr) QRCode.toDataURL(url, { width: 220, margin: 1 }).then(setQr).catch(() => setQr(null))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shareOpen])
 
@@ -154,9 +156,11 @@ export function PlanPage({
           <Button variant="secondary" size="sm" onClick={() => setShareOpen(true)}>
             <Share2 size={14} /> 分享
           </Button>
-          <Button variant="teal" size="sm" onClick={() => setCompareOpen(true)}>
-            <GitCompare size={14} /> 方案对比
-          </Button>
+          {FEATURES.variants && (
+            <Button variant="teal" size="sm" onClick={() => setCompareOpen(true)}>
+              <GitCompare size={14} /> 方案对比
+            </Button>
+          )}
           <Button variant="ghost" size="sm" onClick={() => setStatsOpen(true)} title="从想改到改完用了几轮">
             <BarChart3 size={14} /> 改动统计
           </Button>
@@ -312,8 +316,8 @@ export function PlanPage({
               />
             )}
             {tab === 'food' && <FoodTab city={city} plan={plan} />}
-            {tab === 'budget' && <BudgetTab city={city} plan={plan} settings={settings} onSettingsChange={onSettingsChange} />}
-            {tab === 'tips' && <TipsTab city={city} plan={plan} />}
+            {tab === 'budget' && FEATURES.budgetTab && <BudgetTab city={city} plan={plan} settings={settings} onSettingsChange={onSettingsChange} />}
+            {tab === 'tips' && FEATURES.tipsTab && <TipsTab city={city} plan={plan} />}
           </div>
         </div>
 
