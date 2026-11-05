@@ -27,7 +27,7 @@
 
 **在线使用：https://kaikungao.github.io/tuji-travel-planner/** （无需注册，行程保存在你自己的浏览器里）
 
-别人帮你排一次，途迹帮你扛住变化。
+计划赶不上变化，行程改一下就好。
 
 做攻略最大的成本不是排，是排完之后不敢改：下雨了、排队了、有人累了，要么全部重排，要么将就着走。途迹的做法是——先说清哪些点必去、哪些可以放弃，排出行程的同时把预案算好；之后任何变动，只改受影响的那一段，并把代价算给你看。
 
@@ -164,7 +164,7 @@ scripts/
 
 **Try it: https://kaikungao.github.io/tuji-travel-planner/** (no sign-up; plans are stored in your own browser)
 
-Others plan your trip once. Tuji (途迹, "the trail of a journey") helps it survive change.
+Plans rarely survive the trip. Tuji (途迹, "the trail of a journey") makes yours easy to change.
 
 The real cost of an itinerary is not making it, it is being afraid to touch it afterwards: when it rains, a queue is too long or someone is tired, you either redo everything or put up with a worse day. Tuji asks up front which stops are must-go and which can be dropped, builds the itinerary together with its fallback plans, and from then on changes only the affected part and tells you what each change costs.
 

@@ -33,9 +33,9 @@ export function Home({ cities, savedPlans, hasApiKey, onSelectCity, onOpenPlan, 
         <div className="relative max-w-2xl">
           <Badge tone="brand" className="bg-white/10 text-white">改得动的旅行行程</Badge>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-5xl sm:leading-tight">
-            别人帮你排一次，
+            计划赶不上变化，
             <br />
-            途迹帮你<span className="text-brand">扛住变化</span>
+            行程<span className="text-brand">改一下就好</span>
           </h1>
           <p className="mt-3 max-w-xl text-sm text-white/75 sm:text-base">
             先说清哪些必去、哪些可以放弃，途迹排出行程，并把下雨、排队、走不动时的预案提前算好。路上出了状况，只改受影响的那一段，代价算给你看：少看什么、腾出多久、后面哪几站跟着变。
