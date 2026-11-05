@@ -2,6 +2,7 @@ import { ArrowLeft, CalendarPlus, Check, Copy, Download, GitCompare, Link2, Map 
 import QRCode from 'qrcode'
 import { useEffect, useMemo, useState } from 'react'
 import type { City, PlanVariant, Restaurant, TripPlan } from '../types'
+import { describeDiff, diffPlans, isEmptyDiff, summarizeDiff, type PlanDiff } from '../lib/change'
 import { copyText, downloadText, planToMarkdown } from '../lib/export'
 import { INTEREST_EMOJI, PACE_LABEL, formatKm, formatMoney, minutesToHHMM } from '../lib/format'
 import { downloadIcs, planToIcs } from '../lib/ics'
@@ -9,15 +10,18 @@ import { VARIANT_LABEL, addAttraction, planTotals, planTrip } from '../lib/plann
 import { encodeShare, shareUrl } from '../lib/share'
 import type { Settings } from '../lib/storage'
 import { BudgetTab } from './BudgetTab'
+import { ChangeBanner } from './ChangeViews'
+import { ContingencyTab } from './ContingencyTab'
 import { DayTimeline } from './DayTimeline'
 import { FoodTab } from './FoodTab'
 import { DAY_COLORS, MapView } from './MapView'
 import { RestaurantCard } from './RestaurantCard'
 import { TipsTab } from './TipsTab'
 import { Badge, Button, Modal } from './ui'
-type Tab = 'itinerary' | 'food' | 'budget' | 'tips'
+type Tab = 'itinerary' | 'backup' | 'food' | 'budget' | 'tips'
 const TABS: { id: Tab; name: string; emoji: string }[] = [
   { id: 'itinerary', name: '行程', emoji: '🗺️' },
+  { id: 'backup', name: '预案', emoji: '🛟' },
   { id: 'food', name: '美食', emoji: '🍜' },
   { id: 'budget', name: '预算', emoji: '💰' },
   { id: 'tips', name: '贴士', emoji: '💡' },
@@ -53,7 +57,17 @@ export function PlanPage({
   const [shareOpen, setShareOpen] = useState(false)
   const [shareLink, setShareLink] = useState('')
   const [qr, setQr] = useState<string | null>(null)
+  // 最近一次改动：留着改动前的行程，用来展示代价和撤销
+  const [lastChange, setLastChange] = useState<{ before: TripPlan; after: TripPlan; diff: PlanDiff } | null>(null)
   const totals = useMemo(() => planTotals(plan), [plan])
+  const changeLines = useMemo(() => (lastChange ? describeDiff(lastChange.diff, lastChange.after, city) : []), [lastChange, city])
+  const applyChange = (next: TripPlan) => {
+    const diff = diffPlans(city, plan, next)
+    if (diff && !isEmptyDiff(diff)) setLastChange({ before: plan, after: next, diff })
+    // 只改了档位等偏好、时间表没动：撤销时别把这次偏好改动一起冲掉
+    else setLastChange((c) => c && { ...c, before: { ...c.before, params: next.params }, after: { ...c.after, params: next.params } })
+    onPlanChange(next)
+  }
   const variants = useMemo(
     () => (compareOpen ? (['balanced', 'fast', 'cheap', 'max'] as PlanVariant[]).map((v) => ({ v, plan: planTrip(city, plan.params, { variant: v }) })) : []),
     [compareOpen, city, plan.params],
@@ -184,7 +198,7 @@ export function PlanPage({
                 key={t.id}
                 type="button"
                 onClick={() => setTab(t.id)}
-                className={`flex-1 rounded-xl px-3 py-2 text-sm font-medium transition ${tab === t.id ? 'bg-ink text-white' : 'text-muted hover:bg-paper hover:text-ink'}`}
+                className={`flex-1 whitespace-nowrap rounded-xl px-1.5 py-2 text-sm font-medium transition sm:px-3 ${tab === t.id ? 'bg-ink text-white' : 'text-muted hover:bg-paper hover:text-ink'}`}
               >
                 <span className="mr-1">{t.emoji}</span>
                 {t.name}
@@ -216,14 +230,27 @@ export function PlanPage({
                     <MapIcon size={14} /> 查看地图
                   </Button>
                 </div>
+                {lastChange && (
+                  <ChangeBanner
+                    summary={summarizeDiff(lastChange.diff)}
+                    lines={changeLines}
+                    onUndo={() => {
+                      onPlanChange(lastChange.before)
+                      setLastChange(null)
+                      setToast('已撤销，行程恢复到改动前')
+                    }}
+                    onDismiss={() => setLastChange(null)}
+                  />
+                )}
                 {plan.days[activeDay] && (
                   <DayTimeline
+                    key={activeDay}
                     city={city}
                     plan={plan}
                     dayIdx={activeDay}
                     selectedId={selectedId}
                     onSelect={(id) => setSelectedId(id)}
-                    onPlanChange={onPlanChange}
+                    onPlanChange={applyChange}
                     onOpenRestaurant={(r, subtitle) => setRestaurant({ r, subtitle })}
                   />
                 )}
@@ -240,7 +267,7 @@ export function PlanPage({
                           {plan.days[activeDay] && (
                             <button
                               type="button"
-                              onClick={() => onPlanChange(addAttraction(city, plan, activeDay, s.id))}
+                              onClick={() => applyChange(addAttraction(city, plan, activeDay, s.id))}
                               className="text-xs font-medium text-brand hover:underline"
                             >
                               + 加到 Day {plan.days[activeDay].day}
@@ -252,6 +279,19 @@ export function PlanPage({
                   </div>
                 )}
               </div>
+            )}
+            {tab === 'backup' && (
+              <ContingencyTab
+                city={city}
+                plan={plan}
+                dayIdx={activeDay}
+                onDayChange={setActiveDay}
+                onApply={(next) => {
+                  // 采用预案后回到行程页，改动回执会说明代价，也可以撤销
+                  applyChange(next)
+                  setTab('itinerary')
+                }}
+              />
             )}
             {tab === 'food' && <FoodTab city={city} plan={plan} />}
             {tab === 'budget' && <BudgetTab city={city} plan={plan} settings={settings} onSettingsChange={onSettingsChange} />}
@@ -343,6 +383,7 @@ export function PlanPage({
                   disabled={current}
                   onClick={() => {
                     onPlanChange(vp)
+                    setLastChange(null)
                     setActiveDay(0)
                     setCompareOpen(false)
                     setToast(`已切换为「${VARIANT_LABEL[v].name}」方案`)

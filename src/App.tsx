@@ -15,7 +15,7 @@ import { DEFAULT_FOOD_PREFS } from './types'
 
 /** 旧数据可能缺少新字段，补默认值 */
 function normalizeParams(p: PlanParams): PlanParams {
-  return { ...p, transport: p.transport ?? 'balanced', food: { ...DEFAULT_FOOD_PREFS, ...(p.food ?? {}) } }
+  return { ...p, droppable: p.droppable ?? [], transport: p.transport ?? 'balanced', food: { ...DEFAULT_FOOD_PREFS, ...(p.food ?? {}) } }
 }
 
 type View = { name: 'home' } | { name: 'city'; cityId: string } | { name: 'plan' }
@@ -30,6 +30,7 @@ function defaultParams(city: City): PlanParams {
     interests: [],
     startTime: '09:00',
     mustInclude: [],
+    droppable: [],
     exclude: [],
     includeSuburb: days >= 2,
     transport: 'balanced',

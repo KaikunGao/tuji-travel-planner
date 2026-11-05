@@ -23,6 +23,7 @@ import type {
   PlanVariant,
   Restaurant,
   ScheduleStop,
+  Tier,
   TransportPref,
   TripPlan,
 } from '../types'
@@ -46,6 +47,8 @@ const AVG_HOP = 25
 const TOLERANCE = 1.05
 /** 距市中心超过此距离视为远郊 */
 const SUBURB_KM = 22
+/** 用户标了「可放弃」的景点：说明想去，排得下就排（加分），排不下再让位 */
+const DROPPABLE_BONUS = 30
 const MEAL_DURATION: Record<MealType, number> = {
   breakfast: 40,
   lunch: 60,
@@ -77,6 +80,24 @@ export function scoreAttraction(a: Attraction, interests: Interest[], isMust: bo
   if (a.duration > 240) s -= 3
   if (isMust) s += 1000
   return s
+}
+
+/** 用户声明的意愿档位：必去 / 可放弃，没标的都是可选 */
+export function tierOf(params: Pick<PlanParams, 'mustInclude' | 'droppable'>, attractionId: string): Tier {
+  if (params.mustInclude.includes(attractionId)) return 'must'
+  if (params.droppable?.includes(attractionId)) return 'droppable'
+  return 'optional'
+}
+
+/** 把某个景点设为指定档位（三档互斥；设为必去 / 可放弃时自动取消「不去」） */
+export function withTier(params: PlanParams, attractionId: string, tier: Tier): PlanParams {
+  const without = (ids: string[] | undefined) => (ids ?? []).filter((id) => id !== attractionId)
+  return {
+    ...params,
+    mustInclude: tier === 'must' ? [...without(params.mustInclude), attractionId] : without(params.mustInclude),
+    droppable: tier === 'droppable' ? [...without(params.droppable), attractionId] : without(params.droppable),
+    exclude: tier === 'optional' ? params.exclude : without(params.exclude),
+  }
 }
 
 export function isSuburb(a: Attraction, city: City): boolean {
@@ -554,6 +575,8 @@ export interface BuildDayOptions {
   /** 固定某几餐的餐厅（手动换店 / 调整顺序时保留原餐厅） */
   pinned?: Partial<Record<MealType, string>>
   variant?: PlanVariant
+  /** 在某个景点门口多排队的分钟数（景点 id → 分钟），只用来推演「排队太久」的后果 */
+  waits?: Record<string, number>
 }
 
 interface DayBuildResult {
@@ -656,6 +679,7 @@ function scheduleOrdered(
       if (wait >= 10) note = `比开门早到约 ${wait} 分钟，可先在周边逛逛`
       arrive = open
     }
+    arrive += opts.waits?.[a.id] ?? 0
     const end = arrive + a.duration
     if (close < 1440 && arrive >= close - 20) {
       warning = `预计到达时已接近闭园（${a.openHours}），建议把它挪到更早的时间`
@@ -853,11 +877,12 @@ export function planTrip(city: City, rawParams: PlanParams, options: PlanOptions
   const skipped: { id: string; reason: string }[] = []
   const suggestions: string[] = []
   const must = new Set(params.mustInclude)
+  const droppable = new Set((params.droppable ?? []).filter((id) => !must.has(id)))
   const excluded = new Set(params.exclude)
 
   const scored: Scored[] = city.attractions
     .filter((a) => !excluded.has(a.id))
-    .map((a) => ({ a, score: scoreAttraction(a, params.interests, must.has(a.id), variant) }))
+    .map((a) => ({ a, score: scoreAttraction(a, params.interests, must.has(a.id), variant) + (droppable.has(a.id) ? DROPPABLE_BONUS : 0) }))
     .sort((x, y) => y.score - x.score)
 
   const suburbPool = scored.filter((s) => isSuburb(s.a, city))
@@ -988,7 +1013,7 @@ export function planTrip(city: City, rawParams: PlanParams, options: PlanOptions
         dropped.splice(dropped.indexOf(s), 1)
       }
     }
-    dropped.forEach((s) => skipped.push({ id: s.a.id, reason: '时间有限，优先级较低' }))
+    dropped.forEach((s) => skipped.push({ id: s.a.id, reason: droppable.has(s.a.id) ? '时间不够，按「可放弃」让位' : '时间有限，优先级较低' }))
   } else {
     corePool.forEach((s) => skipped.push({ id: s.a.id, reason: '天数都给了远郊，核心区没排上' }))
   }
@@ -1128,6 +1153,9 @@ export function rebuildDay(
   attractionIds: string[],
   optimize: boolean,
   pinned?: Partial<Record<MealType, string>>,
+  /** 整天对调时，这一天是不是远郊日要跟着内容走 */
+  isSuburb: boolean | undefined = plan.days[dayIdx].isSuburb,
+  waits?: Record<string, number>,
 ): TripPlan {
   const day = plan.days[dayIdx]
   const items = attractionIds.map((id) => city.attractions.find((a) => a.id === id)!).filter(Boolean)
@@ -1140,10 +1168,11 @@ export function rebuildDay(
     startMin: hhmmToMinutes(plan.params.startTime),
     used,
     triedCuisines: tried,
-    isSuburb: day.isSuburb,
+    isSuburb,
     optimize,
     pinned,
     variant: plan.variant,
+    waits,
   })
   const days = plan.days.map((d, i) => (i === dayIdx ? res.plan : d))
   return { ...plan, days }
@@ -1240,6 +1269,51 @@ export function removeAttraction(city: City, plan: TripPlan, dayIdx: number, att
   const next = rebuildDay(city, plan, dayIdx, ids, false, pinnedMealsOf(plan.days[dayIdx]))
   const skipped = next.skipped.filter((s) => s.id !== attractionId).concat({ id: attractionId, reason: '手动移除' })
   return { ...next, skipped }
+}
+
+/** 原地换点：位置不变、餐厅不变，只重算当天时间 */
+export function replaceAttraction(city: City, plan: TripPlan, dayIdx: number, fromId: string, toId: string): TripPlan {
+  const day = plan.days[dayIdx]
+  const ids = attractionIdsOfDay(day)
+  if (!ids.includes(fromId) || dayOfAttraction(plan, toId) >= 0) return plan
+  const next = rebuildDay(city, plan, dayIdx, ids.map((id) => (id === fromId ? toId : id)), false, pinnedMealsOf(day))
+  const toName = city.attractions.find((a) => a.id === toId)?.name ?? toId
+  const skipped = next.skipped.filter((s) => s.id !== fromId && s.id !== toId).concat({ id: fromId, reason: `已换成 ${toName}` })
+  return { ...next, skipped }
+}
+
+function warningCount(day: DayPlan): number {
+  return day.stops.filter((s) => s.warning).length
+}
+
+/**
+ * 把一个景点挪到另一天：原来那天只是少一站，目标那天其他站的顺序不动，
+ * 只挑一个冲突最少、收工最早的位置插进去。
+ */
+export function moveToDay(city: City, plan: TripPlan, fromDay: number, toDay: number, attractionId: string): TripPlan {
+  const from = plan.days[fromDay]
+  const to = plan.days[toDay]
+  if (!from || !to || fromDay === toDay || !attractionIdsOfDay(from).includes(attractionId)) return plan
+  const removed = rebuildDay(city, plan, fromDay, attractionIdsOfDay(from).filter((id) => id !== attractionId), false, pinnedMealsOf(from))
+  const ids = attractionIdsOfDay(to)
+  let best: TripPlan | null = null
+  for (let pos = 0; pos <= ids.length; pos++) {
+    const trial = rebuildDay(city, removed, toDay, [...ids.slice(0, pos), attractionId, ...ids.slice(pos)], false, pinnedMealsOf(to))
+    const better = (a: DayPlan, b: DayPlan) => warningCount(a) - warningCount(b) || a.endTime + (a.returnLeg?.minutes ?? 0) - (b.endTime + (b.returnLeg?.minutes ?? 0))
+    if (!best || better(trial.days[toDay], best.days[toDay]) < 0) best = trial
+  }
+  return best ?? plan
+}
+
+/** 整天对调：两天各自的景点、顺序、餐厅都不变，只是换了日期 */
+export function swapDays(city: City, plan: TripPlan, i: number, j: number): TripPlan {
+  const a = plan.days[i]
+  const b = plan.days[j]
+  if (!a || !b || i === j) return plan
+  // 先把两天清空，免得「别的天已经用过这家餐厅」把固定的餐厅挤掉
+  const blank = { ...plan, days: plan.days.map((d, k) => (k === i || k === j ? { ...d, stops: [] } : d)) }
+  const first = rebuildDay(city, blank, i, attractionIdsOfDay(b), false, pinnedMealsOf(b), b.isSuburb)
+  return rebuildDay(city, first, j, attractionIdsOfDay(a), false, pinnedMealsOf(a), a.isSuburb)
 }
 
 export function addAttraction(city: City, plan: TripPlan, dayIdx: number, attractionId: string): TripPlan {

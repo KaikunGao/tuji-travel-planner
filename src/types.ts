@@ -24,6 +24,9 @@ export type Pace = 'relaxed' | 'moderate' | 'intense'
 /** 最适合的游览时段 */
 export type BestTime = 'morning' | 'afternoon' | 'evening' | 'night' | 'any'
 
+/** 淋雨程度：室内 / 半室内（有殿堂、店铺可躲雨，带伞能逛）/ 露天 */
+export type Exposure = 'indoor' | 'mixed' | 'outdoor'
+
 /** 交通方式 */
 export type Transport = 'walk' | 'metro' | 'taxi'
 
@@ -42,6 +45,12 @@ export interface FoodPrefs {
 }
 
 export const FOOD_AVOID_OPTIONS = ['海鲜', '内脏', '牛肉', '羊肉', '香菜'] as const
+
+/**
+ * 意愿三档：必去是硬约束（任何改动都不会动它），可放弃是预备牺牲品（时间不够先砍它），其余都是可选。
+ * 这是用户自己的声明，和景点数据里的 mustSee（经典景点，只影响打分）不是一回事。
+ */
+export type Tier = 'must' | 'optional' | 'droppable'
 
 /** 方案变体：推荐 / 省时省力 / 省钱 / 打卡多 */
 export type PlanVariant = 'balanced' | 'fast' | 'cheap' | 'max'
@@ -77,6 +86,10 @@ export interface Attraction {
   /** 是否必去 */
   mustSee: boolean
   bestTime: BestTime
+  /** 淋雨程度；缺省时按分类推断（界面上会标「推断」） */
+  exposure?: Exposure
+  /** 人工指定的替代景点 id（按优先顺序）；缺省时按同类 / 距离 / 时长 / 评分自动找 */
+  alternatives?: string[]
   /** 远郊景点（距市中心 > 20km），需要单独安排一天 */
   suburb?: boolean
   /** 需要提前预约 */
@@ -192,6 +205,8 @@ export interface PlanParams {
   startPoint?: { lat: number; lng: number; name: string }
   /** 必去景点 id */
   mustInclude: string[]
+  /** 可放弃的景点 id：想去，但时间不够时先砍它（旧数据可能缺省） */
+  droppable?: string[]
   /** 不去的景点 id */
   exclude: string[]
   /** 是否安排远郊景点 */

@@ -1,12 +1,16 @@
 import { DndContext, KeyboardSensor, PointerSensor, closestCenter, useSensor, useSensors, type DragEndEvent } from '@dnd-kit/core'
 import { SortableContext, arrayMove, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { ArrowDown, ArrowUp, ChevronDown, ChevronUp, Coffee, GripVertical, Home, Plus, RefreshCw, Repeat, Sparkles, X } from 'lucide-react'
+import { ArrowDown, ArrowUp, ChevronDown, ChevronUp, Coffee, GripVertical, Home, LifeBuoy, Plus, RefreshCw, Repeat, Scissors, Sparkles, X } from 'lucide-react'
 import { useMemo, useState, type CSSProperties, type ReactNode } from 'react'
-import type { Attraction, City, DayPlan, Leg, Restaurant, ScheduleStop, TripPlan } from '../types'
+import type { Attraction, City, DayPlan, Leg, Restaurant, ScheduleStop, Tier, TripPlan } from '../types'
+import { cutOptions, describeDiff, previewRemove, type CutOption, type DiffLine } from '../lib/change'
+import { blockedPlan, queuePlan, type Contingency } from '../lib/contingency'
 import { INTEREST_EMOJI, MEAL_LABEL, TRANSPORT_LABEL, formatDateCN, formatDuration, formatKm, formatMoney, minutesToHHMM } from '../lib/format'
 import { haversine } from '../lib/geo'
-import { addAttraction, attractionIdsOfDay, mealAlternatives, moveAttraction, nearbyRestaurants, optimizeDay, pinnedMealsOf, rebuildDay, removeAttraction, replaceMeal } from '../lib/planner'
+import { addAttraction, attractionIdsOfDay, mealAlternatives, moveAttraction, nearbyRestaurants, optimizeDay, pinnedMealsOf, rebuildDay, replaceMeal, tierOf, withTier } from '../lib/planner'
+import { CutOptionsPanel, CutPreview, TierPicker } from './ChangeViews'
+import { ContingencyBody } from './ContingencyTab'
 import { DAY_COLORS } from './MapView'
 import { cuisineEmoji, xhsSearchUrl } from './RestaurantCard'
 import { Badge, Button, Modal, Stars } from './ui'
@@ -25,6 +29,19 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
   const day = plan.days[dayIdx]
   const color = DAY_COLORS[dayIdx % DAY_COLORS.length]
   const [adding, setAdding] = useState(false)
+  const [easing, setEasing] = useState(false)
+  // 砍点预览是基于某一版行程算的；行程一变就作废，避免确认时把别的改动冲掉
+  const [cutting, setCutting] = useState<{ option: CutOption; base: TripPlan } | null>(null)
+  const cut = cutting && cutting.base === plan ? cutting.option : null
+  const linesOf = (o: CutOption): DiffLine[] => describeDiff(o.diff, o.next, city)
+  // 「出状况了」：这一站去不了 / 排队太久时的方案，同样只对当前这版行程有效
+  const [troubleAt, setTroubleAt] = useState<{ id: string; base: TripPlan } | null>(null)
+  const troubleId = troubleAt && troubleAt.base === plan ? troubleAt.id : null
+  const trouble = useMemo(
+    () => (troubleId ? { blocked: blockedPlan(city, plan, dayIdx, troubleId), queue: queuePlan(city, plan, dayIdx, troubleId) } : null),
+    [troubleId, city, plan, dayIdx],
+  )
+  const easeOptions = useMemo(() => (easing ? cutOptions(city, plan, dayIdx) : []), [easing, city, plan, dayIdx])
   const attractionIds = attractionIdsOfDay(day)
   const inPlan = useMemo(() => new Set(plan.days.flatMap((d) => attractionIdsOfDay(d))), [plan])
   const addable = useMemo(
@@ -84,8 +101,13 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
           <Button size="sm" variant="secondary" onClick={() => setAdding(true)} disabled={!addable.length}>
             <Plus size={14} /> 添加景点
           </Button>
+          <Button size="sm" variant="secondary" onClick={() => setEasing((v) => !v)} disabled={!attractionIds.length} title="列出这一天可以砍的点和各自的代价">
+            <Scissors size={14} /> 想轻松点，先砍谁
+          </Button>
         </div>
       </div>
+
+      {easing && <CutOptionsPanel options={easeOptions} linesOf={linesOf} onCut={(o) => onPlanChange(o.next)} onClose={() => setEasing(false)} />}
 
       {/* 早餐 */}
       {breakfast && (
@@ -130,7 +152,18 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
                             onSelect={() => onSelect(s.id)}
                             onMoveUp={attrIndex > 0 ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex - 1)) : undefined}
                             onMoveDown={attrIndex < attractionIds.length - 1 ? () => onPlanChange(moveAttraction(city, plan, dayIdx, attrIndex, attrIndex + 1)) : undefined}
-                            onRemove={() => onPlanChange(removeAttraction(city, plan, dayIdx, s.id))}
+                            tier={tierOf(plan.params, s.id)}
+                            onTierChange={(t) => onPlanChange({ ...plan, params: withTier(plan.params, s.id, t) })}
+                            cutPreview={cut?.a.id === s.id ? { option: cut, lines: linesOf(cut) } : undefined}
+                            onAskRemove={() => {
+                              const option = previewRemove(city, plan, dayIdx, s.id)
+                              setCutting(option ? { option, base: plan } : null)
+                            }}
+                            onConfirmRemove={() => cut && onPlanChange(cut.next)}
+                            onCancelRemove={() => setCutting(null)}
+                            trouble={troubleId === s.id && trouble ? trouble : undefined}
+                            onToggleTrouble={() => setTroubleAt(troubleId === s.id ? null : { id: s.id, base: plan })}
+                            onApply={onPlanChange}
                             usedRestaurants={new Set(day.stops.filter((x) => x.kind === 'meal').map((x) => x.id))}
                             onOpenRestaurant={onOpenRestaurant}
                             dragHandle={attractionIds.length > 1 ? handle : undefined}
@@ -184,7 +217,7 @@ export function DayTimeline({ city, plan, dayIdx, selectedId, onSelect, onPlanCh
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-1.5">
                       <span className="font-semibold text-ink">{a.name}</span>
-                      {a.mustSee && <Badge tone="brand">必去</Badge>}
+                      {a.mustSee && <Badge tone="gold">经典</Badge>}
                       {a.suburb && <Badge tone="teal">远郊</Badge>}
                     </div>
                     <div className="mt-0.5 text-xs text-muted">
@@ -263,7 +296,15 @@ function AttractionStop({
   onSelect,
   onMoveUp,
   onMoveDown,
-  onRemove,
+  tier,
+  onTierChange,
+  cutPreview,
+  onAskRemove,
+  onConfirmRemove,
+  onCancelRemove,
+  trouble,
+  onToggleTrouble,
+  onApply,
   usedRestaurants,
   onOpenRestaurant,
   dragHandle,
@@ -276,7 +317,17 @@ function AttractionStop({
   onSelect: () => void
   onMoveUp?: () => void
   onMoveDown?: () => void
-  onRemove: () => void
+  tier: Tier
+  onTierChange: (t: Tier) => void
+  /** 正在预览「砍掉它会怎样」 */
+  cutPreview?: { option: CutOption; lines: DiffLine[] }
+  onAskRemove: () => void
+  onConfirmRemove: () => void
+  onCancelRemove: () => void
+  /** 正在看这一站「出状况了」的方案 */
+  trouble?: { blocked: Contingency; queue: Contingency }
+  onToggleTrouble: () => void
+  onApply: (next: TripPlan) => void
   usedRestaurants: Set<string>
   onOpenRestaurant: (r: Restaurant, subtitle?: string) => void
   dragHandle?: DragHandle
@@ -308,7 +359,7 @@ function AttractionStop({
                 <h4 className="text-base font-bold leading-tight text-ink">
                   {INTEREST_EMOJI[a.category]} {a.name}
                 </h4>
-                {a.mustSee && <Badge tone="brand">必去</Badge>}
+                {a.mustSee && <Badge tone="gold">经典</Badge>}
                 {a.needBooking && <Badge tone="warn">需预约</Badge>}
                 {a.closedOn && a.closedOn.length > 0 && <Badge tone="muted">{a.closedOn.map((d) => '日一二三四五六'[d]).map((d) => `周${d}`).join('、')}闭馆</Badge>}
               </div>
@@ -317,6 +368,19 @@ function AttractionStop({
                 <span>· {a.area}</span>
                 <span>· {a.price ? `门票 ¥${a.price}` : '免费'}</span>
                 <span>· {a.openHours}</span>
+              </div>
+              <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                <TierPicker value={tier} onChange={onTierChange} />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onToggleTrouble()
+                  }}
+                  className={`no-print inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-medium transition ${trouble ? 'border-teal bg-teal-soft text-teal' : 'border-line bg-white text-muted hover:border-ink/30 hover:text-ink'}`}
+                >
+                  <LifeBuoy size={12} /> 出状况了
+                </button>
               </div>
             </div>
             <div className="no-print flex shrink-0 items-center gap-0.5" onClick={(e) => e.stopPropagation()}>
@@ -333,12 +397,26 @@ function AttractionStop({
               )}
               <IconBtn onClick={onMoveUp} title="上移"><ArrowUp size={14} /></IconBtn>
               <IconBtn onClick={onMoveDown} title="下移"><ArrowDown size={14} /></IconBtn>
-              <IconBtn onClick={onRemove} title="从行程移除" danger><X size={14} /></IconBtn>
+              <IconBtn onClick={cutPreview ? onCancelRemove : onAskRemove} title="砍掉这个点（先看代价）" danger><X size={14} /></IconBtn>
             </div>
           </div>
 
           {stop.warning && <div className="mt-2 rounded-lg bg-red-50 px-2.5 py-1.5 text-xs text-red-700">⚠️ {stop.warning}</div>}
           {stop.note && <div className="mt-2 rounded-lg bg-teal-soft px-2.5 py-1.5 text-xs text-teal">ℹ️ {stop.note}</div>}
+          {cutPreview && <CutPreview option={cutPreview.option} lines={cutPreview.lines} onConfirm={onConfirmRemove} onCancel={onCancelRemove} />}
+          {trouble && (
+            <div className="no-print mt-3 flex flex-col gap-3 rounded-xl border border-teal/30 bg-white p-3" onClick={(e) => e.stopPropagation()}>
+              {[
+                { c: trouble.blocked, label: '去不了（临时闭馆、限流、没约上票）' },
+                { c: trouble.queue, label: '排队太久' },
+              ].map(({ c, label }) => (
+                <div key={c.kind}>
+                  <div className="mb-1.5 text-xs font-semibold text-teal">{label}</div>
+                  <ContingencyBody c={c} onApply={onApply} />
+                </div>
+              ))}
+            </div>
+          )}
 
           <p className={`mt-2 text-[13px] leading-relaxed text-ink/80 ${expanded ? '' : 'line-clamp-2'}`}>{a.description}</p>
           <div className="mt-2 rounded-xl bg-paper px-3 py-2 text-[13px] text-ink/90">

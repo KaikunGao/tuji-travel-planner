@@ -60,6 +60,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'indoor',
       suburb: true,
       needBooking: true,
       photoSpots: ['一号坑东端正面俯拍军阵', '二号坑跪射俑特写', '铜车马展厅'],
@@ -85,6 +86,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       suburb: true,
       photoSpots: ['九龙湖与飞霜殿倒影', '海棠汤遗址'],
     },
@@ -110,6 +112,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['南门箭楼与护城河夜景', '墙顶向东拍城墙延伸线', '含光门段看西门日落'],
     },
     {
@@ -134,6 +137,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['钟楼饭店天台俯拍', '西大街路口夜景长曝光'],
     },
     {
@@ -157,6 +161,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'huimin-street',
@@ -180,6 +185,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['鼓楼门洞框住的北院门夜景', '大皮院的老门楣与人流'],
     },
     {
@@ -204,6 +210,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['省心楼与石牌楼同框', '第四进院礼拜大殿前月台'],
     },
     {
@@ -227,6 +234,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'giant-wild-goose-pagoda',
@@ -250,6 +258,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['南广场玄奘像与塔同框', '北广场喷泉前仰拍', '慈恩西路银杏道（11 月）'],
     },
     {
@@ -274,6 +283,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['中轴线仰拍大雁塔灯光', '开元广场唐风楼阁', '不倒翁表演点侧前方'],
     },
     {
@@ -299,6 +309,7 @@ export const xian: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'indoor',
       needBooking: true,
       photoSpots: ['序厅走狮石雕', '何家村金银器展柜'],
     },
@@ -324,6 +335,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'indoor',
     },
     {
       id: 'shuyuanmen',
@@ -346,6 +358,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'tang-paradise',
@@ -369,6 +382,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'outdoor',
       needBooking: true,
       photoSpots: ['紫云楼与芙蓉湖倒影', '西门外唐市广场', '仕女馆回廊'],
     },
@@ -395,6 +409,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['荐福寺大殿前拍塔全貌', '银杏树下仰拍塔檐'],
     },
@@ -420,6 +435,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['摔碗酒摊前的碎碗堆', '坊内灯笼长廊'],
     },
     {
@@ -444,6 +460,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['丹凤门正面广角', '含元殿台基上远眺太液池'],
     },
     {
@@ -467,6 +484,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['阅江楼看落日', '曲江亭与湖面倒影'],
     },
     {
@@ -490,6 +508,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['沉香亭牡丹', '花萼相辉楼与湖面'],
     },
     {
@@ -514,6 +533,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'indoor',
     },
     {
       id: 'defuxiang',
@@ -536,6 +556,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['德福巷牌楼夜景', '湘子庙门前老槐树'],
     },
     {
@@ -559,6 +580,7 @@ export const xian: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
   ],
   restaurants: [

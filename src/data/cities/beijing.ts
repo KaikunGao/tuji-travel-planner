@@ -60,6 +60,7 @@ export const beijing: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       needBooking: true,
       photoSpots: ['角楼（东北角筒子河边）', '太和殿广场铜缸', '御花园堆秀山'],
     },
@@ -84,6 +85,7 @@ export const beijing: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       needBooking: true,
     },
     {
@@ -103,6 +105,7 @@ export const beijing: City = {
       tips: ['日落前 1 小时上万春亭占位，周末人非常多', '门票 2 元现场买即可，不需要预约', '从故宫神武门出来过马路就是南门'],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['万春亭俯瞰故宫', '寿皇殿前的古柏'],
     },
     {
@@ -122,6 +125,7 @@ export const beijing: City = {
       tips: ['租一条小船 1 小时 100 元左右，白塔角度最好', '从北门出可以直接走到什刹海', '九龙壁和静心斋另收小门票'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'nanluoguxiang',
@@ -140,6 +144,7 @@ export const beijing: City = {
       tips: ['主街人挤人，拐进东西两侧的小胡同才是精华', '可以租自行车沿胡同骑到钟鼓楼和后海', '玩一下午顺路去后海看日落'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'shichahai',
@@ -158,6 +163,7 @@ export const beijing: City = {
       tips: ['银锭桥是「银锭观山」的经典机位', '冬天结冰后可以滑冰车，非常北京', '酒吧街价格偏高，更推荐在湖边散步'],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'outdoor',
       photoSpots: ['银锭桥日落', '烟袋斜街牌楼'],
     },
     {
@@ -177,6 +183,7 @@ export const beijing: City = {
       tips: ['买 34 元联票才能进祈年殿、回音壁、圜丘', '早上 8 点前进园只需 15 元大门票，能看到最地道的北京晨练', '回音壁人多时听不出效果，别抱太高期待'],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['祈年殿正面', '丹陛桥'],
     },
     {
@@ -196,6 +203,9 @@ export const beijing: City = {
       tips: ['从北宫门进可以先逛苏州街，再翻万寿山下到长廊', '昆明湖坐船到南湖岛，再走十七孔桥出东宫门，不走回头路', '联票 60 元含德和园、佛香阁、苏州街'],
       mustSee: true,
       bestTime: 'any',
+      exposure: 'outdoor',
+      // 隔壁的皇家园林，自动规则因为评分差 0.5 筛掉了
+      alternatives: ['yuanmingyuan'],
       photoSpots: ['十七孔桥', '佛香阁俯瞰昆明湖', '西堤柳树'],
     },
     {
@@ -215,6 +225,7 @@ export const beijing: City = {
       tips: ['重点在西洋楼景区，其他区域可以坐电瓶车', '离颐和园北宫门地铁一站，适合连着逛', '夏季荷花节值得专门来'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
     },
     {
       id: 'lama-temple',
@@ -233,6 +244,7 @@ export const beijing: City = {
       tips: ['门票附赠一盒香，不用在外面买', '周末上午人最多，建议工作日或下午去', '出门右转就是五道营胡同，适合喝咖啡歇脚'],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'wudaoying',
@@ -251,6 +263,7 @@ export const beijing: City = {
       tips: ['和雍和宫、国子监连起来逛，正好半天', '下午两三点来咖啡馆位置最好'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'guozijian',
@@ -270,6 +283,7 @@ export const beijing: City = {
       tips: ['和雍和宫在同一条街，步行 5 分钟', '国子监街的牌楼是北京仅存的几座过街牌楼之一', '周一闭馆'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
     },
     {
       id: 'national-museum',
@@ -289,6 +303,7 @@ export const beijing: City = {
       tips: ['提前 1-7 天在官方小程序预约，免费', '只看「古代中国」展（地下一层）就够一次，别贪多', '天安门广场东侧，和故宫同一天安排'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -308,6 +323,7 @@ export const beijing: City = {
       tips: ['大部分画廊周一闭馆，周二到周日人更少', 'UCCA 门票单独购买，常有大展', '离市中心稍远，和三里屯安排在同一天'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'sanlitun',
@@ -326,6 +342,7 @@ export const beijing: City = {
       tips: ['北区人少安静，适合逛街；南区适合拍照和吃饭', '晚上来，灯光好看也顺便解决晚餐'],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'olympic-park',
@@ -344,6 +361,7 @@ export const beijing: City = {
       tips: ['外观免费，鸟巢内部参观 50 元，一般看外观就够', '晚上 19:30-21:30 亮灯', '广场很大很空旷，冬天风大注意保暖'],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['龙形水系看鸟巢倒影', '水立方北侧广场'],
     },
     {
@@ -363,6 +381,7 @@ export const beijing: City = {
       tips: ['前门主街比较商业化，精华在大栅栏和杨梅竹斜街', '夜景亮灯后比白天好看', '和天安门、天坛顺路'],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'wangfujing',
@@ -381,6 +400,7 @@ export const beijing: City = {
       tips: ['王府井小吃街已关闭，别专门去找', '适合作为故宫之后的用餐与休息点'],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
     },
     {
       id: 'prince-gong-mansion',
@@ -400,6 +420,7 @@ export const beijing: City = {
       tips: ['需提前在官方小程序预约', '从后海南岸步行 10 分钟即到', '周一闭馆'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       needBooking: true,
     },
     {
@@ -419,6 +440,7 @@ export const beijing: City = {
       tips: ['三高炉可以预约登顶看全景', '园区很大，建议租自行车或坐观光车', '距市中心 20 公里，半天往返'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'badaling',
@@ -437,6 +459,9 @@ export const beijing: City = {
       tips: ['提前在「八达岭长城」官方公众号预约门票，旺季限流', '早上 7 点前到可以避开旅行团，8 点后人潮涌入', '北线景观更壮观，南线人少；缆车单程 100 元', '景区餐饮少且贵，带足水和干粮'],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
+      // 另一段长城，离八达岭远但同样是从市区出发的一日游
+      alternatives: ['mutianyu'],
       suburb: true,
       needBooking: true,
       photoSpots: ['北八楼回望', '南四楼看北线全景'],
@@ -458,6 +483,7 @@ export const beijing: City = {
       tips: ['人比八达岭少很多，适合不想排队的人', '推荐缆车上、滑道下，滑道很好玩', '交通不如八达岭方便，建议包车或拼车'],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
     },
     {
@@ -477,6 +503,7 @@ export const beijing: City = {
       tips: ['和八达岭安排在同一天，顺路', '地宫里恒温偏凉，夏天也带件外套', '神道的石像生很适合拍照'],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       suburb: true,
     },
     {
@@ -496,6 +523,7 @@ export const beijing: City = {
       tips: ['提前官方 App 买票，热门日期会售罄', '开园前 1 小时到门口，开园直奔哈利波特或霸天虎', '园区餐饮偏贵，可以带零食进园'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'mixed',
       suburb: true,
       needBooking: true,
     },
@@ -516,6 +544,7 @@ export const beijing: City = {
       tips: ['离市区 130 公里，单程 2 小时以上，建议住一晚', '夜游司马台长城需另购票，视野震撼', '周末和节假日非常拥挤'],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'outdoor',
       suburb: true,
     },
   ],

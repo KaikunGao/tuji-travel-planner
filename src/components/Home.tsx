@@ -174,7 +174,7 @@ function CityCard({ city, onClick, onDelete }: { city: City; onClick: () => void
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 px-4 py-3 text-xs text-muted">
           <span>📍 {city.attractions.length} 个景点</span>
           <span>🍜 {city.restaurants.length} 家美食</span>
-          <span>⭐ {must} 个必去</span>
+          <span>⭐ {must} 个经典</span>
           <span className="ml-auto font-medium text-ink">{city.suggestedDays}</span>
         </div>
       </button>

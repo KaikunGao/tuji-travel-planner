@@ -1,9 +1,9 @@
-import { ArrowLeft, Ban, Star } from 'lucide-react'
+import { ArrowLeft, Ban, Scissors, Star } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import type { City, PlanParams } from '../types'
 import type { TileSource } from '../lib/storage'
 import { INTEREST_EMOJI, formatDuration } from '../lib/format'
-import { isSuburb } from '../lib/planner'
+import { isSuburb, tierOf, withTier } from '../lib/planner'
 import { MapView } from './MapView'
 import { PlanForm } from './PlanForm'
 import { Badge, Button, Card, SectionTitle, Stars } from './ui'
@@ -29,17 +29,12 @@ export function CityPage({
   const excluded = useMemo(() => new Set(params.exclude), [params.exclude])
   const [focus, setFocus] = useState<string | null>(null)
 
-  const toggleMust = (id: string) =>
-    onChangeParams({
-      ...params,
-      mustInclude: must.has(id) ? params.mustInclude.filter((x) => x !== id) : [...params.mustInclude, id],
-      exclude: params.exclude.filter((x) => x !== id),
-    })
+  // 三档：再点一次已选中的档位 = 回到「可选」
+  const toggleTier = (id: string, tier: 'must' | 'droppable') => onChangeParams(withTier(params, id, tierOf(params, id) === tier ? 'optional' : tier))
   const toggleExclude = (id: string) =>
     onChangeParams({
-      ...params,
+      ...withTier(params, id, 'optional'),
       exclude: excluded.has(id) ? params.exclude.filter((x) => x !== id) : [...params.exclude, id],
-      mustInclude: params.mustInclude.filter((x) => x !== id),
     })
 
   const sorted = useMemo(
@@ -103,10 +98,10 @@ export function CityPage({
           </Card>
           <SectionTitle
             title={`${city.attractions.length} 个景点`}
-            sub="点 ★ 设为必去、点 ⊘ 排除；不点就由算法按兴趣和评分挑选"
+            sub="先分三档：★ 必去（硬约束，怎么改都保住）、✂ 可放弃（想去，但时间不够先砍它）、不点就是可选；⊘ 是不去"
             right={
-              (params.mustInclude.length > 0 || params.exclude.length > 0) && (
-                <Button variant="ghost" size="sm" onClick={() => onChangeParams({ ...params, mustInclude: [], exclude: [] })}>
+              (params.mustInclude.length > 0 || (params.droppable?.length ?? 0) > 0 || params.exclude.length > 0) && (
+                <Button variant="ghost" size="sm" onClick={() => onChangeParams({ ...params, mustInclude: [], droppable: [], exclude: [] })}>
                   重置选择
                 </Button>
               )
@@ -115,6 +110,7 @@ export function CityPage({
           <div className="grid gap-3 sm:grid-cols-2">
             {sorted.map((a) => {
               const isMust = must.has(a.id)
+              const isDrop = !isMust && tierOf(params, a.id) === 'droppable'
               const isEx = excluded.has(a.id)
               const sub = isSuburb(a, city)
               return (
@@ -122,14 +118,14 @@ export function CityPage({
                   key={a.id}
                   id={`spot-${a.id}`}
                   onMouseEnter={() => setFocus(a.id)}
-                  className={`relative rounded-2xl border bg-white p-4 shadow-card transition ${isMust ? 'border-brand ring-2 ring-brand/20' : isEx ? 'border-line opacity-55' : 'border-line'} ${focus === a.id ? 'ring-2 ring-teal/30' : ''}`}
+                  className={`relative rounded-2xl border bg-white p-4 shadow-card transition ${isMust ? 'border-brand ring-2 ring-brand/20' : isDrop ? 'border-dashed border-ink/40' : isEx ? 'border-line opacity-55' : 'border-line'} ${focus === a.id ? 'ring-2 ring-teal/30' : ''}`}
                 >
                   <div className="flex items-start gap-3">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-paper text-xl">{INTEREST_EMOJI[a.category]}</div>
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                         <h3 className="font-bold leading-tight text-ink">{a.name}</h3>
-                        {a.mustSee && <Badge tone="brand">必去</Badge>}
+                        {a.mustSee && <Badge tone="gold">经典</Badge>}
                         {sub && <Badge tone="teal">远郊</Badge>}
                         {a.needBooking && <Badge tone="warn">需预约</Badge>}
                       </div>
@@ -145,10 +141,18 @@ export function CityPage({
                   <div className="mt-3 flex gap-2">
                     <button
                       type="button"
-                      onClick={() => toggleMust(a.id)}
+                      onClick={() => toggleTier(a.id, 'must')}
                       className={`inline-flex h-8 items-center gap-1 rounded-lg border px-2.5 text-xs font-medium ${isMust ? 'border-brand bg-brand text-white' : 'border-line text-ink hover:border-brand hover:text-brand'}`}
                     >
                       <Star size={13} fill={isMust ? 'currentColor' : 'none'} /> {isMust ? '已设必去' : '必去'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => toggleTier(a.id, 'droppable')}
+                      title="想去，但时间不够时先砍它"
+                      className={`inline-flex h-8 items-center gap-1 rounded-lg border px-2.5 text-xs font-medium ${isDrop ? 'border-ink/70 bg-ink/75 text-white' : 'border-line text-ink hover:border-ink/50'}`}
+                    >
+                      <Scissors size={13} /> {isDrop ? '已设可放弃' : '可放弃'}
                     </button>
                     <button
                       type="button"

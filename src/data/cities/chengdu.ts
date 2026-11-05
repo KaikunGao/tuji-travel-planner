@@ -60,6 +60,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['宽巷子口的「宽窄巷子」石牌', '井巷子砖文化墙', '窄巷子老宅门楼夜景'],
     },
     {
@@ -83,6 +84,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['鹤鸣茶社竹椅盖碗茶', '金水溪旁的茶棚'],
     },
     {
@@ -107,6 +109,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -131,6 +134,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'mixed',
       photoSpots: ['红墙夹道（惠陵旁）', '刘备殿前香炉', '三绝碑'],
     },
     {
@@ -154,6 +158,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['锦里牌坊夜景', '水上戏台与灯笼', '古戏台前的红灯笼长廊'],
     },
     {
@@ -178,6 +183,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       photoSpots: ['花径红墙', '茅屋故居', '少陵草堂碑亭'],
     },
     {
@@ -202,6 +208,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -225,6 +232,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
     },
     {
       id: 'qingyang-palace',
@@ -247,6 +255,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
     },
     {
       id: 'shufeng-yayun',
@@ -269,6 +278,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'indoor',
       needBooking: true,
     },
     {
@@ -293,6 +303,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'morning',
+      exposure: 'outdoor',
       needBooking: true,
       photoSpots: ['月亮产房外的幼崽', '太阳产房「熊猫幼儿园」', '小熊猫步道'],
     },
@@ -317,6 +328,7 @@ export const chengdu: City = {
       ],
       mustSee: true,
       bestTime: 'night',
+      exposure: 'mixed',
       photoSpots: ['IFS 爬墙熊猫（红星路侧仰拍）', '太古里漫广场看大慈寺屋檐', '春熙路孙中山像'],
     },
     {
@@ -340,6 +352,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'mixed',
     },
     {
       id: 'dongjiao-memory',
@@ -362,6 +375,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'mixed',
       photoSpots: ['火车头广场', '红砖厂房大烟囱', '工业管道长廊'],
     },
     {
@@ -385,6 +399,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'night',
+      exposure: 'outdoor',
       photoSpots: ['兰桂坊江岸拍九眼桥全景', '安顺廊桥夜景', '合江亭'],
     },
     {
@@ -408,6 +423,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'afternoon',
+      exposure: 'outdoor',
       photoSpots: ['锦江对岸拍崇丽阁', '竹林小径'],
     },
     {
@@ -433,6 +449,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'any',
+      exposure: 'indoor',
     },
     {
       id: 'yulin-road',
@@ -455,6 +472,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'evening',
+      exposure: 'mixed',
       photoSpots: ['小酒馆（玉林西路店）门头', '玉林西路的梧桐街景'],
     },
     {
@@ -479,6 +497,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
       photoSpots: ['安澜索桥上拍岷江', '二王庙俯瞰鱼嘴', '南桥夜景'],
     },
@@ -504,6 +523,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'outdoor',
       suburb: true,
       photoSpots: ['天然图画牌坊', '老君阁俯瞰', '月城湖'],
     },
@@ -529,6 +549,7 @@ export const chengdu: City = {
       ],
       mustSee: false,
       bestTime: 'morning',
+      exposure: 'indoor',
       suburb: true,
       needBooking: true,
       photoSpots: ['青铜大立人', '一号青铜神树', '新馆大堂的螺旋坡道'],
