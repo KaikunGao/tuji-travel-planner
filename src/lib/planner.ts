@@ -94,6 +94,12 @@ export function guideBonus(a: Pick<Attraction, 'guideShare'>): number {
   return Math.max(-3.75, Math.min(3.75, (a.guideShare - 0.3) * 12.5))
 }
 
+/** 攻略档位：核心（≥30%）= 2，次核心（15–30%）= 1，低频 = 0；没有数据返回 undefined */
+export function guideTier(a: Pick<Attraction, 'guideShare'>): 0 | 1 | 2 | undefined {
+  if (a.guideShare === undefined) return undefined
+  return a.guideShare >= 0.3 ? 2 : a.guideShare >= 0.15 ? 1 : 0
+}
+
 /** 攻略提及率的展示：攻略提及 65% */
 export function formatGuideShare(share: number): string {
   return `攻略提及 ${Math.round(share * 100)}%`

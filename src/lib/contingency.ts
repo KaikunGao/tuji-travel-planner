@@ -15,7 +15,7 @@ import type { Attraction, City, Exposure, Tier, TripPlan } from '../types'
 import { TIER_LABEL, cutOptions, dayEnd, describeDiff, diffPlans, previewRemove, type DiffLine, type PlanDiff } from './change'
 import { formatDuration, formatKm, minutesToHHMM, weekdayOf } from './format'
 import { haversine } from './geo'
-import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
+import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, guideTier, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
 
 /* ------------------------------------------------------------------ */
 /* 淋雨程度                                                             */
@@ -94,6 +94,9 @@ export function findAlternatives(city: City, plan: TripPlan, dayIdx: number, att
       if (!opts.rain && !relation) continue
       if (c.duration > o.duration * ALT_DURATION[1] || c.duration < o.duration * (opts.rain ? 0.4 : ALT_DURATION[0])) continue
       if (c.rating < o.rating - (opts.rain ? ALT_RATING_DROP + 0.2 : ALT_RATING_DROP)) continue
+      // 攻略里没人排的点，不拿来换核心景点：档位最多低一档（只在有攻略数据的城市生效；下雨时少淋雨优先，不限）
+      const to = guideTier(o), tc = guideTier(c)
+      if (!opts.rain && to !== undefined && tc !== undefined && tc < to - 1) continue
     }
     const next = replaceAttraction(city, plan, dayIdx, o.id, c.id)
     const diff = diffPlans(city, plan, next)
@@ -264,34 +267,44 @@ export function tiredPlan(city: City, plan: TripPlan, dayIdx: number): Contingen
  * 换一天去，只保留不带来新冲突的：
  * 市区的点先试「只挪这一个点」；挪不进去（别的天排满了）或是远郊点，再试「两天整天对调」。
  */
-function rescheduleOptions(city: City, plan: TripPlan, dayIdx: number, stopId: string, limit: number): PlanOption[] {
+/**
+ * 换天方案。near：顺路的（目标那天路上多花 ≤ ALT_EXTRA_TRAVEL 分钟）改天 + 整天对调，按收工早的在前；
+ * far：一天都排不顺路时，多走最少的那一天，理由里写明代价，由调用方决定放在砍掉之前还是之后。
+ */
+function rescheduleOptions(city: City, plan: TripPlan, dayIdx: number, stopId: string, limit: number): { near: PlanOption[]; far: PlanOption[] } {
   const a = city.attractions.find((x) => x.id === stopId)
-  if (!a) return []
+  if (!a) return { near: [], far: [] }
   const openOn = (j: number) => !(plan.days[j].date && a.closedOn?.includes(weekdayOf(plan.days[j].date!)))
   const others = plan.days.map((_, j) => j).filter((j) => j !== dayIdx && !isPastDay(plan, j) && openOn(j))
 
-  const moves: { o: PlanOption; end: number }[] = []
+  const moves: { o: PlanOption; end: number; extra: number }[] = []
   if (!plan.days[dayIdx].isSuburb) {
     for (const j of others) {
       if (plan.days[j].isSuburb) continue
       const next = moveToDay(city, plan, dayIdx, j, stopId)
-      if (hasNewConflict(diffPlans(city, plan, next))) continue
-      const o = option(city, plan, `move:${stopId}:${j}`, `改到 Day ${plan.days[j].day} 去`, next)
-      if (o) moves.push({ o, end: dayEnd(next.days[j]) })
+      const diff = diffPlans(city, plan, next)
+      if (hasNewConflict(diff)) continue
+      // 顺路程度：目标那天路上多花的时间，和替代点用同一个上限
+      const extra = diff!.days.find((d) => d.dayIdx === j)?.travelDelta ?? 0
+      const why = extra > ALT_EXTRA_TRAVEL ? `那天路上要多花约 ${formatDuration(extra)}，别的天排不进` : undefined
+      const o = option(city, plan, `move:${stopId}:${j}`, `改到 Day ${plan.days[j].day} 去`, next, why)
+      if (o) moves.push({ o, end: dayEnd(next.days[j]), extra })
     }
   }
-  // 优先挪到收工早的那天，免得把另一天撑爆
-  const out = moves.sort((x, y) => x.end - y.end).map((x) => x.o)
+  // 先要顺路，再优先挪到收工早的那天，免得把另一天撑爆
+  const inBound = moves.filter((m) => m.extra <= ALT_EXTRA_TRAVEL)
+  const near = inBound.sort((x, y) => x.end - y.end).map((x) => x.o)
+  const far = inBound.length ? [] : moves.sort((x, y) => x.extra - y.extra).slice(0, 1).map((x) => x.o)
 
   for (const j of others) {
-    if (out.length >= limit) break
+    if (near.length >= limit) break
     if (!attractionIdsOfDay(plan.days[j]).length) continue
     const next = swapDays(city, plan, dayIdx, j)
     if (hasNewConflict(diffPlans(city, plan, next))) continue
     const o = option(city, plan, `swap:${stopId}:${j}`, `改到 Day ${plan.days[j].day} 去（两天整天对调）`, next)
-    if (o) out.push(o)
+    if (o) near.push(o)
   }
-  return out.slice(0, limit)
+  return { near: near.slice(0, limit), far }
 }
 
 /** 某个点去不了（临时闭馆、限流、没抢到票） */
@@ -304,13 +317,14 @@ export function blockedPlan(city: City, plan: TripPlan, dayIdx: number, stopId: 
   const alternatives = findAlternatives(city, plan, dayIdx, stopId, { limit: 2 }).map(
     (alt): PlanOption => ({ key: `alt:${stopId}:${alt.a.id}`, title: `换成 ${alt.a.name}`, why: alt.reasons.join(' · '), lines: describeDiff(alt.diff, alt.next, city), next: alt.next }),
   )
-  const moves = rescheduleOptions(city, plan, dayIdx, stopId, tier === 'must' ? 2 : 1)
+  const { near: moves, far } = rescheduleOptions(city, plan, dayIdx, stopId, tier === 'must' ? 2 : 1)
   const removed = previewRemove(city, plan, dayIdx, stopId)
   const cut: PlanOption[] = removed ? [{ key: `cut:${stopId}`, title: '不去了，直接砍掉', lines: describeDiff(removed.diff, removed.next, city), next: removed.next }] : []
 
-  // 必去：先换天，实在不行再看替代；可放弃：先砍；其余：先找替代
-  base.options = tier === 'must' ? [...moves, ...alternatives, ...cut] : tier === 'droppable' ? [...cut, ...alternatives, ...moves] : [...alternatives, ...moves, ...cut]
-  if (!alternatives.length && !moves.length) base.note = '附近没有合适的替代，别的天也排不进去（会带来新的时间冲突），只能砍掉。'
+  // 必去：先换天，实在不行再看替代；可放弃：先砍；其余：先找替代。
+  // 绕远路的换天（far）：必去的点排在砍掉之前，其余排在砍掉之后——多走一两个小时不如不去
+  base.options = tier === 'must' ? [...moves, ...alternatives, ...far, ...cut] : tier === 'droppable' ? [...cut, ...alternatives, ...moves, ...far] : [...alternatives, ...moves, ...cut, ...far]
+  if (!alternatives.length && !moves.length && !far.length) base.note = '附近没有合适的替代，别的天也排不进去（会带来新的时间冲突），只能砍掉。'
   return base
 }
 
@@ -394,9 +408,9 @@ export function queuePlan(city: City, plan: TripPlan, dayIdx: number, stopId: st
   const cut: PlanOption[] = removed ? [{ key: `cut:${stopId}`, title: `不排了，放弃 ${name}`, lines: describeDiff(removed.diff, removed.next, city), next: removed.next }] : []
   const [alt] = findAlternatives(city, plan, dayIdx, stopId, { limit: 1 })
   const swap: PlanOption[] = alt ? [{ key: `alt:${stopId}:${alt.a.id}`, title: `换成附近的 ${alt.a.name}`, why: alt.reasons.join(' · '), lines: describeDiff(alt.diff, alt.next, city), next: alt.next }] : []
-  const moves = rescheduleOptions(city, plan, dayIdx, stopId, 1)
-  // 必去：改天再来排在放弃前面
-  base.options.push(...(tier === 'must' ? [...moves, ...swap, ...cut] : [...cut, ...swap, ...moves]))
+  const { near: moves, far } = rescheduleOptions(city, plan, dayIdx, stopId, 1)
+  // 必去：改天再来排在放弃前面；绕远路的换天一律垫底
+  base.options.push(...(tier === 'must' ? [...moves, ...swap, ...far, ...cut] : [...cut, ...swap, ...moves, ...far]))
   return base
 }
 
