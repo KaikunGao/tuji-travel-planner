@@ -75,6 +75,8 @@ export interface Attraction {
   rating: number
   /** 人气：外部平台点评数（携程 2026-11 快照，data/ctrip/），用作轻量排序权重；缺省表示没有对齐到携程条目 */
   popularity?: number
+  /** 攻略提及率 0-1：该城高赞攻略里提到它的比例（小红书 2026-11 快照，data/xhs/，目前只有北京 / 成都 / 西安）；缺省表示该城没做统计 */
+  guideShare?: number
   /** 门票价格（人民币），0 表示免费 */
   price: number
   /** 开放时间 "08:30-17:00" 或 "全天" */

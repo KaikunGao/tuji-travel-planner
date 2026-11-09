@@ -49,6 +49,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.3,
       popularity: 14000,
+      guideShare: 0.62,
       price: 0,
       openHours: '全天',
       description:
@@ -75,6 +76,7 @@ export const chengdu: City = {
       duration: 90,
       rating: 4.7,
       popularity: 1025,
+      guideShare: 0.54,
       price: 0,
       openHours: '06:30-22:00',
       description:
@@ -100,6 +102,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.7,
       popularity: 5476,
+      guideShare: 0.29,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -126,6 +129,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.6,
       popularity: 30000,
+      guideShare: 0.38,
       price: 50,
       openHours: '08:00-18:00',
       description:
@@ -152,6 +156,7 @@ export const chengdu: City = {
       duration: 90,
       rating: 4.1,
       popularity: 16000,
+      guideShare: 0.21,
       price: 0,
       openHours: '全天',
       description:
@@ -177,6 +182,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.6,
       popularity: 48000,
+      guideShare: 0.33,
       price: 50,
       openHours: '08:00-18:00',
       description:
@@ -203,6 +209,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.5,
       popularity: 1612,
+      guideShare: 0.04,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -229,6 +236,7 @@ export const chengdu: City = {
       duration: 60,
       rating: 4.5,
       popularity: 533,
+      guideShare: 0.04,
       price: 0,
       openHours: '全天',
       description:
@@ -253,6 +261,7 @@ export const chengdu: City = {
       duration: 60,
       rating: 4.4,
       popularity: 923,
+      guideShare: 0.08,
       price: 10,
       openHours: '08:00-17:30',
       description:
@@ -277,6 +286,7 @@ export const chengdu: City = {
       duration: 90,
       rating: 4.5,
       popularity: 8638,
+      guideShare: 0.17,
       price: 220,
       openHours: '19:30-21:30',
       description:
@@ -302,6 +312,7 @@ export const chengdu: City = {
       duration: 180,
       rating: 4.8,
       popularity: 115000,
+      guideShare: 0.79,
       price: 55,
       openHours: '07:30-18:00',
       description:
@@ -329,6 +340,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.5,
       popularity: 5065,
+      guideShare: 0.83,
       price: 0,
       openHours: '全天',
       description:
@@ -354,6 +366,7 @@ export const chengdu: City = {
       duration: 75,
       rating: 4.6,
       popularity: 2065,
+      guideShare: 0.5,
       price: 0,
       openHours: '08:00-17:00',
       description:
@@ -378,6 +391,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.4,
       popularity: 543,
+      guideShare: 0.17,
       price: 0,
       openHours: '全天',
       description:
@@ -403,6 +417,7 @@ export const chengdu: City = {
       duration: 90,
       rating: 4.3,
       popularity: 405,
+      guideShare: 0.29,
       price: 0,
       openHours: '全天',
       description:
@@ -428,6 +443,7 @@ export const chengdu: City = {
       duration: 75,
       rating: 4.4,
       popularity: 699,
+      guideShare: 0.04,
       price: 20,
       openHours: '08:00-18:00',
       description:
@@ -453,6 +469,7 @@ export const chengdu: City = {
       duration: 120,
       rating: 4.6,
       popularity: 19000,
+      guideShare: 0.04,
       price: 70,
       openHours: '09:00-18:00',
       closedOn: [1],
@@ -479,6 +496,7 @@ export const chengdu: City = {
       duration: 90,
       rating: 4.3,
       popularity: 36,
+      guideShare: 0.46,
       price: 0,
       openHours: '全天',
       description:
@@ -504,6 +522,7 @@ export const chengdu: City = {
       duration: 240,
       rating: 4.7,
       popularity: 58000,
+      guideShare: 0.5,
       price: 80,
       openHours: '08:00-18:00',
       description:
@@ -531,6 +550,7 @@ export const chengdu: City = {
       duration: 300,
       rating: 4.6,
       popularity: 35000,
+      guideShare: 0.29,
       price: 80,
       openHours: '08:00-18:00',
       description:
@@ -558,6 +578,7 @@ export const chengdu: City = {
       duration: 180,
       rating: 4.8,
       popularity: 111,
+      guideShare: 0.42,
       price: 72,
       openHours: '08:30-18:00',
       description:

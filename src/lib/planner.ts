@@ -83,8 +83,24 @@ export function formatPopularity(n: number): string {
   return n >= 10000 ? `${(n / 10000).toFixed(1).replace(/\.0$/, '')}万条点评` : `${n}条点评`
 }
 
+/**
+ * 攻略提及率权重：该景点在本城高赞攻略（小红书 2026-11 快照，data/xhs/）里被提到的比例，
+ * 以 30%（核心景点门槛）为零点线性加减：0% -3.75，30% 0，60% 及以上封顶 +3.75。
+ * 回答的是「典型行程会不会排它」，与人气（点评数，回答「多少人去过」）互补；量级同为 0.4 分评分差，
+ * 仍比必去（+18）和兴趣（+22）低一个量级。没做过攻略统计的城市一律缺省，记 0。
+ */
+export function guideBonus(a: Pick<Attraction, 'guideShare'>): number {
+  if (a.guideShare === undefined) return 0
+  return Math.max(-3.75, Math.min(3.75, (a.guideShare - 0.3) * 12.5))
+}
+
+/** 攻略提及率的展示：攻略提及 65% */
+export function formatGuideShare(share: number): string {
+  return `攻略提及 ${Math.round(share * 100)}%`
+}
+
 export function scoreAttraction(a: Attraction, interests: Interest[], isMust: boolean, variant: PlanVariant = 'balanced'): number {
-  let s = a.rating * 10 + popularityBonus(a)
+  let s = a.rating * 10 + popularityBonus(a) + guideBonus(a)
   if (variant === 'cheap') s -= a.price * 0.15
   if (variant === 'max') s -= (a.duration - 90) * 0.06
   if (a.mustSee) s += 18

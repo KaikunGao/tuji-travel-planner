@@ -1,0 +1,29 @@
+poi	tier	in_tuji	tuji_id	must_see	in_plan2	in_plan3	in_plan4	mentions	share	likes_share
+春熙路 · 太古里 · IFS	core	1	chunxi-taikooli	1	1	1	1	20	0.833	0.890
+成都大熊猫繁育研究基地	core	1	panda-base	1	1	1	1	19	0.792	0.676
+宽窄巷子	core	1	kuanzhai-alley	1	1	1	1	15	0.625	0.538
+人民公园 · 鹤鸣茶社	core	1	peoples-park	1	1	1	1	13	0.542	0.509
+都江堰	core	1	dujiangyan	0	0	1	1	12	0.500	0.558
+文殊院	core	1	wenshu-monastery	0	1	1	1	12	0.500	0.532
+玉林路 · 小酒馆	core	1	yulin-road	0	0	0	0	11	0.458	0.466
+三星堆博物馆	core	1	sanxingdui	0	0	0	0	10	0.417	0.331
+武侯祠	core	1	wuhou-shrine	1	1	1	1	9	0.375	0.399
+杜甫草堂	core	1	dufu-cottage	1	1	1	1	8	0.333	0.234
+青城山（前山）	sub	1	qingcheng-shan	0	0	0	0	7	0.292	0.355
+成都博物馆	sub	1	chengdu-museum	0	0	0	0	7	0.292	0.340
+九眼桥 · 合江亭夜景	sub	1	jiuyanqiao	0	0	0	0	7	0.292	0.201
+奎星楼街	sub	0		0	0	0	0	6	0.250	0.294
+大慈寺	sub	0		0	0	0	0	6	0.250	0.100
+锦里古街	sub	1	jinli	0	0	0	0	5	0.208	0.259
+东郊记忆	sub	1	dongjiao-memory	0	0	0	0	4	0.167	0.206
+蜀风雅韵川剧（文化公园）	sub	1	shufeng-yayun	0	0	0	0	4	0.167	0.083
+望平街 · 猛追湾		0		0	0	0	0	3	0.125	0.067
+青羊宫		1	qingyang-palace	0	0	0	1	2	0.083	0.202
+成都动物园		0		0	0	0	0	1	0.042	0.056
+天府熊猫塔		0		0	0	0	0	1	0.042	0.047
+望江楼公园		1	wangjiang-tower	0	0	0	0	1	0.042	0.034
+金沙遗址博物馆		1	jinsha-museum	0	0	0	1	1	0.042	0.015
+成都自然博物馆		0		0	0	0	0	1	0.042	0.015
+四川科技馆		0		0	0	0	0	1	0.042	0.015
+四川博物院		1	sichuan-museum	0	0	0	1	1	0.042	0.015
+浣花溪公园		1	huanhuaxi-park	0	0	0	1	1	0.042	0.015

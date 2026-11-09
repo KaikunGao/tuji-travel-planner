@@ -1,0 +1,2811 @@
+{
+ "beijing": [
+  {
+   "id": "forbidden-city",
+   "name": "故宫博物院",
+   "in_tuji": true,
+   "forms": [
+    "故宫博物院",
+    "紫禁城",
+    "故宫"
+   ]
+  },
+  {
+   "id": "tiananmen",
+   "name": "天安门广场",
+   "in_tuji": true,
+   "forms": [
+    "天安门广场",
+    "天安门",
+    "升旗"
+   ]
+  },
+  {
+   "id": "jingshan-park",
+   "name": "景山公园",
+   "in_tuji": true,
+   "forms": [
+    "景山公园",
+    "景山"
+   ]
+  },
+  {
+   "id": "beihai-park",
+   "name": "北海公园",
+   "in_tuji": true,
+   "forms": [
+    "北海公园",
+    "北海"
+   ]
+  },
+  {
+   "id": "nanluoguxiang",
+   "name": "南锣鼓巷与胡同",
+   "in_tuji": true,
+   "forms": [
+    "南锣鼓巷与胡同",
+    "南锣鼓巷",
+    "南锣"
+   ]
+  },
+  {
+   "id": "shichahai",
+   "name": "什刹海 · 烟袋斜街 · 后海",
+   "in_tuji": true,
+   "forms": [
+    "烟袋斜街",
+    "什刹海",
+    "后海"
+   ]
+  },
+  {
+   "id": "temple-of-heaven",
+   "name": "天坛公园",
+   "in_tuji": true,
+   "forms": [
+    "天坛公园",
+    "天坛"
+   ]
+  },
+  {
+   "id": "summer-palace",
+   "name": "颐和园",
+   "in_tuji": true,
+   "forms": [
+    "颐和园"
+   ]
+  },
+  {
+   "id": "yuanmingyuan",
+   "name": "圆明园",
+   "in_tuji": true,
+   "forms": [
+    "圆明园"
+   ]
+  },
+  {
+   "id": "lama-temple",
+   "name": "雍和宫",
+   "in_tuji": true,
+   "forms": [
+    "雍和宫"
+   ]
+  },
+  {
+   "id": "wudaoying",
+   "name": "五道营胡同",
+   "in_tuji": true,
+   "forms": [
+    "五道营胡同"
+   ]
+  },
+  {
+   "id": "guozijian",
+   "name": "国子监 · 孔庙",
+   "in_tuji": true,
+   "forms": [
+    "国子监",
+    "孔庙"
+   ]
+  },
+  {
+   "id": "national-museum",
+   "name": "中国国家博物馆",
+   "in_tuji": true,
+   "forms": [
+    "中国国家博物馆",
+    "国家博物馆",
+    "中国国家",
+    "国博"
+   ]
+  },
+  {
+   "id": "art-zone-798",
+   "name": "798 艺术区",
+   "in_tuji": true,
+   "forms": [
+    "798 艺术区",
+    "798 "
+   ]
+  },
+  {
+   "id": "sanlitun",
+   "name": "三里屯太古里",
+   "in_tuji": true,
+   "forms": [
+    "三里屯太古里"
+   ]
+  },
+  {
+   "id": "olympic-park",
+   "name": "鸟巢 · 水立方",
+   "in_tuji": true,
+   "forms": [
+    "奥林匹克公园",
+    "水立方",
+    "鸟巢"
+   ]
+  },
+  {
+   "id": "qianmen",
+   "name": "前门大街 · 大栅栏",
+   "in_tuji": true,
+   "forms": [
+    "前门大街",
+    "大栅栏"
+   ]
+  },
+  {
+   "id": "wangfujing",
+   "name": "王府井",
+   "in_tuji": true,
+   "forms": [
+    "王府井"
+   ]
+  },
+  {
+   "id": "prince-gong-mansion",
+   "name": "恭王府",
+   "in_tuji": true,
+   "forms": [
+    "恭王府"
+   ]
+  },
+  {
+   "id": "shougang-park",
+   "name": "首钢园",
+   "in_tuji": true,
+   "forms": [
+    "首钢园"
+   ]
+  },
+  {
+   "id": "badaling",
+   "name": "八达岭长城",
+   "in_tuji": true,
+   "forms": [
+    "八达岭长城",
+    "八达岭"
+   ]
+  },
+  {
+   "id": "mutianyu",
+   "name": "慕田峪长城",
+   "in_tuji": true,
+   "forms": [
+    "慕田峪长城",
+    "慕田峪"
+   ]
+  },
+  {
+   "id": "ming-tombs",
+   "name": "明十三陵 · 定陵",
+   "in_tuji": true,
+   "forms": [
+    "明十三陵",
+    "定陵"
+   ]
+  },
+  {
+   "id": "universal-beijing",
+   "name": "北京环球度假区",
+   "in_tuji": true,
+   "forms": [
+    "环球度假区"
+   ]
+  },
+  {
+   "id": "gubei-water-town",
+   "name": "古北水镇 · 司马台长城",
+   "in_tuji": true,
+   "forms": [
+    "司马台长城",
+    "古北水镇"
+   ]
+  },
+  {
+   "id": "ctrip:136653497",
+   "name": "泡泡玛特城市乐园",
+   "in_tuji": false,
+   "forms": [
+    "泡泡玛特城市乐园"
+   ]
+  },
+  {
+   "id": "ctrip:107621",
+   "name": "朝阳公园",
+   "in_tuji": false,
+   "forms": [
+    "朝阳公园"
+   ]
+  },
+  {
+   "id": "ctrip:140172",
+   "name": "什刹海风景区",
+   "in_tuji": false,
+   "forms": [
+    "什刹海风景区",
+    "什刹海风",
+    "什刹海"
+   ]
+  },
+  {
+   "id": "ctrip:107469",
+   "name": "北京野生动物园",
+   "in_tuji": false,
+   "forms": [
+    "野生动物园"
+   ]
+  },
+  {
+   "id": "ctrip:5181",
+   "name": "国家自然博物馆",
+   "in_tuji": false,
+   "forms": [
+    "国家自然博物馆",
+    "国家自然"
+   ]
+  },
+  {
+   "id": "ctrip:57491",
+   "name": "北京欢乐谷",
+   "in_tuji": false,
+   "forms": [
+    "欢乐谷"
+   ]
+  },
+  {
+   "id": "ctrip:107625",
+   "name": "中国科学技术馆",
+   "in_tuji": false,
+   "forms": [
+    "中国科学技术馆"
+   ]
+  },
+  {
+   "id": "ctrip:64955",
+   "name": "南锣鼓巷",
+   "in_tuji": false,
+   "forms": [
+    "南锣鼓巷"
+   ]
+  },
+  {
+   "id": "ctrip:107634",
+   "name": "前门大街",
+   "in_tuji": false,
+   "forms": [
+    "前门大街"
+   ]
+  },
+  {
+   "id": "ctrip:234",
+   "name": "明十三陵",
+   "in_tuji": false,
+   "forms": [
+    "明十三陵"
+   ]
+  },
+  {
+   "id": "ctrip:140224",
+   "name": "奥林匹克公园",
+   "in_tuji": false,
+   "forms": [
+    "奥林匹克公园",
+    "奥林匹克"
+   ]
+  },
+  {
+   "id": "ctrip:1411592",
+   "name": "古北水镇",
+   "in_tuji": false,
+   "forms": [
+    "古北水镇"
+   ]
+  },
+  {
+   "id": "ctrip:62723",
+   "name": "中国人民革命军事博物馆",
+   "in_tuji": false,
+   "forms": [
+    "中国人民革命军事博物馆",
+    "中国人民革命军事"
+   ]
+  },
+  {
+   "id": "ctrip:238",
+   "name": "北京大观园",
+   "in_tuji": false,
+   "forms": [
+    "大观园"
+   ]
+  },
+  {
+   "id": "ctrip:5305",
+   "name": "八大处公园",
+   "in_tuji": false,
+   "forms": [
+    "八大处公园",
+    "八大处"
+   ]
+  },
+  {
+   "id": "ctrip:140217",
+   "name": "三里屯",
+   "in_tuji": false,
+   "forms": [
+    "三里屯"
+   ]
+  },
+  {
+   "id": "ctrip:54196",
+   "name": "大栅栏",
+   "in_tuji": false,
+   "forms": [
+    "大栅栏"
+   ]
+  },
+  {
+   "id": "ctrip:52627",
+   "name": "水立方(国家游泳中心)",
+   "in_tuji": false,
+   "forms": [
+    "国家游泳中心",
+    "水立方"
+   ]
+  },
+  {
+   "id": "ctrip:5159",
+   "name": "首都博物馆",
+   "in_tuji": false,
+   "forms": [
+    "首都博物馆"
+   ]
+  },
+  {
+   "id": "ctrip:52676",
+   "name": "北京天文馆",
+   "in_tuji": false,
+   "forms": [
+    "天文馆"
+   ]
+  },
+  {
+   "id": "ctrip:5265",
+   "name": "世界公园",
+   "in_tuji": false,
+   "forms": [
+    "世界公园"
+   ]
+  },
+  {
+   "id": "ctrip:5316",
+   "name": "居庸关长城",
+   "in_tuji": false,
+   "forms": [
+    "居庸关长城"
+   ]
+  },
+  {
+   "id": "ctrip:62726",
+   "name": "中国地质博物馆",
+   "in_tuji": false,
+   "forms": [
+    "中国地质博物馆",
+    "中国地质"
+   ]
+  },
+  {
+   "id": "ctrip:52666",
+   "name": "天安门城楼",
+   "in_tuji": false,
+   "forms": [
+    "天安门城楼"
+   ]
+  },
+  {
+   "id": "ctrip:54179",
+   "name": "国家大剧院",
+   "in_tuji": false,
+   "forms": [
+    "国家大剧院"
+   ]
+  },
+  {
+   "id": "ctrip:107839",
+   "name": "北京汽车博物馆",
+   "in_tuji": false,
+   "forms": [
+    "汽车博物馆"
+   ]
+  },
+  {
+   "id": "ctrip:145115543",
+   "name": "天安门广场-国旗",
+   "in_tuji": false,
+   "forms": [
+    "天安门广场-国旗"
+   ]
+  },
+  {
+   "id": "ctrip:65081",
+   "name": "中央广播电视塔",
+   "in_tuji": false,
+   "forms": [
+    "中央广播电视塔"
+   ]
+  },
+  {
+   "id": "ctrip:5168",
+   "name": "钟鼓楼",
+   "in_tuji": false,
+   "forms": [
+    "钟鼓楼"
+   ]
+  },
+  {
+   "id": "ctrip:5315",
+   "name": "雁栖湖",
+   "in_tuji": false,
+   "forms": [
+    "雁栖湖"
+   ]
+  },
+  {
+   "id": "ctrip:64948",
+   "name": "798艺术区",
+   "in_tuji": false,
+   "forms": [
+    "798艺术区",
+    "798"
+   ]
+  },
+  {
+   "id": "ctrip:65352",
+   "name": "老舍茶馆",
+   "in_tuji": false,
+   "forms": [
+    "老舍茶馆"
+   ]
+  },
+  {
+   "id": "ctrip:62735",
+   "name": "中国美术馆",
+   "in_tuji": false,
+   "forms": [
+    "中国美术馆"
+   ]
+  },
+  {
+   "id": "ctrip:5161",
+   "name": "潭柘寺",
+   "in_tuji": false,
+   "forms": [
+    "潭柘寺"
+   ]
+  },
+  {
+   "id": "ctrip:54291",
+   "name": "毛主席纪念堂",
+   "in_tuji": false,
+   "forms": [
+    "毛主席纪念堂"
+   ]
+  },
+  {
+   "id": "ctrip:66130",
+   "name": "人民大会堂",
+   "in_tuji": false,
+   "forms": [
+    "人民大会堂"
+   ]
+  },
+  {
+   "id": "ctrip:145148",
+   "name": "故宫珍宝馆",
+   "in_tuji": false,
+   "forms": [
+    "故宫珍宝馆"
+   ]
+  },
+  {
+   "id": "ctrip:10404",
+   "name": "司马台长城",
+   "in_tuji": false,
+   "forms": [
+    "司马台长城"
+   ]
+  },
+  {
+   "id": "ctrip:5228",
+   "name": "陶然亭公园",
+   "in_tuji": false,
+   "forms": [
+    "陶然亭公园",
+    "陶然亭"
+   ]
+  },
+  {
+   "id": "ctrip:5217",
+   "name": "国家植物园(原北京植物园)",
+   "in_tuji": false,
+   "forms": [
+    "原北京植物园",
+    "国家植物园"
+   ]
+  },
+  {
+   "id": "ctrip:235",
+   "name": "香山公园",
+   "in_tuji": false,
+   "forms": [
+    "香山公园",
+    "香山"
+   ]
+  },
+  {
+   "id": "ctrip:5215",
+   "name": "地坛公园",
+   "in_tuji": false,
+   "forms": [
+    "地坛公园",
+    "地坛"
+   ]
+  },
+  {
+   "id": "ctrip:107837",
+   "name": "八达岭野生动物世界",
+   "in_tuji": false,
+   "forms": [
+    "八达岭野生动物世界"
+   ]
+  },
+  {
+   "id": "ctrip:1485193",
+   "name": "孔庙和国子监博物馆",
+   "in_tuji": false,
+   "forms": [
+    "孔庙和国子监博物馆",
+    "孔庙和国子监"
+   ]
+  },
+  {
+   "id": "ctrip:5169",
+   "name": "鼓楼",
+   "in_tuji": false,
+   "forms": [
+    "鼓楼"
+   ]
+  },
+  {
+   "id": "ctrip:141044791",
+   "name": "北京五棵松 MELAND CLUB",
+   "in_tuji": false,
+   "forms": [
+    "五棵松 MELAND CLUB"
+   ]
+  },
+  {
+   "id": "ctrip:5162",
+   "name": "红螺寺",
+   "in_tuji": false,
+   "forms": [
+    "红螺寺"
+   ]
+  },
+  {
+   "id": "ctrip:62704",
+   "name": "黄花城水长城",
+   "in_tuji": false,
+   "forms": [
+    "黄花城水长城"
+   ]
+  },
+  {
+   "id": "ctrip:1475967",
+   "name": "北京古代建筑博物馆",
+   "in_tuji": false,
+   "forms": [
+    "古代建筑博物馆",
+    "古代建筑"
+   ]
+  },
+  {
+   "id": "ctrip:236",
+   "name": "卢沟桥",
+   "in_tuji": false,
+   "forms": [
+    "卢沟桥"
+   ]
+  },
+  {
+   "id": "ctrip:66163",
+   "name": "中国电影博物馆",
+   "in_tuji": false,
+   "forms": [
+    "中国电影博物馆",
+    "中国电影"
+   ]
+  },
+  {
+   "id": "ctrip:145405642",
+   "name": "八达岭长城-好汉坡",
+   "in_tuji": false,
+   "forms": [
+    "八达岭长城-好汉坡"
+   ]
+  },
+  {
+   "id": "ctrip:62618",
+   "name": "北京宋庆龄故居",
+   "in_tuji": false,
+   "forms": [
+    "宋庆龄故居"
+   ]
+  },
+  {
+   "id": "ctrip:5154",
+   "name": "国子监",
+   "in_tuji": false,
+   "forms": [
+    "国子监"
+   ]
+  },
+  {
+   "id": "ctrip:142206313",
+   "name": "中国考古博物馆",
+   "in_tuji": false,
+   "forms": [
+    "中国考古博物馆",
+    "中国考古"
+   ]
+  },
+  {
+   "id": "ctrip:107846",
+   "name": "太平洋海底世界",
+   "in_tuji": false,
+   "forms": [
+    "太平洋海底世界"
+   ]
+  },
+  {
+   "id": "ctrip:54223",
+   "name": "玉渊潭公园",
+   "in_tuji": false,
+   "forms": [
+    "玉渊潭公园",
+    "玉渊潭"
+   ]
+  },
+  {
+   "id": "ctrip:143709445",
+   "name": "中国工艺美术馆",
+   "in_tuji": false,
+   "forms": [
+    "中国工艺美术馆",
+    "中国工艺"
+   ]
+  },
+  {
+   "id": "ctrip:1508735",
+   "name": "华熙Live·五棵松",
+   "in_tuji": false,
+   "forms": [
+    "华熙Live",
+    "五棵松"
+   ]
+  },
+  {
+   "id": "ctrip:107700",
+   "name": "北京西山国家森林公园",
+   "in_tuji": false,
+   "forms": [
+    "西山国家森林公园",
+    "西山国家森林"
+   ]
+  },
+  {
+   "id": "ctrip:5234",
+   "name": "中山公园",
+   "in_tuji": false,
+   "forms": [
+    "中山公园"
+   ]
+  },
+  {
+   "id": "ctrip:157078719",
+   "name": "北京 · 星光乐集「樂·Rap Fiesta」",
+   "in_tuji": false,
+   "forms": [
+    "Rap Fiesta」",
+    "星光乐集「樂"
+   ]
+  },
+  {
+   "id": "ctrip:144888064",
+   "name": "首钢一高炉·SoReal科幻乐园",
+   "in_tuji": false,
+   "forms": [
+    "SoReal科幻乐园",
+    "首钢一高炉"
+   ]
+  },
+  {
+   "id": "ctrip:157237473",
+   "name": "北京 · FKJ – Tyber Tour 北京站",
+   "in_tuji": false,
+   "forms": [
+    "FKJ – Tyber Tour 北京站"
+   ]
+  },
+  {
+   "id": "ctrip:137984",
+   "name": "定陵",
+   "in_tuji": false,
+   "forms": [
+    "定陵"
+   ]
+  },
+  {
+   "id": "ctrip:5284",
+   "name": "中华民族博物院",
+   "in_tuji": false,
+   "forms": [
+    "中华民族博物院",
+    "中华民族"
+   ]
+  },
+  {
+   "id": "ctrip:107635",
+   "name": "世界花卉大观园",
+   "in_tuji": false,
+   "forms": [
+    "世界花卉大观园"
+   ]
+  },
+  {
+   "id": "ctrip:5178",
+   "name": "白云观",
+   "in_tuji": false,
+   "forms": [
+    "白云观"
+   ]
+  },
+  {
+   "id": "ctrip:157200472",
+   "name": "北京 · 新媒体融合剧《顽石》",
+   "in_tuji": false,
+   "forms": [
+    "新媒体融合剧《顽石》"
+   ]
+  },
+  {
+   "id": "ctrip:80053387",
+   "name": "红剧场",
+   "in_tuji": false,
+   "forms": [
+    "红剧场"
+   ]
+  },
+  {
+   "id": "ctrip:140550256",
+   "name": "崇文工人文化宫",
+   "in_tuji": false,
+   "forms": [
+    "崇文工人文化宫"
+   ]
+  },
+  {
+   "id": "ctrip:67588",
+   "name": "富国海底世界",
+   "in_tuji": false,
+   "forms": [
+    "富国海底世界"
+   ]
+  },
+  {
+   "id": "ctrip:155085976",
+   "name": "北京UCCA 卡斯滕.霍勒中国首个机构个展\"双\"",
+   "in_tuji": false,
+   "forms": [
+    "UCCA 卡斯滕.霍勒中国首个机构个展\"双\""
+   ]
+  },
+  {
+   "id": "ctrip:5596412",
+   "name": "清华大学艺术博物馆",
+   "in_tuji": false,
+   "forms": [
+    "清华大学艺术博物馆",
+    "清华大学艺术"
+   ]
+  }
+ ],
+ "chengdu": [
+  {
+   "id": "kuanzhai-alley",
+   "name": "宽窄巷子",
+   "in_tuji": true,
+   "forms": [
+    "宽窄巷子",
+    "宽窄"
+   ]
+  },
+  {
+   "id": "peoples-park",
+   "name": "人民公园 · 鹤鸣茶社",
+   "in_tuji": true,
+   "forms": [
+    "人民公园",
+    "鹤鸣茶社"
+   ]
+  },
+  {
+   "id": "wuhou-shrine",
+   "name": "武侯祠",
+   "in_tuji": true,
+   "forms": [
+    "武侯祠"
+   ]
+  },
+  {
+   "id": "jinli",
+   "name": "锦里古街",
+   "in_tuji": true,
+   "forms": [
+    "锦里古街",
+    "锦里"
+   ]
+  },
+  {
+   "id": "dufu-cottage",
+   "name": "杜甫草堂",
+   "in_tuji": true,
+   "forms": [
+    "杜甫草堂",
+    "草堂"
+   ]
+  },
+  {
+   "id": "sichuan-museum",
+   "name": "四川博物院",
+   "in_tuji": true,
+   "forms": [
+    "四川博物院"
+   ]
+  },
+  {
+   "id": "huanhuaxi-park",
+   "name": "浣花溪公园",
+   "in_tuji": true,
+   "forms": [
+    "浣花溪公园",
+    "浣花溪"
+   ]
+  },
+  {
+   "id": "qingyang-palace",
+   "name": "青羊宫",
+   "in_tuji": true,
+   "forms": [
+    "青羊宫"
+   ]
+  },
+  {
+   "id": "shufeng-yayun",
+   "name": "蜀风雅韵川剧（文化公园）",
+   "in_tuji": true,
+   "forms": [
+    "蜀风雅韵川剧",
+    "文化公园"
+   ]
+  },
+  {
+   "id": "panda-base",
+   "name": "成都大熊猫繁育研究基地",
+   "in_tuji": true,
+   "forms": [
+    "大熊猫繁育研究基地",
+    "大熊猫基地",
+    "熊猫基地"
+   ]
+  },
+  {
+   "id": "chunxi-taikooli",
+   "name": "春熙路 · 太古里 · IFS",
+   "in_tuji": true,
+   "forms": [
+    "春熙路",
+    "太古里",
+    "IFS"
+   ]
+  },
+  {
+   "id": "wenshu-monastery",
+   "name": "文殊院",
+   "in_tuji": true,
+   "forms": [
+    "文殊院"
+   ]
+  },
+  {
+   "id": "dongjiao-memory",
+   "name": "东郊记忆",
+   "in_tuji": true,
+   "forms": [
+    "东郊记忆"
+   ]
+  },
+  {
+   "id": "jiuyanqiao",
+   "name": "九眼桥 · 合江亭夜景",
+   "in_tuji": true,
+   "forms": [
+    "合江亭夜景",
+    "九眼桥"
+   ]
+  },
+  {
+   "id": "wangjiang-tower",
+   "name": "望江楼公园",
+   "in_tuji": true,
+   "forms": [
+    "望江楼公园",
+    "望江楼"
+   ]
+  },
+  {
+   "id": "jinsha-museum",
+   "name": "金沙遗址博物馆",
+   "in_tuji": true,
+   "forms": [
+    "金沙遗址博物馆",
+    "金沙遗址",
+    "金沙"
+   ]
+  },
+  {
+   "id": "yulin-road",
+   "name": "玉林路 · 小酒馆",
+   "in_tuji": true,
+   "forms": [
+    "玉林路",
+    "小酒馆"
+   ]
+  },
+  {
+   "id": "dujiangyan",
+   "name": "都江堰",
+   "in_tuji": true,
+   "forms": [
+    "都江堰"
+   ]
+  },
+  {
+   "id": "qingcheng-shan",
+   "name": "青城山（前山）",
+   "in_tuji": true,
+   "forms": [
+    "青城山"
+   ]
+  },
+  {
+   "id": "sanxingdui",
+   "name": "三星堆博物馆",
+   "in_tuji": true,
+   "forms": [
+    "三星堆博物馆",
+    "三星堆"
+   ]
+  },
+  {
+   "id": "ctrip:4226",
+   "name": "成都杜甫草堂博物馆",
+   "in_tuji": false,
+   "forms": [
+    "杜甫草堂博物馆",
+    "杜甫草堂"
+   ]
+  },
+  {
+   "id": "ctrip:62960",
+   "name": "青城山",
+   "in_tuji": false,
+   "forms": [
+    "青城山"
+   ]
+  },
+  {
+   "id": "ctrip:4597",
+   "name": "都江堰景区",
+   "in_tuji": false,
+   "forms": [
+    "都江堰景区",
+    "都江堰"
+   ]
+  },
+  {
+   "id": "ctrip:78031",
+   "name": "毕棚沟",
+   "in_tuji": false,
+   "forms": [
+    "毕棚沟"
+   ]
+  },
+  {
+   "id": "ctrip:136621444",
+   "name": "梨园会馆-非遗川剧变脸演出(文殊院店)",
+   "in_tuji": false,
+   "forms": [
+    "梨园会馆-非遗川剧变脸演出"
+   ]
+  },
+  {
+   "id": "ctrip:1469084",
+   "name": "文殊坊",
+   "in_tuji": false,
+   "forms": [
+    "文殊坊"
+   ]
+  },
+  {
+   "id": "ctrip:1700731",
+   "name": "熊猫谷",
+   "in_tuji": false,
+   "forms": [
+    "熊猫谷"
+   ]
+  },
+  {
+   "id": "ctrip:1673197",
+   "name": "漫花庄园",
+   "in_tuji": false,
+   "forms": [
+    "漫花庄园"
+   ]
+  },
+  {
+   "id": "ctrip:2571169",
+   "name": "成都自然博物馆",
+   "in_tuji": false,
+   "forms": [
+    "自然博物馆"
+   ]
+  },
+  {
+   "id": "ctrip:138472",
+   "name": "春熙路",
+   "in_tuji": false,
+   "forms": [
+    "春熙路"
+   ]
+  },
+  {
+   "id": "ctrip:138459",
+   "name": "蜀风雅韵剧场·川剧变脸演出·大型古典梨园",
+   "in_tuji": false,
+   "forms": [
+    "蜀风雅韵剧场",
+    "大型古典梨园",
+    "川剧变脸演出"
+   ]
+  },
+  {
+   "id": "ctrip:144555106",
+   "name": "梨园会馆-非遗川剧变脸演出(春熙路太古里店)",
+   "in_tuji": false,
+   "forms": [
+    "梨园会馆-非遗川剧变脸演出"
+   ]
+  },
+  {
+   "id": "ctrip:1475857",
+   "name": "四川科技馆",
+   "in_tuji": false,
+   "forms": [
+    "四川科技馆"
+   ]
+  },
+  {
+   "id": "ctrip:65834",
+   "name": "成都欢乐谷",
+   "in_tuji": false,
+   "forms": [
+    "欢乐谷"
+   ]
+  },
+  {
+   "id": "ctrip:147145",
+   "name": "四川省川剧院",
+   "in_tuji": false,
+   "forms": [
+    "四川省川剧院"
+   ]
+  },
+  {
+   "id": "ctrip:138441",
+   "name": "《芙蓉国粹》变脸秀",
+   "in_tuji": false,
+   "forms": [
+    "《芙蓉国粹》变脸秀"
+   ]
+  },
+  {
+   "id": "ctrip:62961",
+   "name": "青城后山",
+   "in_tuji": false,
+   "forms": [
+    "青城后山"
+   ]
+  },
+  {
+   "id": "ctrip:145236465",
+   "name": "青城前山",
+   "in_tuji": false,
+   "forms": [
+    "青城前山"
+   ]
+  },
+  {
+   "id": "ctrip:85930",
+   "name": "海合安成都极地海洋公园",
+   "in_tuji": false,
+   "forms": [
+    "海合安成都极地海洋公园",
+    "海合安成都极地海洋"
+   ]
+  },
+  {
+   "id": "ctrip:50285",
+   "name": "天府广场",
+   "in_tuji": false,
+   "forms": [
+    "天府广场"
+   ]
+  },
+  {
+   "id": "ctrip:76261",
+   "name": "南桥",
+   "in_tuji": false,
+   "forms": [
+    "南桥"
+   ]
+  },
+  {
+   "id": "ctrip:11693",
+   "name": "成都市人民公园",
+   "in_tuji": false,
+   "forms": [
+    "人民公园"
+   ]
+  },
+  {
+   "id": "ctrip:79456",
+   "name": "安仁古镇",
+   "in_tuji": false,
+   "forms": [
+    "安仁古镇"
+   ]
+  },
+  {
+   "id": "ctrip:1829928",
+   "name": "成都蜀锦织绣博物馆",
+   "in_tuji": false,
+   "forms": [
+    "蜀锦织绣博物馆",
+    "蜀锦织绣"
+   ]
+  },
+  {
+   "id": "ctrip:103300331",
+   "name": "成都融创文旅城",
+   "in_tuji": false,
+   "forms": [
+    "融创文旅城"
+   ]
+  },
+  {
+   "id": "ctrip:5709305",
+   "name": "成都热雪奇迹",
+   "in_tuji": false,
+   "forms": [
+    "热雪奇迹"
+   ]
+  },
+  {
+   "id": "ctrip:5069353",
+   "name": "玉林西路",
+   "in_tuji": false,
+   "forms": [
+    "玉林西路"
+   ]
+  },
+  {
+   "id": "ctrip:1483118",
+   "name": "成都环球中心",
+   "in_tuji": false,
+   "forms": [
+    "环球中心"
+   ]
+  },
+  {
+   "id": "ctrip:1700523",
+   "name": "灌县古城",
+   "in_tuji": false,
+   "forms": [
+    "灌县古城"
+   ]
+  },
+  {
+   "id": "ctrip:1713566",
+   "name": "九眼桥",
+   "in_tuji": false,
+   "forms": [
+    "九眼桥"
+   ]
+  },
+  {
+   "id": "ctrip:5717478",
+   "name": "成都市天府艺术公园",
+   "in_tuji": false,
+   "forms": [
+    "天府艺术公园",
+    "天府艺术"
+   ]
+  },
+  {
+   "id": "ctrip:1683224",
+   "name": "都江堰中华大熊猫苑(原熊猫乐园)",
+   "in_tuji": false,
+   "forms": [
+    "都江堰中华大熊猫苑",
+    "原熊猫乐园"
+   ]
+  },
+  {
+   "id": "ctrip:1407638",
+   "name": "环球中心海洋乐园",
+   "in_tuji": false,
+   "forms": [
+    "环球中心海洋乐园"
+   ]
+  },
+  {
+   "id": "ctrip:152741089",
+   "name": "红鼎艳",
+   "in_tuji": false,
+   "forms": [
+    "红鼎艳"
+   ]
+  },
+  {
+   "id": "ctrip:143136270",
+   "name": "小熊猫森林公园",
+   "in_tuji": false,
+   "forms": [
+    "小熊猫森林公园",
+    "小熊猫森林"
+   ]
+  },
+  {
+   "id": "ctrip:48849",
+   "name": "刘氏庄园博物馆",
+   "in_tuji": false,
+   "forms": [
+    "刘氏庄园博物馆",
+    "刘氏庄园"
+   ]
+  },
+  {
+   "id": "ctrip:71986",
+   "name": "四川建川博物馆聚落",
+   "in_tuji": false,
+   "forms": [
+    "四川建川博物馆聚落"
+   ]
+  },
+  {
+   "id": "ctrip:124908114",
+   "name": "仰天窝广场",
+   "in_tuji": false,
+   "forms": [
+    "仰天窝广场",
+    "仰天窝"
+   ]
+  },
+  {
+   "id": "ctrip:4344",
+   "name": "大慈寺",
+   "in_tuji": false,
+   "forms": [
+    "大慈寺"
+   ]
+  },
+  {
+   "id": "ctrip:5713306",
+   "name": "梅花剧社·非遗川剧变脸（太古里店）",
+   "in_tuji": false,
+   "forms": [
+    "非遗川剧变脸",
+    "梅花剧社"
+   ]
+  },
+  {
+   "id": "ctrip:2485565",
+   "name": "盖碗儿梨园•川剧变脸吐火表演剧院•非遗传承展示基地(天府广场店)",
+   "in_tuji": false,
+   "forms": [
+    "川剧变脸吐火表演剧院",
+    "非遗传承展示基地",
+    "盖碗儿梨园"
+   ]
+  },
+  {
+   "id": "ctrip:1418470",
+   "name": "都江堰景区鱼嘴分水堤",
+   "in_tuji": false,
+   "forms": [
+    "都江堰景区鱼嘴分水堤"
+   ]
+  },
+  {
+   "id": "ctrip:79469",
+   "name": "街子古镇",
+   "in_tuji": false,
+   "forms": [
+    "街子古镇"
+   ]
+  },
+  {
+   "id": "ctrip:4602",
+   "name": "成都永陵博物馆",
+   "in_tuji": false,
+   "forms": [
+    "永陵博物馆",
+    "永陵"
+   ]
+  },
+  {
+   "id": "ctrip:145098392",
+   "name": "锦江剧场·《川剧秀·传奇变脸》",
+   "in_tuji": false,
+   "forms": [
+    "传奇变脸》",
+    "《川剧秀",
+    "锦江剧场"
+   ]
+  },
+  {
+   "id": "ctrip:69569460",
+   "name": "世界之窗",
+   "in_tuji": false,
+   "forms": [
+    "世界之窗"
+   ]
+  },
+  {
+   "id": "ctrip:49942",
+   "name": "洛带古镇",
+   "in_tuji": false,
+   "forms": [
+    "洛带古镇"
+   ]
+  },
+  {
+   "id": "ctrip:1927206",
+   "name": "三星堆国家考古遗址公园",
+   "in_tuji": false,
+   "forms": [
+    "三星堆国家考古遗址公园",
+    "三星堆国家考古遗址",
+    "三星堆国家考古"
+   ]
+  },
+  {
+   "id": "ctrip:144315194",
+   "name": "蜀兿剧院·变脸川剧·盖碗茶(文殊院店)",
+   "in_tuji": false,
+   "forms": [
+    "蜀兿剧院",
+    "变脸川剧",
+    "盖碗茶"
+   ]
+  },
+  {
+   "id": "ctrip:149994616",
+   "name": "成都金融城双子塔",
+   "in_tuji": false,
+   "forms": [
+    "金融城双子塔"
+   ]
+  },
+  {
+   "id": "ctrip:145010",
+   "name": "元通古镇",
+   "in_tuji": false,
+   "forms": [
+    "元通古镇"
+   ]
+  },
+  {
+   "id": "ctrip:144991",
+   "name": "四川大学(望江校区)",
+   "in_tuji": false,
+   "forms": [
+    "四川大学"
+   ]
+  },
+  {
+   "id": "ctrip:5100501",
+   "name": "黄龙溪欢乐田园",
+   "in_tuji": false,
+   "forms": [
+    "黄龙溪欢乐田园"
+   ]
+  },
+  {
+   "id": "ctrip:1696842",
+   "name": "海滨城浩海立方海洋公园",
+   "in_tuji": false,
+   "forms": [
+    "海滨城浩海立方海洋公园",
+    "海滨城浩海立方海洋"
+   ]
+  },
+  {
+   "id": "ctrip:4575309",
+   "name": "蛟龙港·海滨城",
+   "in_tuji": false,
+   "forms": [
+    "蛟龙港",
+    "海滨城"
+   ]
+  },
+  {
+   "id": "ctrip:4703343",
+   "name": "空港花田",
+   "in_tuji": false,
+   "forms": [
+    "空港花田"
+   ]
+  },
+  {
+   "id": "ctrip:143357543",
+   "name": "FoxRiver狐河·渡边森林营地",
+   "in_tuji": false,
+   "forms": [
+    "FoxRiver狐河",
+    "渡边森林营地"
+   ]
+  },
+  {
+   "id": "ctrip:1786046",
+   "name": "奎星楼街",
+   "in_tuji": false,
+   "forms": [
+    "奎星楼街"
+   ]
+  },
+  {
+   "id": "ctrip:22176",
+   "name": "黄龙溪古镇",
+   "in_tuji": false,
+   "forms": [
+    "黄龙溪古镇"
+   ]
+  },
+  {
+   "id": "ctrip:2040868",
+   "name": "麓湖水城",
+   "in_tuji": false,
+   "forms": [
+    "麓湖水城"
+   ]
+  },
+  {
+   "id": "ctrip:1461183",
+   "name": "金龙长城",
+   "in_tuji": false,
+   "forms": [
+    "金龙长城"
+   ]
+  },
+  {
+   "id": "ctrip:156706663",
+   "name": "【成都】哈利波特:魔法幻境",
+   "in_tuji": false,
+   "forms": [
+    "【成都】哈利波特:魔法幻境"
+   ]
+  },
+  {
+   "id": "ctrip:1476684",
+   "name": "龙兴寺",
+   "in_tuji": false,
+   "forms": [
+    "龙兴寺"
+   ]
+  },
+  {
+   "id": "ctrip:1868283",
+   "name": "彭镇古镇",
+   "in_tuji": false,
+   "forms": [
+    "彭镇古镇"
+   ]
+  },
+  {
+   "id": "ctrip:142239549",
+   "name": "生机之塔",
+   "in_tuji": false,
+   "forms": [
+    "生机之塔"
+   ]
+  },
+  {
+   "id": "ctrip:1416103",
+   "name": "老君山",
+   "in_tuji": false,
+   "forms": [
+    "老君山"
+   ]
+  },
+  {
+   "id": "ctrip:5711074",
+   "name": "成都融创乐园",
+   "in_tuji": false,
+   "forms": [
+    "融创乐园"
+   ]
+  },
+  {
+   "id": "ctrip:5546729",
+   "name": "立巢航空博物馆",
+   "in_tuji": false,
+   "forms": [
+    "立巢航空博物馆",
+    "立巢航空"
+   ]
+  },
+  {
+   "id": "ctrip:63154",
+   "name": "离堆公园",
+   "in_tuji": false,
+   "forms": [
+    "离堆公园",
+    "离堆"
+   ]
+  },
+  {
+   "id": "ctrip:156441867",
+   "name": "奇遇·《古蜀三星堆》",
+   "in_tuji": false,
+   "forms": [
+    "《古蜀三星堆》"
+   ]
+  },
+  {
+   "id": "ctrip:142568",
+   "name": "成都川菜博物馆",
+   "in_tuji": false,
+   "forms": [
+    "川菜博物馆"
+   ]
+  },
+  {
+   "id": "ctrip:154129823",
+   "name": "梦回青城•演艺小镇",
+   "in_tuji": false,
+   "forms": [
+    "演艺小镇",
+    "梦回青城"
+   ]
+  },
+  {
+   "id": "ctrip:1407247",
+   "name": "水井坊博物馆",
+   "in_tuji": false,
+   "forms": [
+    "水井坊博物馆",
+    "水井坊"
+   ]
+  },
+  {
+   "id": "ctrip:150424991",
+   "name": "天府源蓝眼泪",
+   "in_tuji": false,
+   "forms": [
+    "天府源蓝眼泪"
+   ]
+  },
+  {
+   "id": "ctrip:145012",
+   "name": "罨画池",
+   "in_tuji": false,
+   "forms": [
+    "罨画池"
+   ]
+  },
+  {
+   "id": "ctrip:5013357",
+   "name": "音乐百花谷",
+   "in_tuji": false,
+   "forms": [
+    "音乐百花谷"
+   ]
+  },
+  {
+   "id": "ctrip:151289595",
+   "name": "成都熊猫海洋公园",
+   "in_tuji": false,
+   "forms": [
+    "熊猫海洋公园",
+    "熊猫海洋"
+   ]
+  },
+  {
+   "id": "ctrip:85925",
+   "name": "南湖梦幻岛",
+   "in_tuji": false,
+   "forms": [
+    "南湖梦幻岛"
+   ]
+  },
+  {
+   "id": "ctrip:149817042",
+   "name": "梅花剧社·川剧变脸表演(天府广场店)",
+   "in_tuji": false,
+   "forms": [
+    "川剧变脸表演",
+    "梅花剧社"
+   ]
+  },
+  {
+   "id": "ctrip:4282366",
+   "name": "兴隆湖湿地公园",
+   "in_tuji": false,
+   "forms": [
+    "兴隆湖湿地公园",
+    "兴隆湖湿地"
+   ]
+  },
+  {
+   "id": "ctrip:70380",
+   "name": "四川大学(望江校区)-博物馆",
+   "in_tuji": false,
+   "forms": [
+    "四川大学-博物馆",
+    "四川大学-"
+   ]
+  },
+  {
+   "id": "ctrip:1985837",
+   "name": "铁像寺水街",
+   "in_tuji": false,
+   "forms": [
+    "铁像寺水街"
+   ]
+  },
+  {
+   "id": "ctrip:136012249",
+   "name": "五粮液文化体育中心",
+   "in_tuji": false,
+   "forms": [
+    "五粮液文化体育中心"
+   ]
+  },
+  {
+   "id": "ctrip:1713571",
+   "name": "安顺廊桥",
+   "in_tuji": false,
+   "forms": [
+    "安顺廊桥"
+   ]
+  },
+  {
+   "id": "ctrip:1460352",
+   "name": "宝瓶口",
+   "in_tuji": false,
+   "forms": [
+    "宝瓶口"
+   ]
+  },
+  {
+   "id": "ctrip:63955",
+   "name": "泰安古镇",
+   "in_tuji": false,
+   "forms": [
+    "泰安古镇"
+   ]
+  },
+  {
+   "id": "ctrip:154219912",
+   "name": "成都海洋世界",
+   "in_tuji": false,
+   "forms": [
+    "海洋世界"
+   ]
+  },
+  {
+   "id": "ctrip:63153",
+   "name": "都江堰景区-二王庙",
+   "in_tuji": false,
+   "forms": [
+    "都江堰景区-二王庙"
+   ]
+  },
+  {
+   "id": "ctrip:63954",
+   "name": "青城前山-上清宫",
+   "in_tuji": false,
+   "forms": [
+    "青城前山-上清宫"
+   ]
+  }
+ ],
+ "xian": [
+  {
+   "id": "terracotta-army",
+   "name": "秦始皇帝陵博物院（兵马俑）",
+   "in_tuji": true,
+   "forms": [
+    "秦始皇帝陵博物院",
+    "秦始皇帝陵",
+    "兵马俑"
+   ]
+  },
+  {
+   "id": "huaqing-palace",
+   "name": "华清宫（华清池 · 骊山）",
+   "in_tuji": true,
+   "forms": [
+    "华清池",
+    "华清宫",
+    "骊山"
+   ]
+  },
+  {
+   "id": "city-wall",
+   "name": "西安城墙（永宁门）",
+   "in_tuji": true,
+   "forms": [
+    "永宁门",
+    "城墙"
+   ]
+  },
+  {
+   "id": "bell-tower",
+   "name": "钟楼",
+   "in_tuji": true,
+   "forms": [
+    "钟楼"
+   ]
+  },
+  {
+   "id": "drum-tower",
+   "name": "鼓楼",
+   "in_tuji": true,
+   "forms": [
+    "鼓楼"
+   ]
+  },
+  {
+   "id": "huimin-street",
+   "name": "回民街（北院门 · 西羊市 · 大皮院）",
+   "in_tuji": true,
+   "forms": [
+    "大皮院",
+    "回民街",
+    "北院门",
+    "西羊市",
+    "回坊"
+   ]
+  },
+  {
+   "id": "great-mosque",
+   "name": "西安化觉巷清真大寺",
+   "in_tuji": true,
+   "forms": [
+    "化觉巷清真大寺"
+   ]
+  },
+  {
+   "id": "gaojia-courtyard",
+   "name": "高家大院",
+   "in_tuji": true,
+   "forms": [
+    "高家大院"
+   ]
+  },
+  {
+   "id": "giant-wild-goose-pagoda",
+   "name": "大雁塔 · 大慈恩寺",
+   "in_tuji": true,
+   "forms": [
+    "大慈恩寺",
+    "大雁塔"
+   ]
+  },
+  {
+   "id": "datang-everbright-city",
+   "name": "大唐不夜城",
+   "in_tuji": true,
+   "forms": [
+    "大唐不夜城",
+    "不夜城"
+   ]
+  },
+  {
+   "id": "shaanxi-history-museum",
+   "name": "陕西历史博物馆",
+   "in_tuji": true,
+   "forms": [
+    "陕西历史博物馆",
+    "陕西历史",
+    "陕历博",
+    "陕博"
+   ]
+  },
+  {
+   "id": "beilin-museum",
+   "name": "西安碑林博物馆",
+   "in_tuji": true,
+   "forms": [
+    "碑林博物馆",
+    "碑林"
+   ]
+  },
+  {
+   "id": "shuyuanmen",
+   "name": "书院门古文化街",
+   "in_tuji": true,
+   "forms": [
+    "书院门古文化街"
+   ]
+  },
+  {
+   "id": "tang-paradise",
+   "name": "大唐芙蓉园",
+   "in_tuji": true,
+   "forms": [
+    "大唐芙蓉园"
+   ]
+  },
+  {
+   "id": "small-wild-goose-pagoda",
+   "name": "小雁塔 · 西安博物院",
+   "in_tuji": true,
+   "forms": [
+    "小雁塔",
+    "博物院"
+   ]
+  },
+  {
+   "id": "yongxingfang",
+   "name": "永兴坊",
+   "in_tuji": true,
+   "forms": [
+    "永兴坊"
+   ]
+  },
+  {
+   "id": "daming-palace",
+   "name": "大明宫国家遗址公园",
+   "in_tuji": true,
+   "forms": [
+    "大明宫国家遗址公园",
+    "大明宫国家遗址",
+    "大明宫国家"
+   ]
+  },
+  {
+   "id": "qujiang-pool-park",
+   "name": "曲江池遗址公园",
+   "in_tuji": true,
+   "forms": [
+    "曲江池遗址公园",
+    "曲江池遗址",
+    "曲江池"
+   ]
+  },
+  {
+   "id": "xingqing-palace-park",
+   "name": "兴庆宫公园",
+   "in_tuji": true,
+   "forms": [
+    "兴庆宫公园",
+    "兴庆宫"
+   ]
+  },
+  {
+   "id": "changan-12-hours",
+   "name": "长安十二时辰主题街区",
+   "in_tuji": true,
+   "forms": [
+    "长安十二时辰主题街区"
+   ]
+  },
+  {
+   "id": "defuxiang",
+   "name": "湘子庙街 · 德福巷",
+   "in_tuji": true,
+   "forms": [
+    "湘子庙街",
+    "德福巷"
+   ]
+  },
+  {
+   "id": "daxingshan-temple",
+   "name": "大兴善寺",
+   "in_tuji": true,
+   "forms": [
+    "大兴善寺"
+   ]
+  },
+  {
+   "id": "ctrip:1444",
+   "name": "秦始皇帝陵博物院(兵马俑)",
+   "in_tuji": false,
+   "forms": [
+    "秦始皇帝陵博物院",
+    "秦始皇帝陵",
+    "兵马俑"
+   ]
+  },
+  {
+   "id": "ctrip:52677",
+   "name": "西安博物院",
+   "in_tuji": false,
+   "forms": [
+    "博物院"
+   ]
+  },
+  {
+   "id": "ctrip:1449",
+   "name": "西安城墙",
+   "in_tuji": false,
+   "forms": [
+    "城墙"
+   ]
+  },
+  {
+   "id": "ctrip:1443",
+   "name": "华清宫",
+   "in_tuji": false,
+   "forms": [
+    "华清宫"
+   ]
+  },
+  {
+   "id": "ctrip:136698",
+   "name": "华山",
+   "in_tuji": false,
+   "forms": [
+    "华山"
+   ]
+  },
+  {
+   "id": "ctrip:52702",
+   "name": "西安钟楼",
+   "in_tuji": false,
+   "forms": [
+    "钟楼"
+   ]
+  },
+  {
+   "id": "ctrip:148428478",
+   "name": "赳赳大秦",
+   "in_tuji": false,
+   "forms": [
+    "赳赳大秦"
+   ]
+  },
+  {
+   "id": "ctrip:1442",
+   "name": "大雁塔",
+   "in_tuji": false,
+   "forms": [
+    "大雁塔"
+   ]
+  },
+  {
+   "id": "ctrip:149273427",
+   "name": "西安城墙·碑林历史文化景区",
+   "in_tuji": false,
+   "forms": [
+    "碑林历史文化景区",
+    "碑林历史文化",
+    "城墙"
+   ]
+  },
+  {
+   "id": "ctrip:151934339",
+   "name": "大雁塔文化休闲景区",
+   "in_tuji": false,
+   "forms": [
+    "大雁塔文化休闲景区",
+    "大雁塔文化休闲"
+   ]
+  },
+  {
+   "id": "ctrip:1410344",
+   "name": "西安鼓楼",
+   "in_tuji": false,
+   "forms": [
+    "鼓楼"
+   ]
+  },
+  {
+   "id": "ctrip:133987592",
+   "name": "陕西考古博物馆",
+   "in_tuji": false,
+   "forms": [
+    "陕西考古博物馆",
+    "陕西考古"
+   ]
+  },
+  {
+   "id": "ctrip:54080",
+   "name": "回民街",
+   "in_tuji": false,
+   "forms": [
+    "回民街"
+   ]
+  },
+  {
+   "id": "ctrip:73279",
+   "name": "西安秦岭野生动物园",
+   "in_tuji": false,
+   "forms": [
+    "秦岭野生动物园"
+   ]
+  },
+  {
+   "id": "ctrip:4336373",
+   "name": "《驼铃传奇》秀",
+   "in_tuji": false,
+   "forms": [
+    "《驼铃传奇》秀"
+   ]
+  },
+  {
+   "id": "ctrip:69154461",
+   "name": "大慈恩寺",
+   "in_tuji": false,
+   "forms": [
+    "大慈恩寺"
+   ]
+  },
+  {
+   "id": "ctrip:5709479",
+   "name": "西安千古情",
+   "in_tuji": false,
+   "forms": [
+    "千古情"
+   ]
+  },
+  {
+   "id": "ctrip:5418",
+   "name": "小雁塔遗址公园",
+   "in_tuji": false,
+   "forms": [
+    "小雁塔遗址公园",
+    "小雁塔遗址",
+    "小雁塔"
+   ]
+  },
+  {
+   "id": "ctrip:4384369",
+   "name": "华夏文旅西安度假区",
+   "in_tuji": false,
+   "forms": [
+    "华夏文旅西安度假区"
+   ]
+  },
+  {
+   "id": "ctrip:140445",
+   "name": "西安世博园",
+   "in_tuji": false,
+   "forms": [
+    "世博园"
+   ]
+  },
+  {
+   "id": "ctrip:5716259",
+   "name": "秦岭四宝科学公园",
+   "in_tuji": false,
+   "forms": [
+    "秦岭四宝科学公园",
+    "秦岭四宝科学"
+   ]
+  },
+  {
+   "id": "ctrip:6099",
+   "name": "终南山南五台景区",
+   "in_tuji": false,
+   "forms": [
+    "终南山南五台景区",
+    "终南山南五台"
+   ]
+  },
+  {
+   "id": "ctrip:1440",
+   "name": "翠华山·秦岭终南山世界地质公园",
+   "in_tuji": false,
+   "forms": [
+    "秦岭终南山世界地质公园",
+    "秦岭终南山世界地质",
+    "翠华山"
+   ]
+  },
+  {
+   "id": "ctrip:1479035",
+   "name": "终南山",
+   "in_tuji": false,
+   "forms": [
+    "终南山"
+   ]
+  },
+  {
+   "id": "ctrip:52679",
+   "name": "广仁寺",
+   "in_tuji": false,
+   "forms": [
+    "广仁寺"
+   ]
+  },
+  {
+   "id": "ctrip:52697",
+   "name": "曲江海洋极地公园",
+   "in_tuji": false,
+   "forms": [
+    "曲江海洋极地公园",
+    "曲江海洋极地"
+   ]
+  },
+  {
+   "id": "ctrip:1448",
+   "name": "青龙寺",
+   "in_tuji": false,
+   "forms": [
+    "青龙寺"
+   ]
+  },
+  {
+   "id": "ctrip:1441",
+   "name": "西安半坡博物馆",
+   "in_tuji": false,
+   "forms": [
+    "半坡博物馆",
+    "半坡"
+   ]
+  },
+  {
+   "id": "ctrip:4336372",
+   "name": "华夏文旅海洋公园",
+   "in_tuji": false,
+   "forms": [
+    "华夏文旅海洋公园",
+    "华夏文旅海洋"
+   ]
+  },
+  {
+   "id": "ctrip:6087",
+   "name": "骊山",
+   "in_tuji": false,
+   "forms": [
+    "骊山"
+   ]
+  },
+  {
+   "id": "ctrip:1476738",
+   "name": "陕西自然博物馆",
+   "in_tuji": false,
+   "forms": [
+    "陕西自然博物馆",
+    "陕西自然"
+   ]
+  },
+  {
+   "id": "ctrip:2483507",
+   "name": "骑行古城墙",
+   "in_tuji": false,
+   "forms": [
+    "骑行古城墙"
+   ]
+  },
+  {
+   "id": "ctrip:5420",
+   "name": "秦始皇帝陵博物院-丽山园",
+   "in_tuji": false,
+   "forms": [
+    "秦始皇帝陵博物院-丽山园"
+   ]
+  },
+  {
+   "id": "ctrip:149615975",
+   "name": "长安云·西安科技馆",
+   "in_tuji": false,
+   "forms": [
+    "科技馆",
+    "长安云"
+   ]
+  },
+  {
+   "id": "ctrip:5630404",
+   "name": "西影电影博物馆",
+   "in_tuji": false,
+   "forms": [
+    "西影电影博物馆",
+    "西影电影"
+   ]
+  },
+  {
+   "id": "ctrip:115335809",
+   "name": "西安非遗大剧院(大雁塔北广场)",
+   "in_tuji": false,
+   "forms": [
+    "大雁塔北广场",
+    "非遗大剧院"
+   ]
+  },
+  {
+   "id": "ctrip:72252",
+   "name": "太平国家森林公园",
+   "in_tuji": false,
+   "forms": [
+    "太平国家森林公园",
+    "太平国家森林"
+   ]
+  },
+  {
+   "id": "ctrip:1475031",
+   "name": "永宁门",
+   "in_tuji": false,
+   "forms": [
+    "永宁门"
+   ]
+  },
+  {
+   "id": "ctrip:1476787",
+   "name": "钟鼓楼广场",
+   "in_tuji": false,
+   "forms": [
+    "钟鼓楼广场",
+    "钟鼓楼"
+   ]
+  },
+  {
+   "id": "ctrip:2046813",
+   "name": "白鹿原·白鹿仓",
+   "in_tuji": false,
+   "forms": [
+    "白鹿原",
+    "白鹿仓"
+   ]
+  },
+  {
+   "id": "ctrip:1475829",
+   "name": "西安交通大学(兴庆校区)",
+   "in_tuji": false,
+   "forms": [
+    "交通大学"
+   ]
+  },
+  {
+   "id": "ctrip:133558570",
+   "name": "周至水街烟火巷子",
+   "in_tuji": false,
+   "forms": [
+    "周至水街烟火巷子"
+   ]
+  },
+  {
+   "id": "ctrip:5421",
+   "name": "西安事变纪念馆",
+   "in_tuji": false,
+   "forms": [
+    "事变纪念馆"
+   ]
+  },
+  {
+   "id": "ctrip:1959853",
+   "name": "白鹿原影视城",
+   "in_tuji": false,
+   "forms": [
+    "白鹿原影视城"
+   ]
+  },
+  {
+   "id": "ctrip:145190684",
+   "name": "水陆庵",
+   "in_tuji": false,
+   "forms": [
+    "水陆庵"
+   ]
+  },
+  {
+   "id": "ctrip:2029335",
+   "name": "古观音禅寺",
+   "in_tuji": false,
+   "forms": [
+    "古观音禅寺"
+   ]
+  },
+  {
+   "id": "ctrip:121503",
+   "name": "朱雀国家森林公园",
+   "in_tuji": false,
+   "forms": [
+    "朱雀国家森林公园",
+    "朱雀国家森林"
+   ]
+  },
+  {
+   "id": "ctrip:145186573",
+   "name": "巧克巧蔻·巧克力博物馆(西安大唐不夜城馆)",
+   "in_tuji": false,
+   "forms": [
+    "西安大唐不夜城馆",
+    "巧克力博物馆",
+    "巧克巧蔻",
+    "巧克力"
+   ]
+  },
+  {
+   "id": "ctrip:149817238",
+   "name": "2026长安灯会·西安城墙",
+   "in_tuji": false,
+   "forms": [
+    "2026长安灯会",
+    "城墙"
+   ]
+  },
+  {
+   "id": "ctrip:136576069",
+   "name": "西安热雪奇迹",
+   "in_tuji": false,
+   "forms": [
+    "热雪奇迹"
+   ]
+  },
+  {
+   "id": "ctrip:69573794",
+   "name": "秦岭风景区",
+   "in_tuji": false,
+   "forms": [
+    "秦岭风景区",
+    "秦岭风"
+   ]
+  },
+  {
+   "id": "ctrip:61255",
+   "name": "西安曲江池遗址公园",
+   "in_tuji": false,
+   "forms": [
+    "曲江池遗址公园",
+    "曲江池遗址",
+    "曲江池"
+   ]
+  },
+  {
+   "id": "ctrip:143362467",
+   "name": "陕西历史博物馆秦汉馆",
+   "in_tuji": false,
+   "forms": [
+    "陕西历史博物馆秦汉馆"
+   ]
+  },
+  {
+   "id": "ctrip:5637413",
+   "name": "大唐芙蓉园《大唐追梦》",
+   "in_tuji": false,
+   "forms": [
+    "大唐芙蓉园《大唐追梦》"
+   ]
+  },
+  {
+   "id": "ctrip:5715964",
+   "name": "西安欢乐谷·玛雅海滩",
+   "in_tuji": false,
+   "forms": [
+    "玛雅海滩",
+    "欢乐谷"
+   ]
+  },
+  {
+   "id": "ctrip:130435",
+   "name": "大雁塔北广场音乐喷泉",
+   "in_tuji": false,
+   "forms": [
+    "大雁塔北广场音乐喷泉"
+   ]
+  },
+  {
+   "id": "ctrip:150119527",
+   "name": "《古城烽火》秀",
+   "in_tuji": false,
+   "forms": [
+    "《古城烽火》秀"
+   ]
+  },
+  {
+   "id": "ctrip:52727",
+   "name": "书院门步行街",
+   "in_tuji": false,
+   "forms": [
+    "书院门步行街",
+    "书院门"
+   ]
+  },
+  {
+   "id": "ctrip:5704177",
+   "name": "陕西唐三彩艺术博物馆",
+   "in_tuji": false,
+   "forms": [
+    "陕西唐三彩艺术博物馆",
+    "陕西唐三彩艺术"
+   ]
+  },
+  {
+   "id": "ctrip:54079",
+   "name": "大雁塔北广场",
+   "in_tuji": false,
+   "forms": [
+    "大雁塔北广场",
+    "大雁塔北"
+   ]
+  },
+  {
+   "id": "ctrip:140429",
+   "name": "大唐西市博物馆",
+   "in_tuji": false,
+   "forms": [
+    "大唐西市博物馆",
+    "大唐西市"
+   ]
+  },
+  {
+   "id": "ctrip:4741374",
+   "name": "西安九号宇宙航天科普馆",
+   "in_tuji": false,
+   "forms": [
+    "九号宇宙航天科普馆"
+   ]
+  },
+  {
+   "id": "ctrip:3367941",
+   "name": "西安欢乐谷",
+   "in_tuji": false,
+   "forms": [
+    "欢乐谷"
+   ]
+  },
+  {
+   "id": "ctrip:136609",
+   "name": "秦陵地宫",
+   "in_tuji": false,
+   "forms": [
+    "秦陵地宫"
+   ]
+  },
+  {
+   "id": "ctrip:143744694",
+   "name": "永宁门-南门城楼",
+   "in_tuji": false,
+   "forms": [
+    "永宁门-南门城楼"
+   ]
+  },
+  {
+   "id": "ctrip:73359",
+   "name": "德福巷",
+   "in_tuji": false,
+   "forms": [
+    "德福巷"
+   ]
+  },
+  {
+   "id": "ctrip:151274572",
+   "name": "曲江飞行剧院",
+   "in_tuji": false,
+   "forms": [
+    "曲江飞行剧院"
+   ]
+  },
+  {
+   "id": "ctrip:154171282",
+   "name": "西安 · 舞蹈诗剧《只此青绿》--舞绘《千里江山图》",
+   "in_tuji": false,
+   "forms": [
+    "舞蹈诗剧《只此青绿》--舞绘《千里江山图》"
+   ]
+  },
+  {
+   "id": "ctrip:156476179",
+   "name": "西安华夏城",
+   "in_tuji": false,
+   "forms": [
+    "华夏城"
+   ]
+  },
+  {
+   "id": "ctrip:6097",
+   "name": "香积寺",
+   "in_tuji": false,
+   "forms": [
+    "香积寺"
+   ]
+  },
+  {
+   "id": "ctrip:145712730",
+   "name": "陕西历史博物馆大唐遗宝展唐代壁画珍品展",
+   "in_tuji": false,
+   "forms": [
+    "陕西历史博物馆大唐遗宝展唐代壁画珍品展"
+   ]
+  },
+  {
+   "id": "ctrip:4042808",
+   "name": "青曲社",
+   "in_tuji": false,
+   "forms": [
+    "青曲社"
+   ]
+  },
+  {
+   "id": "ctrip:2567552",
+   "name": "秦岭国家植物园",
+   "in_tuji": false,
+   "forms": [
+    "秦岭国家植物园"
+   ]
+  },
+  {
+   "id": "ctrip:5705321",
+   "name": "大明宫国家遗址公园丹凤门遗址博物馆",
+   "in_tuji": false,
+   "forms": [
+    "大明宫国家遗址公园丹凤门遗址博物馆",
+    "大明宫国家遗址公园丹凤门遗址"
+   ]
+  },
+  {
+   "id": "ctrip:2040576",
+   "name": "西安植物园新区",
+   "in_tuji": false,
+   "forms": [
+    "植物园新区"
+   ]
+  },
+  {
+   "id": "ctrip:149999966",
+   "name": "西部机场博物馆",
+   "in_tuji": false,
+   "forms": [
+    "西部机场博物馆",
+    "西部机场"
+   ]
+  },
+  {
+   "id": "ctrip:1478137",
+   "name": "大明宫国家遗址博物馆",
+   "in_tuji": false,
+   "forms": [
+    "大明宫国家遗址博物馆",
+    "大明宫国家遗址"
+   ]
+  },
+  {
+   "id": "ctrip:1478131",
+   "name": "西安事变旧址五间厅",
+   "in_tuji": false,
+   "forms": [
+    "事变旧址五间厅"
+   ]
+  },
+  {
+   "id": "ctrip:150023378",
+   "name": "西影风雷年代影视基地",
+   "in_tuji": false,
+   "forms": [
+    "西影风雷年代影视基地"
+   ]
+  },
+  {
+   "id": "ctrip:139278",
+   "name": "唐乐宫《大唐女皇》",
+   "in_tuji": false,
+   "forms": [
+    "唐乐宫《大唐女皇》"
+   ]
+  },
+  {
+   "id": "ctrip:149315421",
+   "name": "西安千古情-1号剧院",
+   "in_tuji": false,
+   "forms": [
+    "千古情-1号剧院"
+   ]
+  },
+  {
+   "id": "ctrip:1478156",
+   "name": "秦始皇帝陵博物院-铜车马博物馆",
+   "in_tuji": false,
+   "forms": [
+    "秦始皇帝陵博物院-铜车马博物馆",
+    "秦始皇帝陵博物院-铜车马"
+   ]
+  },
+  {
+   "id": "ctrip:5686348",
+   "name": "诗经里",
+   "in_tuji": false,
+   "forms": [
+    "诗经里"
+   ]
+  },
+  {
+   "id": "ctrip:140554959",
+   "name": "西安银基冰雪世界",
+   "in_tuji": false,
+   "forms": [
+    "银基冰雪世界"
+   ]
+  },
+  {
+   "id": "ctrip:4651023",
+   "name": "西安市明清皮影艺术博物馆",
+   "in_tuji": false,
+   "forms": [
+    "明清皮影艺术博物馆",
+    "明清皮影艺术"
+   ]
+  },
+  {
+   "id": "ctrip:73296",
+   "name": "汉长安城未央宫国家考古遗址公园",
+   "in_tuji": false,
+   "forms": [
+    "汉长安城未央宫国家考古遗址公园",
+    "汉长安城未央宫国家考古遗址",
+    "汉长安城未央宫国家考古"
+   ]
+  },
+  {
+   "id": "ctrip:140438",
+   "name": "汉阳陵国家考古遗址公园",
+   "in_tuji": false,
+   "forms": [
+    "汉阳陵国家考古遗址公园",
+    "汉阳陵国家考古遗址",
+    "汉阳陵国家考古"
+   ]
+  },
+  {
+   "id": "ctrip:144875",
+   "name": "华清宫-兵谏亭",
+   "in_tuji": false,
+   "forms": [
+    "华清宫-兵谏亭"
+   ]
+  },
+  {
+   "id": "ctrip:73355",
+   "name": "湘子庙",
+   "in_tuji": false,
+   "forms": [
+    "湘子庙"
+   ]
+  },
+  {
+   "id": "ctrip:2511448",
+   "name": "昆明池·七夕公园",
+   "in_tuji": false,
+   "forms": [
+    "七夕公园",
+    "昆明池"
+   ]
+  },
+  {
+   "id": "ctrip:69604",
+   "name": "西安浐灞国家湿地公园",
+   "in_tuji": false,
+   "forms": [
+    "浐灞国家湿地公园",
+    "浐灞国家湿地",
+    "浐灞"
+   ]
+  },
+  {
+   "id": "ctrip:136627165",
+   "name": "西安后海",
+   "in_tuji": false,
+   "forms": [
+    "后海"
+   ]
+  },
+  {
+   "id": "ctrip:148520893",
+   "name": "西安市镐金古金银铜器博物馆",
+   "in_tuji": false,
+   "forms": [
+    "镐金古金银铜器博物馆",
+    "镐金古金银铜器"
+   ]
+  },
+  {
+   "id": "ctrip:143727291",
+   "name": "长恨歌广场",
+   "in_tuji": false,
+   "forms": [
+    "长恨歌广场",
+    "长恨歌"
+   ]
+  },
+  {
+   "id": "ctrip:127645117",
+   "name": "大唐芙蓉园《鼓》",
+   "in_tuji": false,
+   "forms": [
+    "大唐芙蓉园《鼓》"
+   ]
+  },
+  {
+   "id": "ctrip:136498",
+   "name": "楼观台国家森林公园",
+   "in_tuji": false,
+   "forms": [
+    "楼观台国家森林公园",
+    "楼观台国家森林",
+    "楼观台"
+   ]
+  },
+  {
+   "id": "ctrip:154664443",
+   "name": "剑桥大学·自然魔法世界",
+   "in_tuji": false,
+   "forms": [
+    "自然魔法世界",
+    "剑桥大学"
+   ]
+  },
+  {
+   "id": "ctrip:140888",
+   "name": "金龙峡",
+   "in_tuji": false,
+   "forms": [
+    "金龙峡"
+   ]
+  },
+  {
+   "id": "ctrip:121495",
+   "name": "汉城湖景区",
+   "in_tuji": false,
+   "forms": [
+    "汉城湖景区",
+    "汉城湖"
+   ]
+  }
+ ]
+}

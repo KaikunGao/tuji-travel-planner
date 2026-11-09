@@ -1,0 +1,34 @@
+poi	tier	in_tuji	tuji_id	must_see	in_plan2	in_plan3	in_plan4	mentions	share	likes_share
+故宫博物院	core	1	forbidden-city	1	1	1	1	19	0.792	0.717
+天安门广场	core	1	tiananmen	1	1	1	1	16	0.667	0.722
+天坛公园	core	1	temple-of-heaven	1	1	1	1	15	0.625	0.591
+什刹海 · 烟袋斜街 · 后海	core	1	shichahai	1	0	1	1	13	0.542	0.447
+景山公园	core	1	jingshan-park	1	1	1	1	12	0.500	0.381
+中国国家博物馆	core	1	national-museum	0	0	0	0	11	0.458	0.566
+颐和园	core	1	summer-palace	1	0	1	1	11	0.458	0.478
+南锣鼓巷与胡同	core	1	nanluoguxiang	0	0	0	0	11	0.458	0.351
+北京环球度假区	core	1	universal-beijing	0	0	0	0	9	0.375	0.245
+人民大会堂	sub	0		0	0	0	0	7	0.292	0.472
+毛主席纪念堂	sub	0		0	0	0	0	6	0.250	0.423
+圆明园	sub	1	yuanmingyuan	0	0	0	1	6	0.250	0.322
+钟鼓楼	sub	0		0	0	0	0	6	0.250	0.199
+雍和宫	sub	1	lama-temple	0	0	0	1	5	0.208	0.212
+前门大街 · 大栅栏	sub	1	qianmen	0	0	0	0	5	0.208	0.202
+北海公园	sub	1	beihai-park	0	0	0	0	5	0.208	0.169
+八达岭长城	sub	1	badaling	1	1	1	1	5	0.208	0.162
+三里屯太古里	sub	1	sanlitun	0	0	0	0	5	0.208	0.125
+国子监 · 孔庙	sub	1	guozijian	0	0	0	1	4	0.167	0.131
+中轴线	sub	0		0	0	0	0	4	0.167	0.115
+地坛公园	sub	0		0	0	0	0	4	0.167	0.098
+五道营胡同		1	wudaoying	0	0	1	1	2	0.083	0.106
+隆福寺		0		0	0	0	0	2	0.083	0.094
+鸟巢 · 水立方		1	olympic-park	0	0	0	0	2	0.083	0.066
+角楼		0		0	0	0	0	2	0.083	0.065
+北京大学		0		0	0	0	0	2	0.083	0.052
+王府井		1	wangfujing	0	0	0	0	2	0.083	0.026
+杨梅竹斜街		0		0	0	0	0	1	0.042	0.078
+中山公园		0		0	0	0	0	1	0.042	0.063
+景山公园万春亭		0		0	0	0	0	1	0.042	0.046
+香山公园		0		0	0	0	0	1	0.042	0.024
+798 艺术区		1	art-zone-798	0	0	0	0	1	0.042	0.019
+清华大学		0		0	0	0	0	1	0.042	0.017

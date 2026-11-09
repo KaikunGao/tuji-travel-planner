@@ -1,0 +1,30 @@
+poi	tier	in_tuji	tuji_id	must_see	in_plan2	in_plan3	in_plan4	mentions	share	likes_share
+秦始皇帝陵博物院（兵马俑）	core	1	terracotta-army	1	1	1	1	20	0.870	0.884
+西安城墙（永宁门）	core	1	city-wall	1	1	1	1	19	0.826	0.919
+大唐不夜城	core	1	datang-everbright-city	1	0	1	1	17	0.739	0.836
+陕西历史博物馆	core	1	shaanxi-history-museum	1	1	1	1	16	0.696	0.803
+大雁塔 · 大慈恩寺	core	1	giant-wild-goose-pagoda	1	1	1	1	15	0.652	0.776
+华清宫（华清池 · 骊山）	core	1	huaqing-palace	0	0	0	0	15	0.652	0.735
+回民街（北院门 · 西羊市 · 大皮院）	core	1	huimin-street	1	0	1	1	14	0.609	0.642
+鼓楼	core	1	drum-tower	0	0	1	1	14	0.609	0.509
+钟楼	core	1	bell-tower	1	1	1	1	14	0.609	0.404
+洒金桥	core	0		0	0	0	0	7	0.304	0.354
+书院门古文化街	core	1	shuyuanmen	0	0	0	0	7	0.304	0.317
+湘子庙街 · 德福巷	sub	1	defuxiang	0	0	0	0	6	0.261	0.320
+长安十二时辰主题街区		1	changan-12-hours	0	0	0	1	3	0.130	0.347
+大悦城		0		0	0	0	0	3	0.130	0.230
+西安碑林博物馆		1	beilin-museum	0	0	1	1	3	0.130	0.190
+开元商城		0		0	0	0	0	3	0.130	0.168
+小雁塔 · 西安博物院		1	small-wild-goose-pagoda	0	0	0	0	3	0.130	0.164
+大唐芙蓉园		1	tang-paradise	0	0	0	1	3	0.130	0.162
+广仁寺		0		0	0	0	0	3	0.130	0.069
+兴庆宫公园		1	xingqing-palace-park	0	0	0	0	2	0.087	0.223
+含光门		0		0	0	0	0	2	0.087	0.217
+赳赳大秦		0		0	0	0	0	2	0.087	0.099
+大明宫国家遗址公园		1	daming-palace	0	0	0	1	2	0.087	0.089
+高家大院		1	gaojia-courtyard	0	0	0	1	2	0.087	0.039
+永兴坊		1	yongxingfang	0	0	0	0	1	0.043	0.130
+老菜场		0		0	0	0	0	1	0.043	0.074
+驼铃传奇		0		0	0	0	0	1	0.043	0.012
+大兴善寺		1	daxingshan-temple	0	0	0	0	1	0.043	0.011
+西安事变纪念馆		0		0	0	0	0	1	0.043	0.007

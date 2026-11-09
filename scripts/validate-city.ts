@@ -65,6 +65,7 @@ for (const file of files) {
     if (!(a.duration >= 20 && a.duration <= 600)) err(`${tag}: duration ${a.duration} 应在 20-600 分钟`)
     if (!(a.rating >= 3.5 && a.rating <= 5)) err(`${tag}: rating ${a.rating} 应在 3.5-5`)
     if (a.popularity !== undefined && !(Number.isInteger(a.popularity) && a.popularity > 0)) err(`${tag}: popularity ${a.popularity} 应为正整数`)
+    if (a.guideShare !== undefined && !(a.guideShare >= 0 && a.guideShare <= 1)) err(`${tag}: guideShare ${a.guideShare} 应在 0-1`)
     if (!(a.price >= 0 && a.price <= 2000)) err(`${tag}: price ${a.price} 不合理`)
     if (!HOURS_RE.test(a.openHours)) err(`${tag}: openHours "${a.openHours}" 格式应为 "HH:MM-HH:MM" 或 "全天"`)
     if (a.closedOn && !a.closedOn.every((d) => d >= 0 && d <= 6)) err(`${tag}: closedOn 必须是 0-6`)

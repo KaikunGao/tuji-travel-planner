@@ -1,0 +1,1512 @@
+{
+ "generatedAt": "2026-11-09",
+ "plans": [
+  {
+   "city": "beijing",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "tiananmen",
+     "name": "天安门广场"
+    },
+    {
+     "day": 1,
+     "id": "temple-of-heaven",
+     "name": "天坛公园"
+    },
+    {
+     "day": 1,
+     "id": "forbidden-city",
+     "name": "故宫博物院"
+    },
+    {
+     "day": 1,
+     "id": "jingshan-park",
+     "name": "景山公园"
+    },
+    {
+     "day": 2,
+     "id": "badaling",
+     "name": "八达岭长城"
+    }
+   ]
+  },
+  {
+   "city": "beijing",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "tiananmen",
+     "name": "天安门广场"
+    },
+    {
+     "day": 1,
+     "id": "temple-of-heaven",
+     "name": "天坛公园"
+    },
+    {
+     "day": 1,
+     "id": "forbidden-city",
+     "name": "故宫博物院"
+    },
+    {
+     "day": 1,
+     "id": "jingshan-park",
+     "name": "景山公园"
+    },
+    {
+     "day": 2,
+     "id": "badaling",
+     "name": "八达岭长城"
+    },
+    {
+     "day": 3,
+     "id": "lama-temple",
+     "name": "雍和宫"
+    },
+    {
+     "day": 3,
+     "id": "guozijian",
+     "name": "国子监 · 孔庙"
+    },
+    {
+     "day": 3,
+     "id": "shichahai",
+     "name": "什刹海 · 烟袋斜街 · 后海"
+    },
+    {
+     "day": 3,
+     "id": "summer-palace",
+     "name": "颐和园"
+    }
+   ]
+  },
+  {
+   "city": "beijing",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "tiananmen",
+     "name": "天安门广场"
+    },
+    {
+     "day": 1,
+     "id": "temple-of-heaven",
+     "name": "天坛公园"
+    },
+    {
+     "day": 1,
+     "id": "forbidden-city",
+     "name": "故宫博物院"
+    },
+    {
+     "day": 1,
+     "id": "jingshan-park",
+     "name": "景山公园"
+    },
+    {
+     "day": 2,
+     "id": "badaling",
+     "name": "八达岭长城"
+    },
+    {
+     "day": 3,
+     "id": "lama-temple",
+     "name": "雍和宫"
+    },
+    {
+     "day": 3,
+     "id": "wudaoying",
+     "name": "五道营胡同"
+    },
+    {
+     "day": 3,
+     "id": "nanluoguxiang",
+     "name": "南锣鼓巷与胡同"
+    },
+    {
+     "day": 3,
+     "id": "prince-gong-mansion",
+     "name": "恭王府"
+    },
+    {
+     "day": 3,
+     "id": "shichahai",
+     "name": "什刹海 · 烟袋斜街 · 后海"
+    },
+    {
+     "day": 4,
+     "id": "yuanmingyuan",
+     "name": "圆明园"
+    },
+    {
+     "day": 4,
+     "id": "summer-palace",
+     "name": "颐和园"
+    }
+   ]
+  },
+  {
+   "city": "shanghai",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "shanghai-museum",
+     "name": "上海博物馆（人民广场馆）"
+    },
+    {
+     "day": 1,
+     "id": "yuyuan-garden",
+     "name": "豫园 · 城隍庙"
+    },
+    {
+     "day": 1,
+     "id": "the-bund",
+     "name": "外滩"
+    },
+    {
+     "day": 1,
+     "id": "sinan-mansions",
+     "name": "思南公馆 · 思南路"
+    },
+    {
+     "day": 2,
+     "id": "jingan-temple",
+     "name": "静安寺"
+    },
+    {
+     "day": 2,
+     "id": "wukang-road",
+     "name": "武康路 · 武康大楼"
+    },
+    {
+     "day": 2,
+     "id": "xintiandi",
+     "name": "新天地 · 一大会址"
+    },
+    {
+     "day": 2,
+     "id": "lujiazui",
+     "name": "东方明珠 · 陆家嘴"
+    }
+   ]
+  },
+  {
+   "city": "shanghai",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "shanghai-museum",
+     "name": "上海博物馆（人民广场馆）"
+    },
+    {
+     "day": 1,
+     "id": "yuyuan-garden",
+     "name": "豫园 · 城隍庙"
+    },
+    {
+     "day": 1,
+     "id": "the-bund",
+     "name": "外滩"
+    },
+    {
+     "day": 1,
+     "id": "sinan-mansions",
+     "name": "思南公馆 · 思南路"
+    },
+    {
+     "day": 2,
+     "id": "astronomy-museum",
+     "name": "上海天文馆"
+    },
+    {
+     "day": 3,
+     "id": "jingan-temple",
+     "name": "静安寺"
+    },
+    {
+     "day": 3,
+     "id": "wukang-road",
+     "name": "武康路 · 武康大楼"
+    },
+    {
+     "day": 3,
+     "id": "xintiandi",
+     "name": "新天地 · 一大会址"
+    },
+    {
+     "day": 3,
+     "id": "lujiazui",
+     "name": "东方明珠 · 陆家嘴"
+    }
+   ]
+  },
+  {
+   "city": "shanghai",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "shanghai-museum",
+     "name": "上海博物馆（人民广场馆）"
+    },
+    {
+     "day": 1,
+     "id": "yuyuan-garden",
+     "name": "豫园 · 城隍庙"
+    },
+    {
+     "day": 1,
+     "id": "the-bund",
+     "name": "外滩"
+    },
+    {
+     "day": 1,
+     "id": "old-millfun-1933",
+     "name": "1933 老场坊"
+    },
+    {
+     "day": 2,
+     "id": "astronomy-museum",
+     "name": "上海天文馆"
+    },
+    {
+     "day": 3,
+     "id": "natural-history-museum",
+     "name": "上海自然博物馆"
+    },
+    {
+     "day": 3,
+     "id": "xintiandi",
+     "name": "新天地 · 一大会址"
+    },
+    {
+     "day": 3,
+     "id": "lujiazui",
+     "name": "东方明珠 · 陆家嘴"
+    },
+    {
+     "day": 4,
+     "id": "jade-buddha-temple",
+     "name": "玉佛禅寺"
+    },
+    {
+     "day": 4,
+     "id": "jingan-temple",
+     "name": "静安寺"
+    },
+    {
+     "day": 4,
+     "id": "xujiahui",
+     "name": "徐家汇书院 · 天主堂"
+    },
+    {
+     "day": 4,
+     "id": "wukang-road",
+     "name": "武康路 · 武康大楼"
+    },
+    {
+     "day": 4,
+     "id": "sinan-mansions",
+     "name": "思南公馆 · 思南路"
+    }
+   ]
+  },
+  {
+   "city": "chengdu",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "wenshu-monastery",
+     "name": "文殊院"
+    },
+    {
+     "day": 1,
+     "id": "peoples-park",
+     "name": "人民公园 · 鹤鸣茶社"
+    },
+    {
+     "day": 1,
+     "id": "wuhou-shrine",
+     "name": "武侯祠"
+    },
+    {
+     "day": 1,
+     "id": "dufu-cottage",
+     "name": "杜甫草堂"
+    },
+    {
+     "day": 2,
+     "id": "panda-base",
+     "name": "成都大熊猫繁育研究基地"
+    },
+    {
+     "day": 2,
+     "id": "kuanzhai-alley",
+     "name": "宽窄巷子"
+    },
+    {
+     "day": 2,
+     "id": "chunxi-taikooli",
+     "name": "春熙路 · 太古里 · IFS"
+    }
+   ]
+  },
+  {
+   "city": "chengdu",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "wenshu-monastery",
+     "name": "文殊院"
+    },
+    {
+     "day": 1,
+     "id": "peoples-park",
+     "name": "人民公园 · 鹤鸣茶社"
+    },
+    {
+     "day": 1,
+     "id": "wuhou-shrine",
+     "name": "武侯祠"
+    },
+    {
+     "day": 1,
+     "id": "dufu-cottage",
+     "name": "杜甫草堂"
+    },
+    {
+     "day": 2,
+     "id": "dujiangyan",
+     "name": "都江堰"
+    },
+    {
+     "day": 3,
+     "id": "panda-base",
+     "name": "成都大熊猫繁育研究基地"
+    },
+    {
+     "day": 3,
+     "id": "kuanzhai-alley",
+     "name": "宽窄巷子"
+    },
+    {
+     "day": 3,
+     "id": "chunxi-taikooli",
+     "name": "春熙路 · 太古里 · IFS"
+    }
+   ]
+  },
+  {
+   "city": "chengdu",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "peoples-park",
+     "name": "人民公园 · 鹤鸣茶社"
+    },
+    {
+     "day": 1,
+     "id": "wuhou-shrine",
+     "name": "武侯祠"
+    },
+    {
+     "day": 1,
+     "id": "jinli",
+     "name": "锦里古街"
+    },
+    {
+     "day": 1,
+     "id": "kuanzhai-alley",
+     "name": "宽窄巷子"
+    },
+    {
+     "day": 2,
+     "id": "dujiangyan",
+     "name": "都江堰"
+    },
+    {
+     "day": 3,
+     "id": "dufu-cottage",
+     "name": "杜甫草堂"
+    },
+    {
+     "day": 3,
+     "id": "sichuan-museum",
+     "name": "四川博物院"
+    },
+    {
+     "day": 3,
+     "id": "qingyang-palace",
+     "name": "青羊宫"
+    },
+    {
+     "day": 3,
+     "id": "jinsha-museum",
+     "name": "金沙遗址博物馆"
+    },
+    {
+     "day": 4,
+     "id": "wenshu-monastery",
+     "name": "文殊院"
+    },
+    {
+     "day": 4,
+     "id": "panda-base",
+     "name": "成都大熊猫繁育研究基地"
+    },
+    {
+     "day": 4,
+     "id": "chunxi-taikooli",
+     "name": "春熙路 · 太古里 · IFS"
+    }
+   ]
+  },
+  {
+   "city": "chongqing",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "huguang-guild-hall",
+     "name": "湖广会馆"
+    },
+    {
+     "day": 1,
+     "id": "yangtze-cableway",
+     "name": "长江索道"
+    },
+    {
+     "day": 1,
+     "id": "jiefangbei",
+     "name": "解放碑步行街"
+    },
+    {
+     "day": 1,
+     "id": "hongyadong",
+     "name": "洪崖洞"
+    },
+    {
+     "day": 1,
+     "id": "nanshan-yikeshu",
+     "name": "南山一棵树观景台"
+    },
+    {
+     "day": 2,
+     "id": "baixiangju",
+     "name": "白象居"
+    },
+    {
+     "day": 2,
+     "id": "three-gorges-museum",
+     "name": "重庆中国三峡博物馆"
+    },
+    {
+     "day": 2,
+     "id": "great-hall",
+     "name": "人民大礼堂"
+    },
+    {
+     "day": 2,
+     "id": "liziba",
+     "name": "李子坝轻轨穿楼"
+    },
+    {
+     "day": 2,
+     "id": "ciqikou",
+     "name": "磁器口古镇"
+    }
+   ]
+  },
+  {
+   "city": "chongqing",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "huguang-guild-hall",
+     "name": "湖广会馆"
+    },
+    {
+     "day": 1,
+     "id": "yangtze-cableway",
+     "name": "长江索道"
+    },
+    {
+     "day": 1,
+     "id": "jiefangbei",
+     "name": "解放碑步行街"
+    },
+    {
+     "day": 1,
+     "id": "hongyadong",
+     "name": "洪崖洞"
+    },
+    {
+     "day": 1,
+     "id": "nanshan-yikeshu",
+     "name": "南山一棵树观景台"
+    },
+    {
+     "day": 2,
+     "id": "dazu-rock-carvings",
+     "name": "大足石刻（宝顶山）"
+    },
+    {
+     "day": 3,
+     "id": "baixiangju",
+     "name": "白象居"
+    },
+    {
+     "day": 3,
+     "id": "three-gorges-museum",
+     "name": "重庆中国三峡博物馆"
+    },
+    {
+     "day": 3,
+     "id": "great-hall",
+     "name": "人民大礼堂"
+    },
+    {
+     "day": 3,
+     "id": "liziba",
+     "name": "李子坝轻轨穿楼"
+    },
+    {
+     "day": 3,
+     "id": "ciqikou",
+     "name": "磁器口古镇"
+    }
+   ]
+  },
+  {
+   "city": "chongqing",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "huguang-guild-hall",
+     "name": "湖广会馆"
+    },
+    {
+     "day": 1,
+     "id": "yangtze-cableway",
+     "name": "长江索道"
+    },
+    {
+     "day": 1,
+     "id": "jiefangbei",
+     "name": "解放碑步行街"
+    },
+    {
+     "day": 1,
+     "id": "hongyadong",
+     "name": "洪崖洞"
+    },
+    {
+     "day": 1,
+     "id": "nanshan-yikeshu",
+     "name": "南山一棵树观景台"
+    },
+    {
+     "day": 2,
+     "id": "dazu-rock-carvings",
+     "name": "大足石刻（宝顶山）"
+    },
+    {
+     "day": 3,
+     "id": "baixiangju",
+     "name": "白象居"
+    },
+    {
+     "day": 3,
+     "id": "jiaotong-teahouse",
+     "name": "交通茶馆 · 黄桷坪涂鸦街"
+    },
+    {
+     "day": 3,
+     "id": "liziba",
+     "name": "李子坝轻轨穿楼"
+    },
+    {
+     "day": 3,
+     "id": "eling-testbed2",
+     "name": "鹅岭二厂文创公园"
+    },
+    {
+     "day": 3,
+     "id": "great-hall",
+     "name": "人民大礼堂"
+    },
+    {
+     "day": 3,
+     "id": "beicang-guanyinqiao",
+     "name": "北仓文创街区 · 观音桥"
+    },
+    {
+     "day": 4,
+     "id": "shancheng-trail",
+     "name": "山城步道（第三步道）"
+    },
+    {
+     "day": 4,
+     "id": "zhongshan-4th-road",
+     "name": "中山四路"
+    },
+    {
+     "day": 4,
+     "id": "three-gorges-museum",
+     "name": "重庆中国三峡博物馆"
+    },
+    {
+     "day": 4,
+     "id": "ciqikou",
+     "name": "磁器口古镇"
+    }
+   ]
+  },
+  {
+   "city": "xian",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "shaanxi-history-museum",
+     "name": "陕西历史博物馆"
+    },
+    {
+     "day": 1,
+     "id": "giant-wild-goose-pagoda",
+     "name": "大雁塔 · 大慈恩寺"
+    },
+    {
+     "day": 1,
+     "id": "city-wall",
+     "name": "西安城墙（永宁门）"
+    },
+    {
+     "day": 1,
+     "id": "bell-tower",
+     "name": "钟楼"
+    },
+    {
+     "day": 2,
+     "id": "terracotta-army",
+     "name": "秦始皇帝陵博物院（兵马俑）"
+    }
+   ]
+  },
+  {
+   "city": "xian",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "shuyuanmen",
+     "name": "书院门古文化街"
+    },
+    {
+     "day": 1,
+     "id": "drum-tower",
+     "name": "鼓楼"
+    },
+    {
+     "day": 1,
+     "id": "huimin-street",
+     "name": "回民街（北院门 · 西羊市 · 大皮院）"
+    },
+    {
+     "day": 1,
+     "id": "bell-tower",
+     "name": "钟楼"
+    },
+    {
+     "day": 1,
+     "id": "city-wall",
+     "name": "西安城墙（永宁门）"
+    },
+    {
+     "day": 2,
+     "id": "terracotta-army",
+     "name": "秦始皇帝陵博物院（兵马俑）"
+    },
+    {
+     "day": 3,
+     "id": "great-mosque",
+     "name": "西安化觉巷清真大寺"
+    },
+    {
+     "day": 3,
+     "id": "shaanxi-history-museum",
+     "name": "陕西历史博物馆"
+    },
+    {
+     "day": 3,
+     "id": "giant-wild-goose-pagoda",
+     "name": "大雁塔 · 大慈恩寺"
+    },
+    {
+     "day": 3,
+     "id": "datang-everbright-city",
+     "name": "大唐不夜城"
+    }
+   ]
+  },
+  {
+   "city": "xian",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "beilin-museum",
+     "name": "西安碑林博物馆"
+    },
+    {
+     "day": 1,
+     "id": "small-wild-goose-pagoda",
+     "name": "小雁塔 · 西安博物院"
+    },
+    {
+     "day": 1,
+     "id": "drum-tower",
+     "name": "鼓楼"
+    },
+    {
+     "day": 1,
+     "id": "bell-tower",
+     "name": "钟楼"
+    },
+    {
+     "day": 1,
+     "id": "city-wall",
+     "name": "西安城墙（永宁门）"
+    },
+    {
+     "day": 2,
+     "id": "terracotta-army",
+     "name": "秦始皇帝陵博物院（兵马俑）"
+    },
+    {
+     "day": 3,
+     "id": "daxingshan-temple",
+     "name": "大兴善寺"
+    },
+    {
+     "day": 3,
+     "id": "shuyuanmen",
+     "name": "书院门古文化街"
+    },
+    {
+     "day": 3,
+     "id": "daming-palace",
+     "name": "大明宫国家遗址公园"
+    },
+    {
+     "day": 3,
+     "id": "gaojia-courtyard",
+     "name": "高家大院"
+    },
+    {
+     "day": 3,
+     "id": "huimin-street",
+     "name": "回民街（北院门 · 西羊市 · 大皮院）"
+    },
+    {
+     "day": 4,
+     "id": "great-mosque",
+     "name": "西安化觉巷清真大寺"
+    },
+    {
+     "day": 4,
+     "id": "shaanxi-history-museum",
+     "name": "陕西历史博物馆"
+    },
+    {
+     "day": 4,
+     "id": "giant-wild-goose-pagoda",
+     "name": "大雁塔 · 大慈恩寺"
+    },
+    {
+     "day": 4,
+     "id": "datang-everbright-city",
+     "name": "大唐不夜城"
+    }
+   ]
+  },
+  {
+   "city": "hangzhou",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "broken-bridge",
+     "name": "断桥残雪 · 白堤"
+    },
+    {
+     "day": 1,
+     "id": "su-causeway",
+     "name": "苏堤春晓 · 花港观鱼"
+    },
+    {
+     "day": 1,
+     "id": "leifeng-pagoda",
+     "name": "雷峰塔"
+    },
+    {
+     "day": 1,
+     "id": "hefang-street",
+     "name": "河坊街 · 南宋御街"
+    },
+    {
+     "day": 2,
+     "id": "lingyin-temple",
+     "name": "灵隐寺 · 飞来峰"
+    },
+    {
+     "day": 2,
+     "id": "longjing-village",
+     "name": "龙井村 · 九溪十八涧"
+    },
+    {
+     "day": 2,
+     "id": "baoshi-hill",
+     "name": "宝石山 · 保俶塔"
+    }
+   ]
+  },
+  {
+   "city": "hangzhou",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "broken-bridge",
+     "name": "断桥残雪 · 白堤"
+    },
+    {
+     "day": 1,
+     "id": "su-causeway",
+     "name": "苏堤春晓 · 花港观鱼"
+    },
+    {
+     "day": 1,
+     "id": "leifeng-pagoda",
+     "name": "雷峰塔"
+    },
+    {
+     "day": 1,
+     "id": "hefang-street",
+     "name": "河坊街 · 南宋御街"
+    },
+    {
+     "day": 2,
+     "id": "liangzhu",
+     "name": "良渚古城遗址公园"
+    },
+    {
+     "day": 3,
+     "id": "lingyin-temple",
+     "name": "灵隐寺 · 飞来峰"
+    },
+    {
+     "day": 3,
+     "id": "longjing-village",
+     "name": "龙井村 · 九溪十八涧"
+    },
+    {
+     "day": 3,
+     "id": "baoshi-hill",
+     "name": "宝石山 · 保俶塔"
+    }
+   ]
+  },
+  {
+   "city": "hangzhou",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "su-causeway",
+     "name": "苏堤春晓 · 花港观鱼"
+    },
+    {
+     "day": 1,
+     "id": "leifeng-pagoda",
+     "name": "雷峰塔"
+    },
+    {
+     "day": 1,
+     "id": "hefang-street",
+     "name": "河坊街 · 南宋御街"
+    },
+    {
+     "day": 1,
+     "id": "baoshi-hill",
+     "name": "宝石山 · 保俶塔"
+    },
+    {
+     "day": 2,
+     "id": "liangzhu",
+     "name": "良渚古城遗址公园"
+    },
+    {
+     "day": 3,
+     "id": "broken-bridge",
+     "name": "断桥残雪 · 白堤"
+    },
+    {
+     "day": 3,
+     "id": "yanggongdi",
+     "name": "杨公堤 · 茅家埠"
+    },
+    {
+     "day": 3,
+     "id": "xixi-wetland",
+     "name": "西溪国家湿地公园"
+    },
+    {
+     "day": 3,
+     "id": "tianmuli",
+     "name": "天目里"
+    },
+    {
+     "day": 4,
+     "id": "lingyin-temple",
+     "name": "灵隐寺 · 飞来峰"
+    },
+    {
+     "day": 4,
+     "id": "faxi-temple",
+     "name": "法喜寺（上天竺）"
+    },
+    {
+     "day": 4,
+     "id": "longjing-village",
+     "name": "龙井村 · 九溪十八涧"
+    }
+   ]
+  },
+  {
+   "city": "changsha",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "yuelu-mountain",
+     "name": "岳麓山"
+    },
+    {
+     "day": 1,
+     "id": "yuelu-academy",
+     "name": "岳麓书院"
+    },
+    {
+     "day": 1,
+     "id": "dufu-pavilion",
+     "name": "杜甫江阁"
+    },
+    {
+     "day": 1,
+     "id": "wuyi-square-ifs",
+     "name": "五一广场 · IFS 国金中心（KAWS）"
+    },
+    {
+     "day": 2,
+     "id": "hunan-museum",
+     "name": "湖南博物院（马王堆汉墓陈列）"
+    },
+    {
+     "day": 2,
+     "id": "taiping-street",
+     "name": "太平老街"
+    },
+    {
+     "day": 2,
+     "id": "orange-isle",
+     "name": "橘子洲 · 青年毛泽东艺术雕塑"
+    }
+   ]
+  },
+  {
+   "city": "changsha",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "yuelu-mountain",
+     "name": "岳麓山"
+    },
+    {
+     "day": 1,
+     "id": "yuelu-academy",
+     "name": "岳麓书院"
+    },
+    {
+     "day": 1,
+     "id": "dufu-pavilion",
+     "name": "杜甫江阁"
+    },
+    {
+     "day": 1,
+     "id": "wuyi-square-ifs",
+     "name": "五一广场 · IFS 国金中心（KAWS）"
+    },
+    {
+     "day": 2,
+     "id": "tongguan-kiln-town",
+     "name": "铜官窑古镇"
+    },
+    {
+     "day": 3,
+     "id": "hunan-museum",
+     "name": "湖南博物院（马王堆汉墓陈列）"
+    },
+    {
+     "day": 3,
+     "id": "taiping-street",
+     "name": "太平老街"
+    },
+    {
+     "day": 3,
+     "id": "orange-isle",
+     "name": "橘子洲 · 青年毛泽东艺术雕塑"
+    }
+   ]
+  },
+  {
+   "city": "changsha",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "hunan-museum",
+     "name": "湖南博物院（马王堆汉墓陈列）"
+    },
+    {
+     "day": 1,
+     "id": "wuyi-square-ifs",
+     "name": "五一广场 · IFS 国金中心（KAWS）"
+    },
+    {
+     "day": 1,
+     "id": "taiping-street",
+     "name": "太平老街"
+    },
+    {
+     "day": 1,
+     "id": "xiangjiang-riverside",
+     "name": "湘江风光带夜景（橘子洲大桥段）"
+    },
+    {
+     "day": 2,
+     "id": "tongguan-kiln-town",
+     "name": "铜官窑古镇"
+    },
+    {
+     "day": 3,
+     "id": "orange-isle",
+     "name": "橘子洲 · 青年毛泽东艺术雕塑"
+    },
+    {
+     "day": 3,
+     "id": "li-zijian-museum",
+     "name": "李自健美术馆"
+    },
+    {
+     "day": 3,
+     "id": "dufu-pavilion",
+     "name": "杜甫江阁"
+    },
+    {
+     "day": 3,
+     "id": "pozi-street",
+     "name": "坡子街 · 火宫殿"
+    },
+    {
+     "day": 4,
+     "id": "yuelu-mountain",
+     "name": "岳麓山"
+    },
+    {
+     "day": 4,
+     "id": "yuelu-academy",
+     "name": "岳麓书院"
+    },
+    {
+     "day": 4,
+     "id": "hunan-university",
+     "name": "湖南大学 · 东方红广场"
+    },
+    {
+     "day": 4,
+     "id": "houhu-art-park",
+     "name": "后湖艺术园"
+    }
+   ]
+  },
+  {
+   "city": "guangzhou",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "nanyue-king-museum",
+     "name": "南越王博物院（王墓展区）"
+    },
+    {
+     "day": 1,
+     "id": "chen-clan-academy",
+     "name": "陈家祠"
+    },
+    {
+     "day": 1,
+     "id": "shamian-island",
+     "name": "沙面岛"
+    },
+    {
+     "day": 1,
+     "id": "pearl-river-cruise",
+     "name": "珠江夜游（天字码头）"
+    },
+    {
+     "day": 2,
+     "id": "sacred-heart-cathedral",
+     "name": "石室圣心大教堂"
+    },
+    {
+     "day": 2,
+     "id": "yongqingfang",
+     "name": "永庆坊 · 恩宁路"
+    },
+    {
+     "day": 2,
+     "id": "huacheng-square",
+     "name": "花城广场 · 海心沙"
+    },
+    {
+     "day": 2,
+     "id": "canton-tower",
+     "name": "广州塔"
+    }
+   ]
+  },
+  {
+   "city": "guangzhou",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "nanyue-king-museum",
+     "name": "南越王博物院（王墓展区）"
+    },
+    {
+     "day": 1,
+     "id": "chen-clan-academy",
+     "name": "陈家祠"
+    },
+    {
+     "day": 1,
+     "id": "shamian-island",
+     "name": "沙面岛"
+    },
+    {
+     "day": 1,
+     "id": "pearl-river-cruise",
+     "name": "珠江夜游（天字码头）"
+    },
+    {
+     "day": 2,
+     "id": "chimelong-safari",
+     "name": "长隆野生动物世界"
+    },
+    {
+     "day": 3,
+     "id": "sacred-heart-cathedral",
+     "name": "石室圣心大教堂"
+    },
+    {
+     "day": 3,
+     "id": "yongqingfang",
+     "name": "永庆坊 · 恩宁路"
+    },
+    {
+     "day": 3,
+     "id": "huacheng-square",
+     "name": "花城广场 · 海心沙"
+    },
+    {
+     "day": 3,
+     "id": "canton-tower",
+     "name": "广州塔"
+    }
+   ]
+  },
+  {
+   "city": "guangzhou",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "chen-clan-academy",
+     "name": "陈家祠"
+    },
+    {
+     "day": 1,
+     "id": "yongqingfang",
+     "name": "永庆坊 · 恩宁路"
+    },
+    {
+     "day": 1,
+     "id": "shamian-island",
+     "name": "沙面岛"
+    },
+    {
+     "day": 1,
+     "id": "pearl-river-cruise",
+     "name": "珠江夜游（天字码头）"
+    },
+    {
+     "day": 2,
+     "id": "chimelong-safari",
+     "name": "长隆野生动物世界"
+    },
+    {
+     "day": 3,
+     "id": "nanyue-king-museum",
+     "name": "南越王博物院（王墓展区）"
+    },
+    {
+     "day": 3,
+     "id": "yuexiu-park",
+     "name": "越秀公园 · 五羊石像 · 镇海楼"
+    },
+    {
+     "day": 3,
+     "id": "baiyun-mountain",
+     "name": "白云山"
+    },
+    {
+     "day": 4,
+     "id": "guangdong-museum",
+     "name": "广东省博物馆"
+    },
+    {
+     "day": 4,
+     "id": "huacheng-square",
+     "name": "花城广场 · 海心沙"
+    },
+    {
+     "day": 4,
+     "id": "canton-tower",
+     "name": "广州塔"
+    }
+   ]
+  },
+  {
+   "city": "xiamen",
+   "days": 2,
+   "stops": [
+    {
+     "day": 1,
+     "id": "sunlight-rock",
+     "name": "日光岩"
+    },
+    {
+     "day": 1,
+     "id": "shuzhuang-garden",
+     "name": "菽庄花园 · 钢琴博物馆"
+    },
+    {
+     "day": 1,
+     "id": "gulangyu-villas",
+     "name": "鼓浪屿老别墅群 · 龙头路"
+    },
+    {
+     "day": 1,
+     "id": "yanwu-bridge-platform",
+     "name": "演武大桥观景平台"
+    },
+    {
+     "day": 2,
+     "id": "bashi-market",
+     "name": "第八市场（八市）"
+    },
+    {
+     "day": 2,
+     "id": "nanputuo-temple",
+     "name": "南普陀寺"
+    },
+    {
+     "day": 2,
+     "id": "xiamen-university",
+     "name": "厦门大学（思明校区）"
+    },
+    {
+     "day": 2,
+     "id": "shapowei",
+     "name": "沙坡尾 · 艺术西区"
+    }
+   ]
+  },
+  {
+   "city": "xiamen",
+   "days": 3,
+   "stops": [
+    {
+     "day": 1,
+     "id": "bashi-market",
+     "name": "第八市场（八市）"
+    },
+    {
+     "day": 1,
+     "id": "sunlight-rock",
+     "name": "日光岩"
+    },
+    {
+     "day": 1,
+     "id": "shuzhuang-garden",
+     "name": "菽庄花园 · 钢琴博物馆"
+    },
+    {
+     "day": 1,
+     "id": "gulangyu-villas",
+     "name": "鼓浪屿老别墅群 · 龙头路"
+    },
+    {
+     "day": 2,
+     "id": "wanshi-botanical-garden",
+     "name": "万石植物园"
+    },
+    {
+     "day": 2,
+     "id": "nanputuo-temple",
+     "name": "南普陀寺"
+    },
+    {
+     "day": 2,
+     "id": "shapowei",
+     "name": "沙坡尾 · 艺术西区"
+    },
+    {
+     "day": 2,
+     "id": "yanwu-bridge-platform",
+     "name": "演武大桥观景平台"
+    },
+    {
+     "day": 3,
+     "id": "xiamen-university",
+     "name": "厦门大学（思明校区）"
+    },
+    {
+     "day": 3,
+     "id": "baicheng-beach",
+     "name": "白城沙滩"
+    },
+    {
+     "day": 3,
+     "id": "hulishan-fortress",
+     "name": "胡里山炮台"
+    },
+    {
+     "day": 3,
+     "id": "huandao-road",
+     "name": "环岛路骑行（曾厝垵—黄厝段）"
+    }
+   ]
+  },
+  {
+   "city": "xiamen",
+   "days": 4,
+   "stops": [
+    {
+     "day": 1,
+     "id": "nanputuo-temple",
+     "name": "南普陀寺"
+    },
+    {
+     "day": 1,
+     "id": "xiamen-university",
+     "name": "厦门大学（思明校区）"
+    },
+    {
+     "day": 1,
+     "id": "yanwu-bridge-platform",
+     "name": "演武大桥观景平台"
+    },
+    {
+     "day": 1,
+     "id": "shapowei",
+     "name": "沙坡尾 · 艺术西区"
+    },
+    {
+     "day": 2,
+     "id": "bashi-market",
+     "name": "第八市场（八市）"
+    },
+    {
+     "day": 2,
+     "id": "sunlight-rock",
+     "name": "日光岩"
+    },
+    {
+     "day": 2,
+     "id": "shuzhuang-garden",
+     "name": "菽庄花园 · 钢琴博物馆"
+    },
+    {
+     "day": 2,
+     "id": "gulangyu-villas",
+     "name": "鼓浪屿老别墅群 · 龙头路"
+    },
+    {
+     "day": 3,
+     "id": "wanshi-botanical-garden",
+     "name": "万石植物园"
+    },
+    {
+     "day": 3,
+     "id": "railway-culture-park",
+     "name": "铁路文化公园"
+    },
+    {
+     "day": 3,
+     "id": "shanhai-trail",
+     "name": "山海健康步道 · 狐尾山段"
+    },
+    {
+     "day": 3,
+     "id": "yundang-lake-bailuzhou",
+     "name": "筼筜湖 · 白鹭洲公园"
+    },
+    {
+     "day": 4,
+     "id": "baicheng-beach",
+     "name": "白城沙滩"
+    },
+    {
+     "day": 4,
+     "id": "hulishan-fortress",
+     "name": "胡里山炮台"
+    },
+    {
+     "day": 4,
+     "id": "huandao-road",
+     "name": "环岛路骑行（曾厝垵—黄厝段）"
+    },
+    {
+     "day": 4,
+     "id": "zengcuoan",
+     "name": "曾厝垵"
+    }
+   ]
+  }
+ ]
+}

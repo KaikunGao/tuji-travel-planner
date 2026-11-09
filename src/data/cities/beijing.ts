@@ -48,6 +48,7 @@ export const beijing: City = {
       duration: 180,
       rating: 4.9,
       popularity: 205000,
+      guideShare: 0.79,
       price: 60,
       openHours: '08:30-17:00',
       closedOn: [1],
@@ -75,6 +76,7 @@ export const beijing: City = {
       lng: 116.3976,
       duration: 60,
       rating: 4.7,
+      guideShare: 0.67,
       price: 0,
       openHours: '05:00-22:00',
       description:
@@ -100,6 +102,7 @@ export const beijing: City = {
       duration: 60,
       rating: 4.8,
       popularity: 5804,
+      guideShare: 0.5,
       price: 2,
       openHours: '06:30-21:00',
       description:
@@ -121,6 +124,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.6,
       popularity: 5313,
+      guideShare: 0.21,
       price: 10,
       openHours: '06:30-21:00',
       description:
@@ -141,6 +145,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.2,
       popularity: 4274,
+      guideShare: 0.46,
       price: 0,
       openHours: '全天',
       description:
@@ -161,6 +166,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.5,
       popularity: 3072,
+      guideShare: 0.54,
       price: 0,
       openHours: '全天',
       description:
@@ -182,6 +188,7 @@ export const beijing: City = {
       duration: 120,
       rating: 4.8,
       popularity: 26000,
+      guideShare: 0.62,
       price: 34,
       openHours: '08:00-17:30',
       description:
@@ -203,6 +210,7 @@ export const beijing: City = {
       duration: 180,
       rating: 4.9,
       popularity: 52000,
+      guideShare: 0.46,
       price: 60,
       openHours: '06:30-18:00',
       description:
@@ -226,6 +234,7 @@ export const beijing: City = {
       duration: 120,
       rating: 4.4,
       popularity: 28000,
+      guideShare: 0.25,
       price: 25,
       openHours: '07:00-19:00',
       description:
@@ -246,6 +255,7 @@ export const beijing: City = {
       duration: 75,
       rating: 4.7,
       popularity: 4606,
+      guideShare: 0.21,
       price: 25,
       openHours: '09:00-16:30',
       description:
@@ -265,6 +275,7 @@ export const beijing: City = {
       lng: 116.4105,
       duration: 45,
       rating: 4.3,
+      guideShare: 0.08,
       price: 0,
       openHours: '全天',
       description:
@@ -285,6 +296,7 @@ export const beijing: City = {
       duration: 60,
       rating: 4.5,
       popularity: 851,
+      guideShare: 0.17,
       price: 30,
       openHours: '08:30-17:00',
       closedOn: [1],
@@ -306,6 +318,7 @@ export const beijing: City = {
       duration: 150,
       rating: 4.7,
       popularity: 14000,
+      guideShare: 0.46,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -328,6 +341,7 @@ export const beijing: City = {
       duration: 120,
       rating: 4.4,
       popularity: 1433,
+      guideShare: 0.04,
       price: 0,
       openHours: '10:00-18:00',
       description:
@@ -348,6 +362,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.3,
       popularity: 757,
+      guideShare: 0.21,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -368,6 +383,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.5,
       popularity: 2796,
+      guideShare: 0.08,
       price: 0,
       openHours: '全天',
       description:
@@ -389,6 +405,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.1,
       popularity: 1743,
+      guideShare: 0.21,
       price: 0,
       openHours: '全天',
       description:
@@ -409,6 +426,7 @@ export const beijing: City = {
       duration: 60,
       rating: 3.9,
       popularity: 2025,
+      guideShare: 0.08,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -429,6 +447,7 @@ export const beijing: City = {
       duration: 90,
       rating: 4.5,
       popularity: 38000,
+      guideShare: 0,
       price: 40,
       openHours: '08:30-17:00',
       closedOn: [1],
@@ -450,6 +469,7 @@ export const beijing: City = {
       lng: 116.157,
       duration: 150,
       rating: 4.4,
+      guideShare: 0,
       price: 0,
       openHours: '全天',
       description:
@@ -470,6 +490,7 @@ export const beijing: City = {
       duration: 240,
       rating: 4.8,
       popularity: 64000,
+      guideShare: 0.21,
       price: 40,
       openHours: '06:30-18:30',
       description:
@@ -495,6 +516,7 @@ export const beijing: City = {
       duration: 240,
       rating: 4.8,
       popularity: 38000,
+      guideShare: 0,
       price: 60,
       openHours: '07:30-17:30',
       description:
@@ -516,6 +538,7 @@ export const beijing: City = {
       duration: 120,
       rating: 4.3,
       popularity: 6785,
+      guideShare: 0,
       price: 60,
       openHours: '08:00-17:30',
       description:
@@ -537,6 +560,7 @@ export const beijing: City = {
       duration: 540,
       rating: 4.6,
       popularity: 82000,
+      guideShare: 0.38,
       price: 528,
       openHours: '09:00-21:00',
       description:
@@ -559,6 +583,7 @@ export const beijing: City = {
       duration: 360,
       rating: 4.5,
       popularity: 16000,
+      guideShare: 0,
       price: 140,
       openHours: '09:00-22:00',
       description:
