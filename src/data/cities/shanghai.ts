@@ -48,6 +48,7 @@ export const shanghai: City = {
       lng: 121.4878,
       duration: 90,
       rating: 4.9,
+      popularity: 157000,
       price: 0,
       openHours: '全天',
       description:
@@ -73,6 +74,7 @@ export const shanghai: City = {
       lng: 121.496,
       duration: 150,
       rating: 4.6,
+      popularity: 180000,
       price: 199,
       openHours: '09:00-21:00',
       description:
@@ -99,6 +101,7 @@ export const shanghai: City = {
       lng: 121.488,
       duration: 120,
       rating: 4.5,
+      popularity: 57000,
       price: 40,
       openHours: '09:00-16:30',
       closedOn: [1],
@@ -125,6 +128,7 @@ export const shanghai: City = {
       lng: 121.476,
       duration: 90,
       rating: 4.1,
+      popularity: 44000,
       price: 0,
       openHours: '全天',
       description:
@@ -149,6 +153,7 @@ export const shanghai: City = {
       lng: 121.471,
       duration: 150,
       rating: 4.8,
+      popularity: 10000,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -175,6 +180,7 @@ export const shanghai: City = {
       lng: 121.4706,
       duration: 90,
       rating: 4.4,
+      popularity: 2357,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -200,6 +206,7 @@ export const shanghai: City = {
       lng: 121.4646,
       duration: 45,
       rating: 4.5,
+      popularity: 624,
       price: 0,
       openHours: '全天',
       description:
@@ -224,6 +231,7 @@ export const shanghai: City = {
       lng: 121.4641,
       duration: 75,
       rating: 4.0,
+      popularity: 3689,
       price: 0,
       openHours: '全天',
       description:
@@ -248,6 +256,7 @@ export const shanghai: City = {
       lng: 121.435,
       duration: 120,
       rating: 4.7,
+      popularity: 822,
       price: 0,
       openHours: '全天',
       description:
@@ -273,6 +282,7 @@ export const shanghai: City = {
       lng: 121.4408,
       duration: 60,
       rating: 4.4,
+      popularity: 1604,
       price: 50,
       openHours: '07:30-17:00',
       description:
@@ -297,6 +307,7 @@ export const shanghai: City = {
       lng: 121.4577,
       duration: 150,
       rating: 4.7,
+      popularity: 11000,
       price: 30,
       openHours: '09:00-17:15',
       closedOn: [1],
@@ -396,6 +407,7 @@ export const shanghai: City = {
       lng: 121.4899,
       duration: 150,
       rating: 4.4,
+      popularity: 1362,
       price: 0,
       openHours: '10:00-18:00',
       closedOn: [1],
@@ -519,6 +531,7 @@ export const shanghai: City = {
       lng: 121.6563,
       duration: 600,
       rating: 4.7,
+      popularity: 322000,
       price: 475,
       openHours: '08:30-21:00',
       description:
@@ -546,6 +559,7 @@ export const shanghai: City = {
       lng: 121.052,
       duration: 240,
       rating: 4.3,
+      popularity: 4432,
       price: 0,
       openHours: '全天',
       description:
@@ -572,6 +586,7 @@ export const shanghai: City = {
       lng: 121.9226,
       duration: 240,
       rating: 4.8,
+      popularity: 9644,
       price: 30,
       openHours: '09:30-17:00',
       closedOn: [1],

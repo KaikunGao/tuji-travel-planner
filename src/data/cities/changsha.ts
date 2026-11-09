@@ -48,6 +48,7 @@ export const changsha: City = {
       lng: 112.9573,
       duration: 150,
       rating: 4.8,
+      popularity: 14000,
       price: 0,
       openHours: '07:00-22:00',
       description:
@@ -73,6 +74,7 @@ export const changsha: City = {
       lng: 112.9318,
       duration: 180,
       rating: 4.7,
+      popularity: 5460,
       price: 0,
       openHours: '06:00-22:00',
       description:
@@ -98,6 +100,7 @@ export const changsha: City = {
       lng: 112.9352,
       duration: 90,
       rating: 4.8,
+      popularity: 3676,
       price: 40,
       openHours: '07:50-18:00',
       description:
@@ -147,6 +150,7 @@ export const changsha: City = {
       lng: 112.9882,
       duration: 180,
       rating: 4.9,
+      popularity: 16000,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -199,6 +203,7 @@ export const changsha: City = {
       lng: 112.9678,
       duration: 90,
       rating: 4.4,
+      popularity: 32,
       price: 0,
       openHours: '全天',
       description:
@@ -246,6 +251,7 @@ export const changsha: City = {
       lng: 112.9731,
       duration: 90,
       rating: 4.5,
+      popularity: 118,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -270,6 +276,7 @@ export const changsha: City = {
       lng: 112.9645,
       duration: 90,
       rating: 4.0,
+      popularity: 2,
       price: 0,
       openHours: '11:00-02:00',
       description:
@@ -318,6 +325,7 @@ export const changsha: City = {
       lng: 112.9758,
       duration: 60,
       rating: 4.4,
+      popularity: 34,
       price: 0,
       openHours: '全天',
       description:
@@ -341,6 +349,7 @@ export const changsha: City = {
       lng: 112.9631,
       duration: 45,
       rating: 4.4,
+      popularity: 11000,
       price: 18,
       openHours: '09:00-21:30',
       description:
@@ -365,6 +374,7 @@ export const changsha: City = {
       lng: 112.963,
       duration: 60,
       rating: 4.6,
+      popularity: 124,
       price: 0,
       openHours: '全天',
       description:
@@ -389,6 +399,7 @@ export const changsha: City = {
       lng: 112.9758,
       duration: 60,
       rating: 4.3,
+      popularity: 2773,
       price: 28,
       openHours: '08:00-22:00',
       description:
@@ -412,6 +423,7 @@ export const changsha: City = {
       lng: 112.9417,
       duration: 90,
       rating: 4.6,
+      popularity: 344,
       price: 0,
       openHours: '10:00-18:00',
       closedOn: [1],
@@ -439,6 +451,7 @@ export const changsha: City = {
       lng: 112.944,
       duration: 90,
       rating: 4.5,
+      popularity: 1276,
       price: 0,
       openHours: '09:30-17:30',
       closedOn: [1],
@@ -488,6 +501,7 @@ export const changsha: City = {
       lng: 112.9016,
       duration: 90,
       rating: 4.6,
+      popularity: 4,
       price: 0,
       openHours: '全天',
       description:
@@ -513,6 +527,7 @@ export const changsha: City = {
       lng: 112.9727,
       duration: 60,
       rating: 4.4,
+      popularity: 230,
       price: 10,
       openHours: '06:30-17:30',
       description:
@@ -537,6 +552,7 @@ export const changsha: City = {
       lng: 112.8294,
       duration: 300,
       rating: 4.2,
+      popularity: 14000,
       price: 0,
       openHours: '09:00-21:00',
       description:
@@ -562,6 +578,7 @@ export const changsha: City = {
       lng: 112.78,
       duration: 240,
       rating: 4.1,
+      popularity: 929,
       price: 0,
       openHours: '全天',
       description:

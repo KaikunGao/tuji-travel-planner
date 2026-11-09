@@ -66,8 +66,25 @@ interface Scored {
 /* 打分与筛选                                                           */
 /* ------------------------------------------------------------------ */
 
+/**
+ * 人气权重：外部平台点评数取对数，以九城对齐景点的中位数（约 3200 条）为零点，对称加减：
+ * 100 条以下 -3.75，1 千条 -1.25，3 千条 0，1 万条 +1.25，10 万条及以上封顶 +3.75。
+ * 只分「大众 / 冷门」，量级相当于 0.4 分评分差，比必去（+18）和兴趣（+22）小一个量级，不会盖过用户的意愿；
+ * 没有对齐到外部数据的景点记 0，既不加也不扣，避免胡同、市场这类携程没收录的点被挤掉。
+ */
+export function popularityBonus(a: Pick<Attraction, 'popularity'>): number {
+  if (!a.popularity) return 0
+  const lg = Math.min(5, Math.max(2, Math.log10(a.popularity)))
+  return (lg - 3.5) * 2.5
+}
+
+/** 点评数的展示：1.2万条点评 / 860条点评 */
+export function formatPopularity(n: number): string {
+  return n >= 10000 ? `${(n / 10000).toFixed(1).replace(/\.0$/, '')}万条点评` : `${n}条点评`
+}
+
 export function scoreAttraction(a: Attraction, interests: Interest[], isMust: boolean, variant: PlanVariant = 'balanced'): number {
-  let s = a.rating * 10
+  let s = a.rating * 10 + popularityBonus(a)
   if (variant === 'cheap') s -= a.price * 0.15
   if (variant === 'max') s -= (a.duration - 90) * 0.06
   if (a.mustSee) s += 18

@@ -15,7 +15,7 @@ import type { Attraction, City, Exposure, Tier, TripPlan } from '../types'
 import { TIER_LABEL, cutOptions, dayEnd, describeDiff, diffPlans, previewRemove, type DiffLine, type PlanDiff } from './change'
 import { formatDuration, formatKm, minutesToHHMM, weekdayOf } from './format'
 import { haversine } from './geo'
-import { attractionIdsOfDay, isPastDay, isSuburb, moveToDay, pinnedMealsOf, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
+import { attractionIdsOfDay, formatPopularity, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
 
 /* ------------------------------------------------------------------ */
 /* 淋雨程度                                                             */
@@ -101,12 +101,15 @@ export function findAlternatives(city: City, plan: TripPlan, dayIdx: number, att
     if (!curated && diff.days.some((d) => d.travelDelta > ALT_EXTRA_TRAVEL)) continue
 
     const reasons = [relation || c.category, `相距 ${formatKm(distanceKm)}`, `★${c.rating.toFixed(1)}`, `约 ${formatDuration(c.duration)}`]
+    if (c.popularity) reasons.push(formatPopularity(c.popularity))
     if (opts.rain) reasons.push(EXPOSURE_LABEL[exposure])
     if (curated) reasons.unshift('人工指定')
     const score =
       (curated ? 100 - curatedIds.indexOf(c.id) : 0) +
       (sameCategory ? 3 : relation.startsWith('也算') ? 1.5 : relation ? 1 : 0) +
-      (c.rating - o.rating) * 5 -
+      (c.rating - o.rating) * 5 +
+      // 人气：换成更多人去过的点加分，换成冷门点扣分；量级与评分差相当，不盖过同类与距离
+      (popularityBonus(c) - popularityBonus(o)) * 0.5 -
       distanceKm * 0.4 -
       Math.abs(c.duration - o.duration) / 60 +
       (opts.rain && exposure === 'indoor' ? 4 : 0)

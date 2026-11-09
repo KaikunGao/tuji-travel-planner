@@ -48,6 +48,7 @@ export const xian: City = {
       lng: 109.2731,
       duration: 240,
       rating: 4.9,
+      popularity: 151000,
       price: 120,
       openHours: '08:30-17:30',
       description:
@@ -75,6 +76,7 @@ export const xian: City = {
       lng: 109.2125,
       duration: 150,
       rating: 4.5,
+      popularity: 34000,
       price: 120,
       openHours: '07:00-19:00',
       description:
@@ -100,6 +102,7 @@ export const xian: City = {
       lng: 108.9433,
       duration: 120,
       rating: 4.8,
+      popularity: 63000,
       price: 54,
       openHours: '08:00-22:00',
       description:
@@ -125,6 +128,7 @@ export const xian: City = {
       lng: 108.9428,
       duration: 45,
       rating: 4.6,
+      popularity: 25000,
       price: 30,
       openHours: '08:30-21:30',
       description:
@@ -150,6 +154,7 @@ export const xian: City = {
       lng: 108.9407,
       duration: 40,
       rating: 4.5,
+      popularity: 9823,
       price: 30,
       openHours: '08:30-21:30',
       description:
@@ -173,6 +178,7 @@ export const xian: City = {
       lng: 108.94,
       duration: 120,
       rating: 4.3,
+      popularity: 13000,
       price: 0,
       openHours: '全天',
       description:
@@ -198,6 +204,7 @@ export const xian: City = {
       lng: 108.939,
       duration: 45,
       rating: 4.6,
+      popularity: 267,
       price: 25,
       openHours: '08:00-19:00',
       description:
@@ -223,6 +230,7 @@ export const xian: City = {
       lng: 108.9406,
       duration: 60,
       rating: 4.2,
+      popularity: 3362,
       price: 15,
       openHours: '08:30-22:00',
       description:
@@ -246,6 +254,7 @@ export const xian: City = {
       lng: 108.9593,
       duration: 90,
       rating: 4.7,
+      popularity: 11000,
       price: 40,
       openHours: '08:00-18:00',
       description:
@@ -271,6 +280,7 @@ export const xian: City = {
       lng: 108.96,
       duration: 120,
       rating: 4.6,
+      popularity: 2257,
       price: 0,
       openHours: '全天',
       description:
@@ -296,6 +306,7 @@ export const xian: City = {
       lng: 108.9476,
       duration: 150,
       rating: 4.8,
+      popularity: 35000,
       price: 0,
       openHours: '08:30-18:00',
       closedOn: [1],
@@ -323,6 +334,7 @@ export const xian: City = {
       lng: 108.9515,
       duration: 90,
       rating: 4.6,
+      popularity: 11000,
       price: 65,
       openHours: '08:00-18:00',
       description:
@@ -347,6 +359,7 @@ export const xian: City = {
       lng: 108.9475,
       duration: 45,
       rating: 4.2,
+      popularity: 529,
       price: 0,
       openHours: '全天',
       description:
@@ -370,6 +383,7 @@ export const xian: City = {
       lng: 108.968,
       duration: 120,
       rating: 4.4,
+      popularity: 27000,
       price: 0,
       openHours: '09:00-22:00',
       description:
@@ -396,6 +410,7 @@ export const xian: City = {
       lng: 108.936,
       duration: 90,
       rating: 4.5,
+      popularity: 4167,
       price: 0,
       openHours: '09:00-18:00',
       closedOn: [2],
@@ -423,6 +438,7 @@ export const xian: City = {
       lng: 108.9683,
       duration: 75,
       rating: 4.1,
+      popularity: 500,
       price: 0,
       openHours: '全天',
       description:
@@ -448,6 +464,7 @@ export const xian: City = {
       lng: 108.9585,
       duration: 120,
       rating: 4.3,
+      popularity: 9858,
       price: 60,
       openHours: '09:30-18:00',
       description:
@@ -473,6 +490,7 @@ export const xian: City = {
       lng: 108.974,
       duration: 75,
       rating: 4.4,
+      popularity: 365,
       price: 0,
       openHours: '全天',
       description:
@@ -497,6 +515,7 @@ export const xian: City = {
       lng: 108.9785,
       duration: 60,
       rating: 4.3,
+      popularity: 422,
       price: 0,
       openHours: '06:00-22:00',
       description:
@@ -521,6 +540,7 @@ export const xian: City = {
       lng: 108.9565,
       duration: 90,
       rating: 4.2,
+      popularity: 5862,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -545,6 +565,7 @@ export const xian: City = {
       lng: 108.9418,
       duration: 60,
       rating: 4.2,
+      popularity: 160,
       price: 0,
       openHours: '全天',
       description:
@@ -569,6 +590,7 @@ export const xian: City = {
       lng: 108.9395,
       duration: 45,
       rating: 4.4,
+      popularity: 266,
       price: 0,
       openHours: '08:00-17:00',
       description:

@@ -48,6 +48,7 @@ export const guangzhou: City = {
       lng: 113.3191,
       duration: 120,
       rating: 4.7,
+      popularity: 50000,
       price: 150,
       openHours: '09:30-22:30',
       description:
@@ -74,6 +75,7 @@ export const guangzhou: City = {
       lng: 113.319,
       duration: 90,
       rating: 4.6,
+      popularity: 1006,
       price: 0,
       openHours: '全天',
       description:
@@ -99,6 +101,7 @@ export const guangzhou: City = {
       lng: 113.3214,
       duration: 150,
       rating: 4.7,
+      popularity: 2091,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -125,6 +128,7 @@ export const guangzhou: City = {
       lng: 113.2393,
       duration: 90,
       rating: 4.6,
+      popularity: 7147,
       price: 0,
       openHours: '全天',
       description:
@@ -150,6 +154,7 @@ export const guangzhou: City = {
       lng: 113.2401,
       duration: 90,
       rating: 4.8,
+      popularity: 3653,
       price: 10,
       openHours: '09:00-17:30',
       description:
@@ -176,6 +181,7 @@ export const guangzhou: City = {
       lng: 113.2329,
       duration: 120,
       rating: 4.5,
+      popularity: 379,
       price: 0,
       openHours: '全天',
       description:
@@ -225,6 +231,7 @@ export const guangzhou: City = {
       lng: 113.2328,
       duration: 75,
       rating: 4.4,
+      popularity: 342,
       price: 0,
       openHours: '全天',
       description:
@@ -274,6 +281,7 @@ export const guangzhou: City = {
       lng: 113.2547,
       duration: 45,
       rating: 4.6,
+      popularity: 1661,
       price: 0,
       openHours: '08:30-17:30',
       description:
@@ -299,6 +307,7 @@ export const guangzhou: City = {
       lng: 113.2644,
       duration: 75,
       rating: 4.4,
+      popularity: 2334,
       price: 0,
       openHours: '09:00-17:30',
       closedOn: [1],
@@ -325,6 +334,7 @@ export const guangzhou: City = {
       lng: 113.2659,
       duration: 90,
       rating: 4.5,
+      popularity: 13000,
       price: 98,
       openHours: '18:30-22:00',
       description:
@@ -351,6 +361,7 @@ export const guangzhou: City = {
       lng: 113.2585,
       duration: 120,
       rating: 4.5,
+      popularity: 4532,
       price: 0,
       openHours: '06:00-22:00',
       description:
@@ -376,6 +387,7 @@ export const guangzhou: City = {
       lng: 113.2593,
       duration: 60,
       rating: 4.5,
+      popularity: 3690,
       price: 10,
       openHours: '08:00-18:00',
       description:
@@ -401,6 +413,7 @@ export const guangzhou: City = {
       lng: 113.2556,
       duration: 90,
       rating: 4.8,
+      popularity: 6300,
       price: 0,
       openHours: '09:00-17:30',
       closedOn: [1],
@@ -453,6 +466,7 @@ export const guangzhou: City = {
       lng: 113.2476,
       duration: 90,
       rating: 4.3,
+      popularity: 12,
       price: 0,
       openHours: '全天',
       description:
@@ -503,6 +517,7 @@ export const guangzhou: City = {
       lng: 113.2888,
       duration: 240,
       rating: 4.6,
+      popularity: 5631,
       price: 5,
       openHours: '06:00-21:00',
       description:
@@ -528,6 +543,7 @@ export const guangzhou: City = {
       lng: 113.3093,
       duration: 480,
       rating: 4.7,
+      popularity: 108000,
       price: 350,
       openHours: '09:30-18:00',
       description:
@@ -554,6 +570,7 @@ export const guangzhou: City = {
       lng: 113.3321,
       duration: 180,
       rating: 4.3,
+      popularity: 1248,
       price: 40,
       openHours: '09:30-17:30',
       description:
@@ -580,6 +597,7 @@ export const guangzhou: City = {
       lng: 113.4978,
       duration: 180,
       rating: 4.3,
+      popularity: 2259,
       price: 50,
       openHours: '08:00-18:00',
       description:

@@ -48,6 +48,7 @@ export const chongqing: City = {
       lng: 106.5769,
       duration: 60,
       rating: 4.5,
+      popularity: 5643,
       price: 0,
       openHours: '全天',
       description:
@@ -72,6 +73,7 @@ export const chongqing: City = {
       lng: 106.576,
       duration: 90,
       rating: 4.6,
+      popularity: 8769,
       price: 0,
       openHours: '全天',
       description:
@@ -97,6 +99,7 @@ export const chongqing: City = {
       lng: 106.5825,
       duration: 45,
       rating: 4.4,
+      popularity: 18000,
       price: 20,
       openHours: '07:30-22:30',
       description:
@@ -123,6 +126,7 @@ export const chongqing: City = {
       lng: 106.5855,
       duration: 90,
       rating: 4.4,
+      popularity: 1586,
       price: 0,
       openHours: '全天',
       description:
@@ -148,6 +152,7 @@ export const chongqing: City = {
       lng: 106.5854,
       duration: 60,
       rating: 4.5,
+      popularity: 5633,
       price: 30,
       openHours: '09:00-18:00',
       description:
@@ -195,6 +200,7 @@ export const chongqing: City = {
       lng: 106.5785,
       duration: 45,
       rating: 4.3,
+      popularity: 533,
       price: 10,
       openHours: '08:00-17:00',
       description:
@@ -218,6 +224,7 @@ export const chongqing: City = {
       lng: 106.5725,
       duration: 60,
       rating: 4.1,
+      popularity: 80,
       price: 0,
       openHours: '全天',
       description:
@@ -241,6 +248,7 @@ export const chongqing: City = {
       lng: 106.5672,
       duration: 90,
       rating: 4.6,
+      popularity: 517,
       price: 0,
       openHours: '全天',
       description:
@@ -266,6 +274,7 @@ export const chongqing: City = {
       lng: 106.5522,
       duration: 45,
       rating: 4.5,
+      popularity: 1387,
       price: 10,
       openHours: '08:00-18:00',
       description:
@@ -290,6 +299,7 @@ export const chongqing: City = {
       lng: 106.5497,
       duration: 120,
       rating: 4.6,
+      popularity: 1136,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -340,6 +350,7 @@ export const chongqing: City = {
       lng: 106.529,
       duration: 45,
       rating: 4.5,
+      popularity: 29,
       price: 0,
       openHours: '全天',
       description:
@@ -365,6 +376,7 @@ export const chongqing: City = {
       lng: 106.5428,
       duration: 90,
       rating: 4.3,
+      popularity: 175,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -389,6 +401,7 @@ export const chongqing: City = {
       lng: 106.4525,
       duration: 150,
       rating: 4.3,
+      popularity: 14000,
       price: 0,
       openHours: '全天',
       description:
@@ -414,6 +427,7 @@ export const chongqing: City = {
       lng: 106.6007,
       duration: 90,
       rating: 4.6,
+      popularity: 1713,
       price: 30,
       openHours: '09:00-22:30',
       description:
@@ -439,6 +453,7 @@ export const chongqing: City = {
       lng: 106.591,
       duration: 90,
       rating: 4.4,
+      popularity: 265,
       price: 0,
       openHours: '全天',
       description:
@@ -463,6 +478,7 @@ export const chongqing: City = {
       lng: 106.5955,
       duration: 60,
       rating: 4.1,
+      popularity: 185,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -486,6 +502,7 @@ export const chongqing: City = {
       lng: 106.5378,
       duration: 90,
       rating: 4.1,
+      popularity: 620,
       price: 0,
       openHours: '10:00-22:00',
       description:
@@ -533,6 +550,7 @@ export const chongqing: City = {
       lng: 105.8005,
       duration: 240,
       rating: 4.7,
+      popularity: 8191,
       price: 115,
       openHours: '08:30-18:00',
       description:
@@ -559,6 +577,7 @@ export const chongqing: City = {
       lng: 107.786,
       duration: 300,
       rating: 4.7,
+      popularity: 17000,
       price: 125,
       openHours: '08:00-17:30',
       description:

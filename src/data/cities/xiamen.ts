@@ -48,6 +48,7 @@ export const xiamen: City = {
       lng: 118.0626,
       duration: 90,
       rating: 4.7,
+      popularity: 8528,
       price: 50,
       openHours: '08:00-18:00',
       description:
@@ -74,6 +75,7 @@ export const xiamen: City = {
       lng: 118.0647,
       duration: 75,
       rating: 4.6,
+      popularity: 3083,
       price: 30,
       openHours: '08:00-17:30',
       description:
@@ -100,6 +102,7 @@ export const xiamen: City = {
       lng: 118.067,
       duration: 150,
       rating: 4.6,
+      popularity: 17,
       price: 0,
       openHours: '全天',
       description:
@@ -126,6 +129,7 @@ export const xiamen: City = {
       lng: 118.0715,
       duration: 45,
       rating: 4.3,
+      popularity: 1294,
       price: 15,
       openHours: '08:00-18:00',
       description:
@@ -151,6 +155,7 @@ export const xiamen: City = {
       lng: 118.0918,
       duration: 90,
       rating: 4.7,
+      popularity: 5366,
       price: 0,
       openHours: '08:00-17:30',
       description:
@@ -176,6 +181,7 @@ export const xiamen: City = {
       lng: 118.0935,
       duration: 150,
       rating: 4.8,
+      popularity: 14000,
       price: 0,
       openHours: '08:00-18:00',
       description:
@@ -201,6 +207,7 @@ export const xiamen: City = {
       lng: 118.0985,
       duration: 40,
       rating: 4.3,
+      popularity: 593,
       price: 0,
       openHours: '08:00-18:00',
       description:
@@ -226,6 +233,7 @@ export const xiamen: City = {
       lng: 118.1016,
       duration: 75,
       rating: 4.4,
+      popularity: 16000,
       price: 25,
       openHours: '07:30-17:30',
       description:
@@ -250,6 +258,7 @@ export const xiamen: City = {
       lng: 118.085,
       duration: 60,
       rating: 4.6,
+      popularity: 63,
       price: 0,
       openHours: '全天',
       description:
@@ -274,6 +283,7 @@ export const xiamen: City = {
       lng: 118.0979,
       duration: 45,
       rating: 4.4,
+      popularity: 724,
       price: 0,
       openHours: '全天',
       description:
@@ -298,6 +308,7 @@ export const xiamen: City = {
       lng: 118.0828,
       duration: 120,
       rating: 4.5,
+      popularity: 17,
       price: 0,
       openHours: '全天',
       description:
@@ -347,6 +358,7 @@ export const xiamen: City = {
       lng: 118.1195,
       duration: 120,
       rating: 4.0,
+      popularity: 5036,
       price: 0,
       openHours: '10:00-23:00',
       description:
@@ -372,6 +384,7 @@ export const xiamen: City = {
       lng: 118.136,
       duration: 150,
       rating: 4.5,
+      popularity: 6874,
       price: 0,
       openHours: '全天',
       description:
@@ -397,6 +410,7 @@ export const xiamen: City = {
       lng: 118.0745,
       duration: 90,
       rating: 4.3,
+      popularity: 2538,
       price: 0,
       openHours: '10:00-23:00',
       description:
@@ -446,6 +460,7 @@ export const xiamen: City = {
       lng: 118.0925,
       duration: 150,
       rating: 4.6,
+      popularity: 19000,
       price: 30,
       openHours: '06:30-18:00',
       description:
@@ -495,6 +510,7 @@ export const xiamen: City = {
       lng: 118.0825,
       duration: 120,
       rating: 4.6,
+      popularity: 1,
       price: 0,
       openHours: '全天',
       description:
@@ -519,6 +535,7 @@ export const xiamen: City = {
       lng: 118.085,
       duration: 60,
       rating: 4.3,
+      popularity: 517,
       price: 0,
       openHours: '全天',
       description:
@@ -543,6 +560,7 @@ export const xiamen: City = {
       lng: 118.0965,
       duration: 150,
       rating: 4.5,
+      popularity: 890,
       price: 0,
       openHours: '08:00-18:00',
       description:

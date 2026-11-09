@@ -48,6 +48,7 @@ export const hangzhou: City = {
       lng: 120.1476,
       duration: 60,
       rating: 4.8,
+      popularity: 1263,
       price: 0,
       openHours: '全天',
       description:
@@ -96,6 +97,7 @@ export const hangzhou: City = {
       lng: 120.1292,
       duration: 75,
       rating: 4.5,
+      popularity: 4566,
       price: 0,
       openHours: '全天',
       description:
@@ -115,6 +117,7 @@ export const hangzhou: City = {
       lng: 120.1362,
       duration: 120,
       rating: 4.8,
+      popularity: 1004,
       price: 0,
       openHours: '全天',
       description:
@@ -158,6 +161,7 @@ export const hangzhou: City = {
       lng: 120.1402,
       duration: 90,
       rating: 4.6,
+      popularity: 2681,
       price: 55,
       openHours: '08:00-16:30',
       description:
@@ -182,6 +186,7 @@ export const hangzhou: City = {
       lng: 120.145,
       duration: 75,
       rating: 4.5,
+      popularity: 9072,
       price: 40,
       openHours: '08:00-20:00',
       description:
@@ -222,6 +227,7 @@ export const hangzhou: City = {
       lng: 120.0973,
       duration: 150,
       rating: 4.8,
+      popularity: 21000,
       price: 0,
       openHours: '07:30-17:30',
       description:
@@ -248,6 +254,7 @@ export const hangzhou: City = {
       lng: 120.0893,
       duration: 75,
       rating: 4.6,
+      popularity: 280,
       price: 10,
       openHours: '06:00-18:00',
       description:
@@ -268,6 +275,7 @@ export const hangzhou: City = {
       lng: 120.1055,
       duration: 180,
       rating: 4.7,
+      popularity: 242,
       price: 0,
       openHours: '全天',
       description:
@@ -293,6 +301,7 @@ export const hangzhou: City = {
       lng: 120.065,
       duration: 180,
       rating: 4.5,
+      popularity: 29000,
       price: 80,
       openHours: '08:30-17:30',
       description:
@@ -312,6 +321,7 @@ export const hangzhou: City = {
       lng: 120.166,
       duration: 90,
       rating: 4.3,
+      popularity: 884,
       price: 0,
       openHours: '全天',
       description:
@@ -332,6 +342,7 @@ export const hangzhou: City = {
       lng: 120.0969,
       duration: 150,
       rating: 4.7,
+      popularity: 823,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -357,6 +368,7 @@ export const hangzhou: City = {
       lng: 120.1345,
       duration: 120,
       rating: 4.5,
+      popularity: 228,
       price: 0,
       openHours: '全天',
       description:
@@ -417,6 +429,7 @@ export const hangzhou: City = {
       lng: 120.2212,
       duration: 150,
       rating: 4.4,
+      popularity: 1199,
       price: 0,
       openHours: '全天',
       description:
@@ -436,6 +449,7 @@ export const hangzhou: City = {
       lng: 119.979,
       duration: 240,
       rating: 4.6,
+      popularity: 2128,
       price: 60,
       openHours: '09:00-17:00',
       description:

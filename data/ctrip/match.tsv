@@ -1,0 +1,199 @@
+city	tuji_id	tuji_name	mustSee	suburb	visits_in_default_plans	tuji_rating	tuji_open	tuji_duration	tuji_price	match	ctrip_id	ctrip_slug	ctrip_name	ctrip_rank	ctrip_hot	ctrip_rating	ctrip_comments	ctrip_level	ctrip_dist_km	ctrip_open	ctrip_price	ctrip_biz	ctrip_booking
+beijing	forbidden-city	故宫博物院	1	0	3	4.9	08:30-17:00	180	60	exact	229	beijing1	故宫博物院	2	10	4.9	20.5万	5A	1.7	08:30		天安门/王府井地区	
+beijing	tiananmen	天安门广场	1	0	3	4.7	05:00-22:00	60	0	exact	228	beijing1	天安门广场	14					0.8	05:00	免费	天安门/王府井地区	预约
+beijing	jingshan-park	景山公园	1	0	3	4.8	06:30-21:00	60	2	exact	5170	beijing1	景山公园	20	7.4	4.6	5804	4A	2.6	06:30		天安门/王府井地区	
+beijing	beihai-park	北海公园	0	0	0	4.6	06:30-21:00	90	10	exact	232	beijing1	北海公园	30	6.9	4.8	5313	4A	3.1	06:30		天安门/王府井地区	
+beijing	nanluoguxiang	南锣鼓巷与胡同	0	0	0	4.2	全天	90	0	contain	64955	beijing1	南锣鼓巷	26	7.0	4.6	4274		3.7		免费	后海/南锣鼓巷地区	
+beijing	shichahai	什刹海 · 烟袋斜街 · 后海	1	0	2	4.5	全天	90	0	stem	140172	beijing1	什刹海风景区	13	8.0	4.7	3072	4A	4.5		免费	后海/南锣鼓巷地区	
+beijing	temple-of-heaven	天坛公园	1	0	3	4.8	08:00-17:30	120	34	exact	233	beijing1	天坛公园	6	8.5	4.7	2.6万	5A	2.5	06:30		前门/天坛公园/崇文门	
+beijing	summer-palace	颐和园	1	0	2	4.9	06:30-18:00	180	60	exact	231	beijing1	颐和园	7	8.4	4.7	5.2万	5A	15.4	06:30		中关村/五道口	
+beijing	yuanmingyuan	圆明园	0	0	1	4.4	07:00-19:00	120	25	exact	5208	beijing1	圆明园	19	7.4		2.8万	5A	14.4	06:30		中关村/五道口	
+beijing	lama-temple	雍和宫	0	0	2	4.7	09:00-16:30	75	25	exact	5153	beijing1	雍和宫	15	7.8	4.7	4606		4.9	09:00		三里屯/工体/东直门地区	
+beijing	wudaoying	五道营胡同	0	0	1	4.3	全天	45	0	none													
+beijing	guozijian	国子监 · 孔庙	0	0	2	4.5	08:30-17:00	60	30	exact	5154	beijing1	国子监	103	5.4	4.8	851		4.7	09:00		三里屯/工体/东直门地区	
+beijing	national-museum	中国国家博物馆	0	0	0	4.7	09:00-17:00	150	0	exact	62722	beijing1	中国国家博物馆	4	9.5		1.4万		0.5	09:00	免费	天安门/王府井地区	
+beijing	art-zone-798	798 艺术区	0	0	0	4.4	10:00-18:00	120	0	exact	64948	beijing1	798艺术区	62	6.1	4.5	1433		11.7		免费	望京/酒仙桥/798地区	
+beijing	sanlitun	三里屯太古里	0	0	1	4.3	10:00-22:00	90	0	contain	140217	beijing1	三里屯	42	6.5	4.7	757		5.1		免费	三里屯/工体/东直门地区	
+beijing	olympic-park	鸟巢 · 水立方	0	0	0	4.5	全天	90	0	exact	52627	beijing1	水立方(国家游泳中心)	44	6.5	4.2	2796		10.0	10:30	¥30	鸟巢/奥体中心地区	
+beijing	qianmen	前门大街 · 大栅栏	0	0	0	4.1	全天	90	0	exact	107634	beijing1	前门大街	27	7.0	4.6	1743		1.2		免费	前门/天坛公园/崇文门	
+beijing	wangfujing	王府井	0	0	0	3.9	10:00-22:00	60	0	exact	54198	beijing1	王府井	39	6.6	4.7	2025		1.2		免费	天安门/王府井地区	
+beijing	prince-gong-mansion	恭王府	0	0	0	4.5	08:30-17:00	90	40	exact	5174	beijing1	恭王府	5	8.6	4.8	3.8万	5A	4.1	08:30	¥40	后海/南锣鼓巷地区	
+beijing	shougang-park	首钢园	0	0	0	4.4	全天	150	0	none													
+beijing	badaling	八达岭长城	1	1	3	4.8	06:30-18:30	240	40	exact	230	beijing1	八达岭长城	3	10	4.7	6.4万	5A	59.6	07:30	¥35	八达岭长城/野生动物园地区	
+beijing	mutianyu	慕田峪长城	0	1	0	4.8	07:30-17:30	240	60	exact	243	beijing1	慕田峪长城	8	8.4	4.8	3.8万	5A	60.2	07:30	¥45	慕田峪长城/响水湖长城地区	
+beijing	ming-tombs	明十三陵 · 定陵	0	1	0	4.3	08:00-17:30	120	60	exact	234	beijing1	明十三陵	28	7.0	4.6	6785	5A	44.0	08:30	¥20	昌平城区/十三陵度假区	
+beijing	universal-beijing	北京环球度假区	0	1	0	4.6	09:00-21:00	540	528	exact	2045497	beijing1	北京环球度假区	1	10	4.6	8.2万		24.1	09:00	¥418	环球影城度假区及周边	
+beijing	gubei-water-town	古北水镇 · 司马台长城	0	1	0	4.5	09:00-22:00	360	140	exact	1411592	beijing1	古北水镇	31	6.8	4.7	1.6万			09:00	¥140	古北水镇/司马台长城	
+shanghai	the-bund	外滩	1	0	3	4.9	全天	90	0	exact	736	shanghai2	外滩	6	10	4.8	15.7万		1.8		免费	外滩核心区	
+shanghai	lujiazui	东方明珠 · 陆家嘴	1	0	3	4.6	09:00-21:00	150	199	exact	762	shanghai2	东方明珠	3	8.5	4.7	18万	5A	2.7	09:00	¥199	陆家嘴	
+shanghai	yuyuan-garden	豫园 · 城隍庙	1	0	3	4.5	09:00-16:30	120	40	exact	740	shanghai2	豫园	2	8.2	4.7	5.7万	4A	1.8	09:00	¥40	豫园地区	
+shanghai	nanjing-road	南京路步行街	0	0	0	4.1	全天	90	0	exact	3739	shanghai2	南京路步行街	25	7.1	4.7	4.4万		0.8		免费	人民广场地区	
+shanghai	shanghai-museum	上海博物馆（人民广场馆）	1	0	3	4.8	09:00-17:00	150	0	exact	3733	shanghai2	上海博物馆	19	7.4	4.6	1万	4A	0.3	09:00	¥135	人民广场地区	
+shanghai	xintiandi	新天地 · 一大会址	1	0	3	4.4	10:00-22:00	90	0	exact	18739	shanghai2	新天地	50	6.1	4.7	2357		0.9		免费	淮海路/新天地地区	
+shanghai	sinan-mansions	思南公馆 · 思南路	0	0	3	4.5	全天	45	0	exact	147878	shanghai2	思南公馆	92	5.4	4.7	624		1.8		免费	淮海路/新天地地区	
+shanghai	tianzifang	田子坊	0	0	0	4	全天	75	0	exact	64755	shanghai2	田子坊	58	6.0	4.5	3689		2.5		免费	打浦桥地区	
+shanghai	wukang-road	武康路 · 武康大楼	1	0	3	4.7	全天	120	0	exact	132538	shanghai2	武康路	37	6.6	4.7	822		3.8		免费	淮海路/新天地地区	
+shanghai	jingan-temple	静安寺	0	0	3	4.4	07:30-17:00	60	50	exact	744	shanghai2	静安寺	59	5.9	4.6	1604		2.8	07:30		静安寺/南京西路	
+shanghai	natural-history-museum	上海自然博物馆	0	0	0	4.7	09:00-17:15	150	30	exact	5646	shanghai2	上海自然博物馆	18	7.4	4.7	1.1万		1.2			静安寺/南京西路	
+shanghai	jade-buddha-temple	玉佛禅寺	0	0	1	4.3	08:00-16:30	60	20	none													
+shanghai	m50	M50 创意园 · 天安千树	0	0	0	4.3	10:00-18:00	90	0	none													
+shanghai	xujiahui	徐家汇书院 · 天主堂	0	0	1	4.5	09:00-17:00	90	0	none													
+shanghai	china-art-museum	中华艺术宫	0	0	0	4.4	10:00-18:00	150	0	exact	18317	shanghai2	上海美术馆（中华艺术宫）	52	6.1	4.6	1362		5.5	10:00	免费	新国际博览中心/世博园	
+shanghai	west-bund	西岸美术馆 · 徐汇滨江	0	0	1	4.6	10:00-17:00	150	100	none													
+shanghai	old-millfun-1933	1933 老场坊	0	0	0	4.3	09:00-21:00	60	0	none													
+shanghai	north-bund	北外滩滨江	0	0	1	4.6	全天	75	0	none													
+shanghai	duolun-road	多伦路文化名人街 · 鲁迅公园	0	0	0	4.2	全天	90	0	none													
+shanghai	disneyland	上海迪士尼度假区	0	1	0	4.7	08:30-21:00	600	475	exact	1412255	shanghai2	上海迪士尼度假区	1	10	4.7	32.2万		20.4	08:30	¥475	迪士尼度假区	
+shanghai	zhujiajiao	朱家角古镇	0	1	0	4.3	全天	240	0	stem	14903	shanghai2	朱家角古镇景区	23	7.1	4.6	4432	4A	42.3		免费	青浦朱家角/东方绿舟	
+shanghai	astronomy-museum	上海天文馆	0	1	2	4.8	09:30-17:00	240	30	exact	69572753	shanghai2	上海天文馆	16	7.5	4.8	9644		55.8	09:30		滴水湖临港地区	
+chengdu	kuanzhai-alley	宽窄巷子	1	0	3	4.3	全天	120	0	exact	63456	chengdu104	宽窄巷子	16	7.3	4.6	1.4万		1.4		免费	宽窄巷子/中医学院附近地区	
+chengdu	peoples-park	人民公园 · 鹤鸣茶社	1	0	3	4.7	06:30-22:00	90	0	exact	11693	chengdu104	成都市人民公园	42	6.3	4.6	1025		0.8		免费	宽窄巷子/中医学院附近地区	
+chengdu	chengdu-museum	成都博物馆	0	0	1	4.7	09:00-17:00	120	0	exact	2006697	chengdu104	成都博物馆	10	7.8	4.8	5476		0.2	09:00	免费	天府广场/成都博物馆	预约
+chengdu	wuhou-shrine	武侯祠	1	0	3	4.6	08:00-18:00	120	50	exact	4227	chengdu104	武侯祠	5	8.7	4.6	3万	4A	2.1	09:00	¥50	锦里/武侯祠附近地区	
+chengdu	jinli	锦里古街	0	0	0	4.1	全天	90	0	exact	48862	chengdu104	锦里古街	28	6.9	4.6	1.6万		2.0		免费	锦里/武侯祠附近地区	
+chengdu	dufu-cottage	杜甫草堂	1	0	3	4.6	08:00-18:00	120	50	stem	4226	chengdu104	成都杜甫草堂博物馆	2	8.9	4.7	4.8万	4A	3.6	09:00	¥50	杜甫草堂/省人民医院	
+chengdu	sichuan-museum	四川博物院	0	0	0	4.5	09:00-17:00	120	0	exact	85913	chengdu104	四川博物院	15	7.4	4.7	1612		3.1	09:00	免费	杜甫草堂/省人民医院	预约
+chengdu	huanhuaxi-park	浣花溪公园	0	0	1	4.5	全天	60	0	exact	120139	chengdu104	浣花溪公园	86	5.3	4.6	533		3.5	06:00	免费	杜甫草堂/省人民医院	
+chengdu	qingyang-palace	青羊宫	0	0	0	4.4	08:00-17:30	60	10	exact	11700	chengdu104	青羊宫	55	6.0	4.6	923		2.3	08:00		宽窄巷子/中医学院附近地区	
+chengdu	shufeng-yayun	蜀风雅韵川剧（文化公园）	0	0	0	4.5	19:30-21:30	90	220	fuzzy	138459	chengdu104	蜀风雅韵剧场·川剧变脸演出·大型古典梨园	20	7.2	4.7	8638		2.2	10:00	¥188	宽窄巷子/中医学院附近地区	
+chengdu	panda-base	成都大熊猫繁育研究基地	1	0	3	4.8	07:30-18:00	180	55	exact	4229	chengdu104	成都大熊猫繁育研究基地	1	9.4	4.6	11.5万	4A	11.6	08:00	¥55	熊猫基地/西部战区总医院	
+chengdu	chunxi-taikooli	春熙路 · 太古里 · IFS	1	0	3	4.5	全天	120	0	exact	138472	chengdu104	春熙路	18	7.3	4.7	5065		1.2		免费	春熙路/太古里商业区	
+chengdu	wenshu-monastery	文殊院	0	0	3	4.6	08:00-17:00	75	0	exact	4341	chengdu104	文殊院	13	7.5	4.8	2065		2.1	08:00	免费	文殊院/龙湖上城天街	
+chengdu	dongjiao-memory	东郊记忆	0	0	0	4.4	全天	120	0	exact	1475942	chengdu104	东郊记忆	34	6.6	4.6	543	4A	5.6		免费	建设路/东郊记忆公园	
+chengdu	jiuyanqiao	九眼桥 · 合江亭夜景	0	0	0	4.3	全天	90	0	exact	1713566	chengdu104	九眼桥	52	6.0	4.6	405		2.9		免费	九眼桥/四川大学附近地区	
+chengdu	wangjiang-tower	望江楼公园	0	0	1	4.4	08:00-18:00	75	20	exact	4591	chengdu104	望江楼公园	104	5.1	4.6	699		4.0	09:00		九眼桥/四川大学附近地区	
+chengdu	jinsha-museum	金沙遗址博物馆	0	0	1	4.6	09:00-18:00	120	70	exact	48863	chengdu104	金沙遗址博物馆	26	7.0	4.8	1.9万	4A	5.8			金沙遗址/一品天下	
+chengdu	yulin-road	玉林路 · 小酒馆	0	0	0	4.3	全天	90	0	alias	5069353	chengdu104	玉林西路	48	6.1	4.7	36		3.3		免费	华西医院/省体育馆商业区	
+chengdu	dujiangyan	都江堰	0	1	0	4.7	08:00-18:00	240	80	stem	4597	dujiangyan911	都江堰景区	4	9.2	4.7	5.8万	5A	58.1	08:00	¥80	都江堰景区及周边	
+chengdu	qingcheng-shan	青城山（前山）	0	1	0	4.6	08:00-18:00	300	80	exact	62960	dujiangyan911	青城山	3	8.9	4.6	3.5万	5A	55.0	08:30	¥80	青城山前山景区及周边	
+chengdu	sanxingdui	三星堆博物馆	0	1	2	4.8	08:30-18:00	180	72	stem	1927206	guanghan1349	三星堆国家考古遗址公园	80	5.3	4.5	111			08:30			
+chongqing	jiefangbei	解放碑步行街	1	0	3	4.5	全天	60	0	exact	10386	chongqing158	解放碑步行街	8	7.9	4.7	5643		2.4		免费	解放碑/洪崖洞	
+chongqing	hongyadong	洪崖洞	1	0	3	4.6	全天	90	0	contain	50223	chongqing158	洪崖洞民俗风貌区	6	8.7	4.6	8769	4A	2.6		免费	解放碑/洪崖洞	
+chongqing	yangtze-cableway	长江索道	1	0	3	4.4	07:30-22:30	45	20	exact	109940	chongqing158	长江索道	3	8.2	4.2	1.8万	4A	3.1	08:00	¥30	解放碑/洪崖洞	
+chongqing	chaotianmen-raffles	朝天门广场 · 来福士	0	0	0	4.4	全天	90	0	exact	10378	chongqing158	朝天门广场	27	6.8	4.6	1586		3.5		免费	解放碑/洪崖洞	
+chongqing	huguang-guild-hall	湖广会馆	0	0	1	4.5	09:00-18:00	60	30	exact	43819	chongqing158	重庆湖广会馆	17	7.3	4.5	5633	4A	3.5	09:00	¥32	解放碑/洪崖洞	
+chongqing	baixiangju	白象居	0	0	1	4.2	全天	30	0	none													
+chongqing	luohan-temple	罗汉寺	0	0	1	4.3	08:00-17:00	45	10	exact	10389	chongqing158	罗汉寺	86	5.3	4.6	533		2.9	08:00		解放碑/洪崖洞	
+chongqing	shibati	十八梯传统风貌区	0	0	1	4.1	全天	60	0	exact	5717709	chongqing158	重庆十八梯传统风貌区	53	6.0	4.5	80		2.5		免费	解放碑/洪崖洞	
+chongqing	shancheng-trail	山城步道（第三步道）	0	0	3	4.6	全天	90	0	exact	135585	chongqing158	山城步道	36	6.3	4.6	517		2.0		免费	解放碑/洪崖洞	
+chongqing	great-hall	人民大礼堂	0	0	3	4.5	08:00-18:00	45	10	exact	10395	chongqing158	人民大礼堂	25	6.8	4.4	1387	4A	0.3	08:00	¥8	上清寺/人民大礼堂/李子坝	
+chongqing	three-gorges-museum	重庆中国三峡博物馆	0	0	3	4.6	09:00-17:00	120	0	contain	45804	chongqing158	三峡博物馆	20	7.2	4.6	1136	4A	0.1	09:00	免费	上清寺/人民大礼堂/李子坝	
+chongqing	zhongshan-4th-road	中山四路	0	0	1	4.4	全天	45	0	none													
+chongqing	liziba	李子坝轻轨穿楼	1	0	3	4.5	全天	45	0	alias	90499682	chongqing158	李子坝单轨穿楼观景平台	54	6.0	4.7	29		1.7	06:30	免费	上清寺/人民大礼堂/李子坝	
+chongqing	eling-testbed2	鹅岭二厂文创公园	0	0	1	4.3	10:00-22:00	90	0	contain	2491576	chongqing158	二厂文创公园	61	5.8	4.4	175		1.7		免费	上清寺/人民大礼堂/李子坝	
+chongqing	ciqikou	磁器口古镇	1	0	3	4.3	全天	150	0	exact	43811	chongqing158	磁器口古镇	11	7.6	4.6	1.4万	4A	10.0		免费	磁器口古镇	
+chongqing	nanshan-yikeshu	南山一棵树观景台	1	0	3	4.6	09:00-22:30	90	30	exact	45792	chongqing158	南山一棵树观景台	56	5.9	4.4	1713		5.3	09:00	¥30	南山度假区	
+chongqing	nanbin-road	南滨路 · 龙门浩老街	0	0	0	4.4	全天	90	0	exact	132848	chongqing158	南滨路	45	6.1	4.7	265		5.2		免费	南坪商业中心区	
+chongqing	danzishi	弹子石老街	0	0	0	4.1	10:00-22:00	60	0	contain	2508689	chongqing158	长嘉汇弹子石老街	130	4.8	4.6	185	4A	3.7	10:00	免费	南滨路/弹子石	
+chongqing	beicang-guanyinqiao	北仓文创街区 · 观音桥	0	0	0	4.1	10:00-22:00	90	0	stem	132867	chongqing158	观音桥步行街	34	6.4	4.6	620	4A	2.3		免费	观音桥/九街	
+chongqing	jiaotong-teahouse	交通茶馆 · 黄桷坪涂鸦街	0	0	1	4.5	06:30-19:00	75	10	none													
+chongqing	dazu-rock-carvings	大足石刻（宝顶山）	0	1	2	4.7	08:30-18:00	240	115	exact	10330	chongqing158	大足石刻	12	7.5	4.6	8191	5A	75.4	08:30	¥115	大足石刻度假区	
+chongqing	wulong-three-bridges	武隆天生三桥	0	1	0	4.7	08:00-17:30	300	125	exact	45771	chongqing158	武隆天生三桥	2	8.3	4.6	1.7万			08:30	¥155	仙女山国家森林公园/仙女山街道	
+xian	terracotta-army	秦始皇帝陵博物院（兵马俑）	1	1	3	4.9	08:30-17:30	240	120	exact	1444	xian7	秦始皇帝陵博物院(兵马俑)	1	10	4.7	15.1万	5A	33.8	08:30	¥120	兵马俑/华清宫旅游区	
+xian	huaqing-palace	华清宫（华清池 · 骊山）	0	1	0	4.5	07:00-19:00	150	120	exact	1443	xian7	华清宫	4	8.7	4.6	3.4万	5A	27.0	07:30	¥120	兵马俑/华清宫旅游区	
+xian	city-wall	西安城墙（永宁门）	1	0	3	4.8	08:00-22:00	120	54	exact	1449	xian7	西安城墙	3	8.8	4.6	6.3万	5A	1.8	08:00	¥100	钟鼓楼/西安古城	
+xian	bell-tower	钟楼	1	0	3	4.6	08:30-21:30	45	30	exact	52702	xian7	西安钟楼	9	8.2	4.5	2.5万			08:30	¥15	钟鼓楼/西安古城	
+xian	drum-tower	鼓楼	0	0	1	4.5	08:30-21:30	40	30	exact	1410344	xian7	西安鼓楼	19	7.5	4.6	9823		0.3	08:30	¥15	钟鼓楼/西安古城	
+xian	huimin-street	回民街（北院门 · 西羊市 · 大皮院）	1	0	2	4.3	全天	120	0	exact	54080	xian7	回民街	21	7.2	4.3	1.3万		0.3		免费	钟鼓楼/西安古城	
+xian	great-mosque	西安化觉巷清真大寺	0	0	2	4.6	08:00-19:00	45	25	exact	1445	xian7	西安化觉巷清真大寺	109	4.6	4.6	267		0.6	08:00		钟鼓楼/西安古城	
+xian	gaojia-courtyard	高家大院	0	0	1	4.2	08:30-22:00	60	15	exact	73059	xian7	高家大院	27	6.9	4.3	3362		0.5	09:00	¥15	钟鼓楼/西安古城	
+xian	giant-wild-goose-pagoda	大雁塔 · 大慈恩寺	1	0	3	4.7	08:00-18:00	90	40	exact	1442	xian7	大雁塔	13	8.0	4.7	1.1万	5A	4.8	08:30	¥10	大雁塔/大唐不夜城	
+xian	datang-everbright-city	大唐不夜城	1	0	2	4.6	全天	120	0	exact	130441	xian7	大唐不夜城	8	8.5	4.5	2257		5.3		免费	大雁塔/大唐不夜城	
+xian	shaanxi-history-museum	陕西历史博物馆	1	0	3	4.8	08:30-18:00	150	0	exact	1446	xian7	陕西历史博物馆	5	9.5	4.8	3.5万	4A	4.0	08:30	免费	小寨/陕西历史博物馆	预约
+xian	beilin-museum	西安碑林博物馆	0	0	2	4.6	08:00-18:00	90	65	exact	140439	xian7	西安碑林博物馆	15	7.8	4.7	1.1万	5A	0.8	09:00	¥85	钟鼓楼/西安古城	
+xian	shuyuanmen	书院门古文化街	0	0	1	4.2	全天	45	0	stem	52727	xian7	书院门步行街	90	4.9	4.5	529		0.7		免费	钟鼓楼/西安古城	
+xian	tang-paradise	大唐芙蓉园	0	0	0	4.4	09:00-22:00	120	0	exact	26184	xian7	大唐芙蓉园	12	8.1	4.4	2.7万	5A	5.8	09:00	¥120	大雁塔/大唐不夜城	
+xian	small-wild-goose-pagoda	小雁塔 · 西安博物院	0	0	0	4.5	09:00-18:00	90	0	exact	52677	xian7	西安博物院	2	8.5	4.6	4167	4A	2.4		免费	永宁门/西安博物院	预约
+xian	yongxingfang	永兴坊	0	0	0	4.1	全天	75	0	exact	3884326	xian7	永兴坊	29	6.8	4.5	500		2.2	09:30	免费	钟鼓楼/西安古城	
+xian	daming-palace	大明宫国家遗址公园	0	0	1	4.3	09:30-18:00	120	60	exact	52685	xian7	大明宫国家遗址公园	18	7.6	4.1	9858	5A	4.0	08:30	¥80	大明宫遗址公园/西安站	
+xian	qujiang-pool-park	曲江池遗址公园	0	0	0	4.4	全天	75	0	exact	61255	xian7	西安曲江池遗址公园	78	5.2	4.8	365		7.3		免费	大雁塔/大唐不夜城	
+xian	xingqing-palace-park	兴庆宫公园	0	0	1	4.3	06:00-22:00	60	0	exact	18277	xian7	兴庆宫公园	72	5.2	4.8	422		3.4	06:00	免费	西安交大/李家村	
+xian	changan-12-hours	长安十二时辰主题街区	0	0	0	4.2	10:00-22:00	90	0	exact	133979300	xian7	长安十二时辰主题街区	14	7.8	4.1	5862		5.5	10:00	¥67	大雁塔/大唐不夜城	
+xian	defuxiang	湘子庙街 · 德福巷	0	0	0	4.2	全天	60	0	exact	73359	xian7	德福巷	104	4.7	4.5	160		0.5		免费	钟鼓楼/西安古城	
+xian	daxingshan-temple	大兴善寺	0	0	1	4.4	08:00-17:00	45	0	exact	18278	xian7	大兴善寺	50	5.9	4.6	266		3.6	08:00	免费	小寨/陕西历史博物馆	
+hangzhou	broken-bridge	断桥残雪 · 白堤	1	0	3	4.8	全天	60	0	exact	2031	hangzhou14	断桥残雪	45	6.0	4.7	1263		1.7		免费	西湖风景区/灵隐度假区	
+hangzhou	baoshi-hill	宝石山 · 保俶塔	0	0	3	4.7	全天	90	0	none													
+hangzhou	quyuan-fenghe	曲院风荷 · 岳王庙	0	0	2	4.5	全天	75	0	exact	140707	hangzhou14	岳王庙	19	6.8	4.7	4566		3.1	07:30	¥25	西湖风景区/灵隐度假区	
+hangzhou	su-causeway	苏堤春晓 · 花港观鱼	1	0	3	4.8	全天	120	0	exact	2035	hangzhou14	花港观鱼	90	5.3	4.7	1004		5.1		免费	西湖风景区/灵隐度假区	
+hangzhou	yanggongdi	杨公堤 · 茅家埠	0	0	1	4.6	全天	90	0	none													
+hangzhou	santan-yinyue	三潭印月（船游西湖）	0	0	0	4.6	08:00-16:30	90	55	exact	2038	hangzhou14	三潭印月	30	6.4	4.7	2681		4.1	07:30	¥70	西湖风景区/灵隐度假区	
+hangzhou	leifeng-pagoda	雷峰塔	1	0	3	4.5	08:00-20:00	75	40	exact	2033	hangzhou14	雷峰塔	16	7.0	4.5	9072	4A	4.8	08:00		西湖风景区/灵隐度假区	
+hangzhou	hubin-fountain	湖滨步行街 · 西湖音乐喷泉	0	0	0	4.5	全天	60	0	none													
+hangzhou	lingyin-temple	灵隐寺 · 飞来峰	1	0	3	4.8	07:30-17:30	150	0	exact	2040	hangzhou14	灵隐寺	8	8.7	4.7	2.1万		6.3	07:30	免费	西湖风景区/灵隐度假区	
+hangzhou	faxi-temple	法喜寺（上天竺）	0	0	1	4.6	06:00-18:00	75	10	contain	110280	hangzhou14	上天竺法喜讲寺	71	5.6	4.6	280		7.9	06:00		西湖风景区/灵隐度假区	
+hangzhou	longjing-village	龙井村 · 九溪十八涧	1	0	3	4.7	全天	180	0	exact	5067368	hangzhou14	龙井村	22	6.6	4.4	242		7.8		免费	西湖风景区/灵隐度假区	
+hangzhou	xixi-wetland	西溪国家湿地公园	0	0	1	4.5	08:30-17:30	180	80	exact	25481	hangzhou14	西溪国家湿地公园	1	7.9	4.6	2.9万	5A	8.7	09:00	¥80	西溪湿地商圈	
+hangzhou	hefang-street	河坊街 · 南宋御街	1	0	3	4.3	全天	90	0	exact	109855	hangzhou14	南宋御街	35	6.2	4.6	884		3.8		免费	西湖湖滨商圈	
+hangzhou	zhejiang-museum	浙江省博物馆（之江馆区）	0	0	0	4.7	09:00-17:00	150	0	exact	141029950	hangzhou14	浙江省博物馆(之江馆区)	13	7.2	4.7	823		13.7	09:00	免费	宋城/转塘/之江休闲度假区	
+hangzhou	gongchen-bridge	拱宸桥 · 桥西直街	0	0	0	4.5	全天	120	0	exact	144100	hangzhou14	拱宸桥	131	4.9	4.8	228		5.1		免费	运河商务区/新天地	
+hangzhou	qianjiang-newtown	钱江新城城市阳台 · 灯光秀	0	0	0	4.4	全天	75	0	none													
+hangzhou	tianmuli	天目里	0	0	1	4.4	10:00-22:00	90	0	none													
+hangzhou	xianghu-lake	湘湖	0	0	0	4.4	全天	150	0	exact	47184	hangzhou14	湘湖	82	5.4	4.6	1199	4A	16.7		¥60	杭州乐园/湘湖景区	
+hangzhou	liangzhu	良渚古城遗址公园	0	1	2	4.6	09:00-17:00	240	60	exact	65183916	hangzhou14	良渚古城遗址公园	25	6.6	4.4	2128		20.3	09:00	¥55	良渚文化村周边	
+hangzhou	wuzhen	乌镇西栅	0	1	0	4.7	09:00-22:00	480	150	none													
+changsha	orange-isle	橘子洲 · 青年毛泽东艺术雕塑	1	0	3	4.8	07:00-22:00	150	0	stem	9010	changsha148	橘子洲景区	1	9.0	4.6	1.4万	5A	1.8	07:00	免费	五一广场/橘子洲景区	预约
+changsha	yuelu-mountain	岳麓山	1	0	3	4.7	06:00-22:00	180	0	exact	9011	changsha148	岳麓山	3	8.3	4.6	5460	5A	4.4	06:00	免费	岳麓山/梅溪湖公园	预约
+changsha	yuelu-academy	岳麓书院	1	0	3	4.8	07:50-18:00	90	40	exact	9013	changsha148	岳麓书院	8	7.3	4.6	3676	4A	4.0	07:50		岳麓山/梅溪湖公园	
+changsha	hunan-university	湖南大学 · 东方红广场	0	0	1	4.5	全天	45	0	none													
+changsha	hunan-museum	湖南博物院（马王堆汉墓陈列）	1	0	3	4.9	09:00-17:00	180	0	alias	8981	changsha148	湖南省博物馆	2	8.8	4.8	1.6万	4A	2.6	09:00	免费	湖南博物馆/北辰三角洲	预约
+changsha	taiping-street	太平老街	1	0	1	4.3	全天	75	0	none													
+changsha	pozi-street	坡子街 · 火宫殿	1	0	3	4.4	全天	90	0	alias	67628203	changsha148	坡子街牌坊	128	3.8	4.3	32		0.8		免费	五一广场/橘子洲景区	
+changsha	huangxing-road	黄兴路步行街	0	0	0	4.1	全天	60	0	none													
+changsha	wuyi-square-ifs	五一广场 · IFS 国金中心（KAWS）	1	0	3	4.5	10:00-22:00	90	0	exact	126934701	changsha148	五一广场	9	7.2	4.6	118		0.6		免费	五一广场/橘子洲景区	
+changsha	wenheyou-hisense	长沙文和友（海信广场店）	0	0	0	4	11:00-02:00	90	0	exact	130899912	changsha148	Zoolung Zoolung动物主题公园(海信广场店)	85	4.5	5.0	2		1.0	10:00		五一广场/橘子洲景区	
+changsha	hualongchi	化龙池 · 解放西酒吧街	0	0	0	4.3	全天	120	0	none													
+changsha	duzheng-street	都正街	0	0	1	4.4	全天	60	0	exact	5073170	changsha148	都正街	101	4.2	4.6	34		0.6		免费	五一广场/橘子洲景区	
+changsha	dufu-pavilion	杜甫江阁	0	0	0	4.4	09:00-21:30	45	18	exact	1415165	changsha148	杜甫江阁	4	8.2	4.6	1.1万		1.4	09:00	¥18	五一广场/橘子洲景区	
+changsha	xiangjiang-riverside	湘江风光带夜景（橘子洲大桥段）	0	0	3	4.6	全天	60	0	contain	1834648	changsha148	湘江风光带	127	3.8	4.7	124		2.1		免费	五一广场/橘子洲景区	
+changsha	tianxin-pavilion	天心阁	0	0	0	4.3	08:00-22:00	60	28	exact	9012	changsha148	天心阁	11	7.1	4.3	2773	4A	0.8	08:00	¥30	五一广场/橘子洲景区	
+changsha	xie-zilong-museum	谢子龙影像艺术馆	0	0	0	4.6	10:00-18:00	90	0	exact	5073120	changsha148	谢子龙影像艺术馆	37	5.4	4.0	344		8.8	10:00	¥120	洋湖公园/大王山度假区	
+changsha	li-zijian-museum	李自健美术馆	0	0	0	4.5	09:30-17:30	90	0	exact	2046357	changsha148	李自健美术馆	6	7.7	4.9	1276		8.6	09:30	免费	洋湖公园/大王山度假区	预约
+changsha	houhu-art-park	后湖艺术园	0	0	0	4.3	全天	90	0	none													
+changsha	meixihu-arts-centre	梅溪湖国际文化艺术中心	0	0	1	4.6	全天	90	0	exact	145726066	changsha148	梅溪湖国际文化艺术中心	133	3.7	5.0	4		7.2	09:00		岳麓山/梅溪湖公园	
+changsha	kaifu-temple	开福寺	0	0	1	4.4	06:30-17:30	60	10	contain	9015	changsha148	古开福寺	44	5.2	4.4	230		3.7			湖南博物馆/北辰三角洲	
+changsha	tongguan-kiln-town	铜官窑古镇	0	1	0	4.2	09:00-21:00	300	0	alias	4943359	changsha148	铜官窑国风乐园	7	7.4	4.9	1.4万	4A	27.8	09:00	¥168	铜官窑度假区	
+changsha	jinggang-old-town	靖港古镇	0	1	2	4.1	全天	240	0	exact	138691	changsha148	靖港古镇	29	5.7	4.6	929	4A	34.9	09:00	¥68	铜官窑度假区	
+guangzhou	canton-tower	广州塔	1	0	3	4.7	09:30-22:30	120	150	exact	107540	guangzhou152	广州塔	3	8.4	4.6	5万	4A	3.5	09:30	¥150	琶洲会展/广州塔/客村	
+guangzhou	huacheng-square	花城广场 · 海心沙	1	0	3	4.6	全天	90	0	exact	110543	guangzhou152	花城广场	44	5.8	4.7	1006		1.9		免费	珠江新城/省博物馆	
+guangzhou	guangdong-museum	广东省博物馆	0	0	1	4.7	09:00-17:00	150	0	exact	6782	guangzhou152	广东省博物馆	10	7.3	4.7	2091		2.5	09:00	免费	珠江新城/省博物馆	
+guangzhou	shamian-island	沙面岛	1	0	3	4.6	全天	90	0	contain	11346	guangzhou152	沙面	13	7.1	4.7	7147		8.9		免费	永庆坊/上下九步行街	
+guangzhou	chen-clan-academy	陈家祠	1	0	3	4.8	09:00-17:30	90	10	exact	6772	guangzhou152	陈家祠	12	7.3	4.6	3653	4A	8.3			永庆坊/上下九步行街	
+guangzhou	yongqingfang	永庆坊 · 恩宁路	1	0	3	4.5	全天	120	0	exact	5136250	guangzhou152	永庆坊	49	5.6	4.5	379	4A	9.3		免费	永庆坊/上下九步行街	
+guangzhou	shangxiajiu	上下九步行街	0	0	0	4.2	全天	90	0	none													
+guangzhou	lizhiwan	荔枝湾涌 · 泮塘	0	0	0	4.4	全天	75	0	exact	1460036	guangzhou152	荔枝湾涌	108	4.5	4.6	342		9.6		免费	永庆坊/上下九步行街	
+guangzhou	beijing-road	北京路步行街	0	0	0	4.3	全天	90	0	none													
+guangzhou	sacred-heart-cathedral	石室圣心大教堂	0	0	2	4.6	08:30-17:30	45	0	contain	6959	guangzhou152	广州圣心大教堂	29	6.4	4.6	1661		7.1	09:00	免费	海珠广场/北京路步行街	
+guangzhou	nanyue-palace-museum	南越王宫博物馆（王宫展区）	0	0	0	4.4	09:00-17:30	75	0	exact	5613345	guangzhou152	南越王博物院(王宫展区)	11	7.3	4.7	2334		5.8	09:00	免费	海珠广场/北京路步行街	预约
+guangzhou	pearl-river-cruise	珠江夜游（天字码头）	1	0	3	4.5	18:30-22:00	90	98	exact	110464	guangzhou152	珠江夜游	4	7.9	4.5	1.3万		6.1	18:30	¥98	海珠广场/北京路步行街	
+guangzhou	yuexiu-park	越秀公园 · 五羊石像 · 镇海楼	0	0	1	4.5	06:00-22:00	120	0	exact	6821	guangzhou152	越秀公园	8	7.6	4.5	4532	4A	6.1	06:00	免费	火车站/越秀公园附近	
+guangzhou	sun-yat-sen-memorial-hall	中山纪念堂	0	0	0	4.5	08:00-18:00	60	10	exact	6824	guangzhou152	广州中山纪念堂	19	6.7		3690	4A	6.2	09:00	¥10	火车站/越秀公园附近	
+guangzhou	nanyue-king-museum	南越王博物院（王墓展区）	1	0	3	4.8	09:00-17:30	90	0	exact	6808	guangzhou152	南越王博物院(王墓展区)	5	8.0	4.6	6300	4A	6.5	09:00	¥0	火车站/越秀公园附近	
+guangzhou	dongshankou	东山口 · 新河浦	0	0	0	4.5	全天	120	0	none													
+guangzhou	taikoo-wharf	太古仓码头	0	0	0	4.3	全天	90	0	exact	146183000	guangzhou152	珠江夜游(太古仓码头)	150	4.0	4.6	12		9.2	18:00	¥99	江南西/中大南校区	
+guangzhou	huangpu-ancient-port	黄埔古港 · 黄埔村	0	0	0	4.3	09:00-18:00	120	0	none													
+guangzhou	baiyun-mountain	白云山	0	0	1	4.6	06:00-21:00	240	5	exact	6766	guangzhou152	白云山	35	6.2	4.7	5631	5A	5.6			广州体育馆/白云山	
+guangzhou	chimelong-safari	长隆野生动物世界	0	1	0	4.7	09:30-18:00	480	350	exact	6802	guangzhou152	长隆野生动物世界	1	9.2	4.8	10.8万		15.2	09:30	¥180	番禺长隆/广州南站附近	
+guangzhou	shawan-ancient-town	沙湾古镇	0	1	2	4.3	09:30-17:30	180	40	exact	121749	guangzhou152	沙湾古镇	22	6.7	4.4	1248	4A	26.3		¥40	番禺市桥/亚运城	
+guangzhou	lianhua-mountain	莲花山旅游区	0	1	2	4.3	08:00-18:00	180	50	exact	6799	guangzhou152	莲花山旅游区	65	5.3	4.7	2259	4A	24.8	07:00	¥54	番禺市桥/亚运城	
+xiamen	sunlight-rock	日光岩	1	0	3	4.7	08:00-18:00	90	50	exact	2345	xiamen21	日光岩	20	6.7	4.6	8528		5.0	08:30	¥50	鼓浪屿地区	
+xiamen	shuzhuang-garden	菽庄花园 · 钢琴博物馆	1	0	3	4.6	08:00-17:30	75	30	exact	2346	xiamen21	菽庄花园	14	6.9	4.7	3083		5.0	08:30	¥30	鼓浪屿地区	
+xiamen	gulangyu-villas	鼓浪屿老别墅群 · 龙头路	1	0	3	4.6	全天	150	0	exact	5709743	xiamen21	龙头路	108	4.1	4.8	17		4.4		免费	鼓浪屿地区	
+xiamen	haoyue-garden	皓月园	0	0	0	4.3	08:00-18:00	45	15	exact	8614	xiamen21	皓月园	33	5.9	4.6	1294		4.5	08:30	¥10	鼓浪屿地区	
+xiamen	nanputuo-temple	南普陀寺	1	0	3	4.7	08:00-17:30	90	0	exact	2344	xiamen21	南普陀寺	5	7.4	4.6	5366		4.3	08:00	免费	厦门大学地区	预约
+xiamen	xiamen-university	厦门大学（思明校区）	1	0	3	4.8	08:00-18:00	150	0	exact	14050	xiamen21	厦门大学(思明校区)	4	7.6	4.6	1.4万		5.0	10:30	免费	厦门大学地区	预约
+xiamen	furong-tunnel	芙蓉隧道	0	0	0	4.3	08:00-18:00	40	0	exact	147606	xiamen21	芙蓉隧道	96	4.2	4.7	593		5.4	10:30	免费	厦门大学地区	
+xiamen	hulishan-fortress	胡里山炮台	0	0	2	4.4	07:30-17:30	75	25	exact	2342	xiamen21	胡里山炮台	6	7.6	4.7	1.6万	4A	5.9	08:00	¥25	厦门大学地区	
+xiamen	yanwu-bridge-platform	演武大桥观景平台	1	0	3	4.6	全天	60	0	exact	1977866	xiamen21	演武大桥观景平台	122	4.2	4.6	63		5.2		免费	厦门大学地区	
+xiamen	baicheng-beach	白城沙滩	0	0	2	4.4	全天	45	0	exact	145124	xiamen21	白城沙滩	25	6.5	4.6	724		5.6		免费	厦门大学地区	
+xiamen	shapowei	沙坡尾 · 艺术西区	1	0	3	4.5	全天	120	0	exact	149967763	xiamen21	沙坡尾	41	5.8	4.8	17		4.5			厦门大学地区	
+xiamen	overseas-chinese-museum	华侨博物院	0	0	0	4.5	09:00-17:30	90	0	none													
+xiamen	zengcuoan	曾厝垵	0	0	1	4	10:00-23:00	120	0	exact	109999	xiamen21	曾厝垵	17	6.8	4.5	5036		6.9		免费	曾厝垵地区	
+xiamen	huandao-road	环岛路骑行（曾厝垵—黄厝段）	0	0	2	4.5	全天	150	0	contain	8669	xiamen21	环岛路	24	6.5	4.7	6874		5.2		免费	厦门大学地区	
+xiamen	zhongshan-road	中山路步行街	0	0	0	4.3	10:00-23:00	90	0	exact	137032	xiamen21	中山路步行街	16	6.9	4.6	2538		3.1		免费	中山路地区	
+xiamen	bashi-market	第八市场（八市）	0	0	3	4.5	06:00-19:00	60	0	none													
+xiamen	wanshi-botanical-garden	万石植物园	0	0	2	4.6	06:30-18:00	150	30	alias	8625	xiamen21	厦门园林植物园	2	8.4	4.6	1.9万	5A	4.1	06:30	¥30	厦门大学地区	
+xiamen	railway-culture-park	铁路文化公园	0	0	1	4.1	全天	60	0	none													
+xiamen	shanhai-trail	山海健康步道 · 狐尾山段	0	0	1	4.6	全天	120	0	exact	145109168	xiamen21	山海健康步道	115	4.0	4.0	1		4.4			SM城市广场地区	
+xiamen	yundang-lake-bailuzhou	筼筜湖 · 白鹭洲公园	0	0	1	4.3	全天	60	0	exact	48778	xiamen21	白鹭洲公园	131	3.9	4.7	517		0.7		免费	白鹭洲/东渡客运码头	
+xiamen	jimei-school-village	集美学村 · 龙舟池 · 鳌园	0	0	0	4.5	08:00-18:00	150	0	exact	2343	xiamen21	集美学村	11	7.0	4.7	890		9.6		免费	集美学村/厦门大悦城	
+xiamen	nanjing-tulou	南靖土楼（田螺坑土楼群）	0	1	0	4.6	08:00-17:30	240	90	none													

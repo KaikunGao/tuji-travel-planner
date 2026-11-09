@@ -48,6 +48,7 @@ export const chengdu: City = {
       lng: 104.056,
       duration: 120,
       rating: 4.3,
+      popularity: 14000,
       price: 0,
       openHours: '全天',
       description:
@@ -73,6 +74,7 @@ export const chengdu: City = {
       lng: 104.0562,
       duration: 90,
       rating: 4.7,
+      popularity: 1025,
       price: 0,
       openHours: '06:30-22:00',
       description:
@@ -97,6 +99,7 @@ export const chengdu: City = {
       lng: 104.0632,
       duration: 120,
       rating: 4.7,
+      popularity: 5476,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -122,6 +125,7 @@ export const chengdu: City = {
       lng: 104.0468,
       duration: 120,
       rating: 4.6,
+      popularity: 30000,
       price: 50,
       openHours: '08:00-18:00',
       description:
@@ -147,6 +151,7 @@ export const chengdu: City = {
       lng: 104.0488,
       duration: 90,
       rating: 4.1,
+      popularity: 16000,
       price: 0,
       openHours: '全天',
       description:
@@ -171,6 +176,7 @@ export const chengdu: City = {
       lng: 104.024,
       duration: 120,
       rating: 4.6,
+      popularity: 48000,
       price: 50,
       openHours: '08:00-18:00',
       description:
@@ -196,6 +202,7 @@ export const chengdu: City = {
       lng: 104.0262,
       duration: 120,
       rating: 4.5,
+      popularity: 1612,
       price: 0,
       openHours: '09:00-17:00',
       closedOn: [1],
@@ -221,6 +228,7 @@ export const chengdu: City = {
       lng: 104.0218,
       duration: 60,
       rating: 4.5,
+      popularity: 533,
       price: 0,
       openHours: '全天',
       description:
@@ -244,6 +252,7 @@ export const chengdu: City = {
       lng: 104.0405,
       duration: 60,
       rating: 4.4,
+      popularity: 923,
       price: 10,
       openHours: '08:00-17:30',
       description:
@@ -267,6 +276,7 @@ export const chengdu: City = {
       lng: 104.0438,
       duration: 90,
       rating: 4.5,
+      popularity: 8638,
       price: 220,
       openHours: '19:30-21:30',
       description:
@@ -291,6 +301,7 @@ export const chengdu: City = {
       lng: 104.1465,
       duration: 180,
       rating: 4.8,
+      popularity: 115000,
       price: 55,
       openHours: '07:30-18:00',
       description:
@@ -317,6 +328,7 @@ export const chengdu: City = {
       lng: 104.082,
       duration: 120,
       rating: 4.5,
+      popularity: 5065,
       price: 0,
       openHours: '全天',
       description:
@@ -341,6 +353,7 @@ export const chengdu: City = {
       lng: 104.0735,
       duration: 75,
       rating: 4.6,
+      popularity: 2065,
       price: 0,
       openHours: '08:00-17:00',
       description:
@@ -364,6 +377,7 @@ export const chengdu: City = {
       lng: 104.1152,
       duration: 120,
       rating: 4.4,
+      popularity: 543,
       price: 0,
       openHours: '全天',
       description:
@@ -388,6 +402,7 @@ export const chengdu: City = {
       lng: 104.0866,
       duration: 90,
       rating: 4.3,
+      popularity: 405,
       price: 0,
       openHours: '全天',
       description:
@@ -412,6 +427,7 @@ export const chengdu: City = {
       lng: 104.0938,
       duration: 75,
       rating: 4.4,
+      popularity: 699,
       price: 20,
       openHours: '08:00-18:00',
       description:
@@ -436,6 +452,7 @@ export const chengdu: City = {
       lng: 104.0108,
       duration: 120,
       rating: 4.6,
+      popularity: 19000,
       price: 70,
       openHours: '09:00-18:00',
       closedOn: [1],
@@ -461,6 +478,7 @@ export const chengdu: City = {
       lng: 104.0545,
       duration: 90,
       rating: 4.3,
+      popularity: 36,
       price: 0,
       openHours: '全天',
       description:
@@ -485,6 +503,7 @@ export const chengdu: City = {
       lng: 103.6058,
       duration: 240,
       rating: 4.7,
+      popularity: 58000,
       price: 80,
       openHours: '08:00-18:00',
       description:
@@ -511,6 +530,7 @@ export const chengdu: City = {
       lng: 103.5685,
       duration: 300,
       rating: 4.6,
+      popularity: 35000,
       price: 80,
       openHours: '08:00-18:00',
       description:
@@ -537,6 +557,7 @@ export const chengdu: City = {
       lng: 104.2055,
       duration: 180,
       rating: 4.8,
+      popularity: 111,
       price: 72,
       openHours: '08:30-18:00',
       description:
