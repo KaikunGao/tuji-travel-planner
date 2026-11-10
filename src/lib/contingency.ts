@@ -13,9 +13,9 @@
  */
 import type { Attraction, City, Exposure, Tier, TripPlan } from '../types'
 import { TIER_LABEL, cutOptions, dayEnd, describeDiff, diffPlans, previewRemove, type DiffLine, type PlanDiff } from './change'
-import { formatDuration, formatKm, minutesToHHMM, weekdayOf } from './format'
+import { formatDuration, formatKm, hhmmToMinutes, minutesToHHMM, weekdayOf } from './format'
 import { haversine } from './geo'
-import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, guideTier, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, swapDays, tierOf } from './planner'
+import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, guideTier, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, setProgress, swapDays, tierOf } from './planner'
 
 /* ------------------------------------------------------------------ */
 /* 淋雨程度                                                             */
@@ -131,7 +131,7 @@ export function findAlternatives(city: City, plan: TripPlan, dayIdx: number, att
 /* C4 预案                                                              */
 /* ------------------------------------------------------------------ */
 
-export type TriggerKind = 'rain' | 'blocked' | 'queue' | 'tired'
+export type TriggerKind = 'late' | 'rain' | 'blocked' | 'queue' | 'tired'
 
 export interface PlanOption {
   key: string
@@ -141,6 +141,8 @@ export interface PlanOption {
   lines: DiffLine[]
   /** 采用后的行程；为空表示「不改行程」（比如继续等） */
   next?: TripPlan
+  /** 为空 next 的另一种情况：引擎给不出自动方案，要用户手动改 */
+  manual?: boolean
 }
 
 export interface Contingency {
@@ -415,9 +417,110 @@ export function queuePlan(city: City, plan: TripPlan, dayIdx: number, stopId: st
 }
 
 /** 一天的全部预案 */
-export function contingenciesOf(city: City, plan: TripPlan, dayIdx: number): { rain: Contingency; tired: Contingency; blocked: Contingency[]; queue: Contingency[] } {
+/** 晚多久：比计划晚一小时、两小时，以及「中午才开始」「下午才到」两个固定时刻 */
+const LATE_OFFSETS = [60, 120]
+const LATE_FIXED = [12 * 60 + 30, 15 * 60]
+/** 顺延后最晚几点收工还算排得下 */
+const LATE_END = 23 * 60
+
+/**
+ * 到晚了 / 起晚了：航班火车晚点、起晚、堵车，比计划晚出发。
+ * 每个候选时刻就是一次「从几点接着排」（行中模式的 setProgress）：排得下就全保留；排不下就在剩下的站里砍一个损失最小、
+ * 且能消掉新冲突的点；都消不掉就照原样顺延并说明会有冲突。采用后进入行中模式，具体几点到可以在时间轴上再改。
+ * 2026-11-09 小红书 203 篇采样里，旅途中改行程的头号原因是交通延误与起晚（52% + 10%），这张卡为此而加。
+ */
+export function latePlan(city: City, plan: TripPlan, dayIdx: number): Contingency {
+  const day = plan.days[dayIdx]
+  const base: Contingency = { kind: 'late', dayIdx, title: '到晚了 / 起晚了', when: '航班火车晚点、起晚了、路上堵了，比计划晚出发', facts: [], options: [] }
+  if (!day) return base
+  const ids = remainingIdsOfDay(plan, dayIdx)
+  if (!ids.length) return { ...base, note: nothingLeft(plan, dayIdx) }
+  const onThisDay = plan.progress?.dayIdx === dayIdx
+  const doneCount = onThisDay ? plan.progress!.doneCount : 0
+  const from = onThisDay ? plan.progress!.now : hhmmToMinutes(plan.params.startTime)
+  base.facts.push(`计划 ${minutesToHHMM(from)} ${onThisDay ? '接着走' : '出发'}，还有 ${ids.length} 站。具体几点到，采用后可在时间轴上改「现在几点」`)
+  const times = [...LATE_OFFSETS.map((o) => from + o), ...LATE_FIXED]
+    .filter((t, i, arr) => t > from + 30 && arr.indexOf(t) === i && t < dayEnd(day))
+    .sort((a, b) => a - b)
+    .slice(0, 4)
+  /** 排得下：没有新冲突，且收工不晚于 LATE_END */
+  const fits = (p: TripPlan): PlanDiff | null => {
+    const d = diffPlans(city, plan, p)
+    return d && !hasNewConflict(d) && dayEnd(p.days[dayIdx]) <= LATE_END ? d : null
+  }
+  for (const t of times) {
+    const label = `${minutesToHHMM(t)} 才开始`
+    const shifted = setProgress(city, plan, dayIdx, doneCount, t)
+    const diff = diffPlans(city, plan, shifted)
+    if (!diff) continue
+    const d0 = fits(shifted)
+    if (d0) {
+      base.options.push({ key: `late:${t}`, title: `${label}，剩下的全保留`, lines: describeDiff(d0, shifted, city), next: shifted })
+      continue
+    }
+    // 顺延排不下：先试重排剩下站的顺序（比如先去早关门的），能排下就不用砍
+    const reordered = rebuildDay(city, shifted, dayIdx, attractionIdsOfDay(day), true, pinnedMealsOf(day))
+    const dr = fits(reordered)
+    if (dr) {
+      base.options.push({ key: `late:${t}:reorder`, title: `${label}，调整顺序后全保留`, why: '把早关门的点排到前面', lines: describeDiff(dr, reordered, city), next: reordered })
+      continue
+    }
+    // 还是排不下：两种砍法都给——只砍一个就排得下的（损失最小的那个），和「从价值低的开始依次砍、留住主景点」；
+    // 砍到一站不剩不算方案（那是换天的事）
+    const fitsNonEmpty = (p: TripPlan) => !!fits(p) && remainingIdsOfDay(p, dayIdx).length > 0
+    const single = cutOptions(city, shifted, dayIdx).find((o) => fitsNonEmpty(o.next))
+    let cur = shifted
+    const cutNames: string[] = []
+    let cascade: TripPlan | null = null
+    for (let k = 0; k < 3; k++) {
+      const cs = cutOptions(city, cur, dayIdx)
+      if (cs.length < 2) break
+      cur = cs[0].next
+      cutNames.push(cs[0].a.name)
+      if (fits(cur)) { cascade = cur; break }
+    }
+    if (single) {
+      base.options.push({
+        key: `late:${t}:cut:${single.a.id}`,
+        title: `${label}，砍掉 ${single.a.name}`,
+        why: single.tier === 'droppable' ? '你标了可放弃' : single.a.mustSee ? '只砍一个的话只能是它；它是必去级景点，也可以看下一条，或去「某个点去不了」换天' : '剩下的站挤不进闭园前，砍它损失最小',
+        lines: describeDiff(fits(single.next)!, single.next, city),
+        next: single.next,
+      })
+    }
+    if (cascade && cutNames.length > 1) {
+      base.options.push({ key: `late:${t}:cuts`, title: `${label}，砍掉 ${cutNames.join('、')}`, why: '先砍价值低的，留住主景点', lines: describeDiff(fits(cascade)!, cascade, city), next: cascade })
+    }
+    if (single || cascade) continue
+    // 砍到不能再砍还是排不下：把赶不上闭园的点换到别天
+    const conflicted = shifted.days[dayIdx].stops.filter((x) => x.kind === 'attraction' && x.warning && !plan.days[dayIdx].stops.find((b) => b.kind === x.kind && b.id === x.id)?.warning).map((x) => x.id)
+    let moved = false
+    for (const id of conflicted) {
+      const { near } = rescheduleOptions(city, shifted, dayIdx, id, 1)
+      const m = near.find((o) => o.next && fits(o.next))
+      if (m && m.next) {
+        base.options.push({ key: `late:${t}:move:${id}`, title: `${label}，${nameOf(city, id)} ${m.title}`, why: '今天赶不上它闭园了，别的天还排得下', lines: describeDiff(fits(m.next)!, m.next, city), next: m.next })
+        moved = true
+        break
+      }
+    }
+    if (!moved) {
+      const left = conflicted.map((id) => nameOf(city, id)).filter((n) => !cutNames.includes(n)).join('、')
+      base.options.push({ key: `late:${t}:manual`, title: `${label}，剩下的基本排不下`, why: `${cutNames.length ? `即使砍掉 ${cutNames.join('、')}，` : ''}${left || '剩下的站'}也赶不上闭园或要很晚收工。去「某个点去不了」把它换到别天，或今天改成自由活动`, lines: [], manual: true })
+    }
+  }
+  if (!base.options.length) base.note = '这一天本来就排到很晚，再晚就只能砍点，用「走不动了」看先砍谁。'
+  return base
+}
+
+/**
+ * 一天的全部预案。顺序按 2026-11-09 小红书 203 篇采样里旅途中改行程的原因频率：
+ * 到晚了（交通延误 52% + 起晚 10%）> 下雨（37%）> 走不动（20%）> 去不了（7%）> 排队（3%）。
+ */
+export function contingenciesOf(city: City, plan: TripPlan, dayIdx: number): { late: Contingency; rain: Contingency; tired: Contingency; blocked: Contingency[]; queue: Contingency[] } {
   const ids = plan.days[dayIdx] ? remainingIdsOfDay(plan, dayIdx) : []
   return {
+    late: latePlan(city, plan, dayIdx),
     rain: rainPlan(city, plan, dayIdx),
     tired: tiredPlan(city, plan, dayIdx),
     blocked: ids.map((id) => blockedPlan(city, plan, dayIdx, id)),

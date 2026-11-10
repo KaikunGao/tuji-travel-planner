@@ -1,4 +1,4 @@
-import { Ban, BatteryLow, Check, ChevronDown, CloudRain, Hourglass } from 'lucide-react'
+import { AlarmClock, Ban, BatteryLow, Check, ChevronDown, CloudRain, Hourglass } from 'lucide-react'
 import { useMemo, type ReactNode } from 'react'
 import type { City, TripPlan } from '../types'
 import { contingenciesOf, type Contingency, type PlanOption } from '../lib/contingency'
@@ -26,7 +26,7 @@ function OptionCard({ option, recommended, onApply }: { option: PlanOption; reco
             <Check size={13} /> 采用
           </Button>
         ) : (
-          <span className="shrink-0 rounded-md bg-ink/5 px-2 py-1 text-[11px] text-muted">不用改行程</span>
+          <span className="shrink-0 rounded-md bg-ink/5 px-2 py-1 text-[11px] text-muted">{option.manual ? '要手动改' : '不用改行程'}</span>
         )}
       </div>
       <div className="mt-2">
@@ -114,7 +114,7 @@ export function ContingencyTab({
   return (
     <div className="flex flex-col gap-4">
       <div className="rounded-2xl border border-line bg-white/70 p-4 text-sm text-ink/85">
-        出发前先看一眼：出状况时怎么改、要付出什么代价。<span className="text-muted">下不下雨、排不排队由你说了算，途迹不接天气和排队数据；时间按直线距离估算，只看量级。必去的点不会被自动换掉或砍掉。</span>
+        出发前先看一眼：出状况时怎么改、要付出什么代价。<span className="text-muted">按旅行者真实遇到的频率排序：到晚了最常见，其次下雨、走不动。到不到、下不下雨由你说了算，途迹不接航班、天气和排队数据；时间按直线距离估算，只看量级。必去的点不会被自动换掉或砍掉。</span>
       </div>
 
       <div className="no-print flex gap-2 overflow-x-auto pb-1 tj-scroll">
@@ -134,6 +134,10 @@ export function ContingencyTab({
 
       {day && (
         <>
+          <Card icon={<AlarmClock size={18} />} title={`Day ${day.day} 到晚了 / 起晚了`} when={all.late.when}>
+            <ContingencyBody c={all.late} onApply={onApply} />
+          </Card>
+
           <Card icon={<CloudRain size={18} />} title={`Day ${day.day} 下雨`} when={all.rain.when}>
             <ContingencyBody c={all.rain} onApply={onApply} />
           </Card>
