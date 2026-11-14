@@ -13,9 +13,9 @@
  */
 import type { Attraction, City, Exposure, Tier, TripPlan } from '../types'
 import { TIER_LABEL, cutOptions, dayEnd, describeDiff, diffPlans, previewRemove, type DiffLine, type PlanDiff } from './change'
-import { formatDuration, formatKm, hhmmToMinutes, minutesToHHMM, weekdayOf } from './format'
+import { formatDuration, formatKm, hhmmToMinutes, minutesToHHMM, parseOpenHours, weekdayOf } from './format'
 import { haversine } from './geo'
-import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, guideTier, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, setProgress, swapDays, tierOf } from './planner'
+import { attractionIdsOfDay, formatGuideShare, formatPopularity, guideBonus, guideTier, isPastDay, isSuburb, moveToDay, pinnedMealsOf, popularityBonus, rebuildDay, remainingIdsOfDay, replaceAttraction, scoreAttraction, setProgress, swapDays, tierOf } from './planner'
 
 /* ------------------------------------------------------------------ */
 /* 淋雨程度                                                             */
@@ -255,10 +255,17 @@ export function tiredPlan(city: City, plan: TripPlan, dayIdx: number): Contingen
   const must = ids.filter((id) => tierOf(plan.params, id) === 'must')
   if (must.length) base.facts.push(`必去的不会动：${must.map((id) => nameOf(city, id)).join('、')}`)
   if (!options.length) return { ...base, note: ids.length ? '剩下的都是必去，没有可砍的点。先把某个点改成「可选」或「可放弃」。' : nothingLeft(plan, dayIdx) }
-  base.options = options.slice(0, 3).map((o) => ({
+  // 砍了反而更晚收工的（后面的站被饭点或夜景钉住，砍掉白天的点只多出空档）排到最后：累了的人要的是少走、早回
+  const endsLater = (o: (typeof options)[number]) => {
+    const d = o.diff.days.find((x) => x.dayIdx === dayIdx)
+    return !!d && d.endTo > d.endFrom
+  }
+  const ranked = [...options.filter((o) => !endsLater(o)), ...options.filter(endsLater)]
+  const only = ids.length === 1
+  base.options = ranked.slice(0, 3).map((o) => ({
     key: `tired:${o.a.id}`,
     title: `砍掉 ${o.a.name}${o.savedMinutes > 0 ? `，腾出约 ${formatDuration(o.savedMinutes)}` : ''}`,
-    why: o.tier === 'droppable' ? '你标了可放弃' : undefined,
+    why: only ? '这一天只有这一站，砍掉就是这天不去了；只是累了的话，可以少逛一会儿早点回' : o.tier === 'droppable' ? '你标了可放弃' : undefined,
     lines: describeDiff(o.diff, o.next, city),
     next: o.next,
   }))
@@ -416,6 +423,73 @@ export function queuePlan(city: City, plan: TripPlan, dayIdx: number, stopId: st
   return base
 }
 
+/** 到晚了排不下时，最多对这么多站做「留哪几个」的全枚举；再多就只试砍 1–3 个 */
+const KEEP_ENUM_MAX = 8
+
+interface Keep {
+  next: TripPlan
+  diff: PlanDiff
+  /** 砍掉 / 留下的景点 id */
+  cut: string[]
+  kept: string[]
+  /** 留下来的总价值 */
+  value: number
+}
+
+/** 景点几点关门（距 0:00 的分钟数；全天开放记 1440）。已经走完的站排在最前，不参与比较 */
+function closeOf(city: City, id: string): number {
+  const a = city.attractions.find((x) => x.id === id)
+  return a ? parseOpenHours(a.openHours)[1] : 1440
+}
+
+/** 当天还没走的站里最值得去的那个（你标了可放弃的不算） */
+function topStop(city: City, plan: TripPlan, ids: string[]): Attraction | undefined {
+  return ids
+    .filter((id) => tierOf(plan.params, id) !== 'droppable')
+    .map((id) => city.attractions.find((a) => a.id === id))
+    .filter((a): a is Attraction => !!a)
+    .sort((x, y) => scoreAttraction(y, plan.params.interests, false, plan.variant) - scoreAttraction(x, plan.params.interests, false, plan.variant))[0]
+}
+
+/**
+ * 枚举「留哪几个」：返回排得下的留法，按留下来的总价值从高到低（一样时砍得少的在前）。
+ * 你标了必去的一定留；可放弃的价值按 0 算，所以先砍它们。先按原顺序排，排不下再试调整顺序。
+ */
+function feasibleKeeps(city: City, shifted: TripPlan, dayIdx: number, fits: (p: TripPlan) => PlanDiff | null): Keep[] {
+  const day = shifted.days[dayIdx]
+  const ids = remainingIdsOfDay(shifted, dayIdx)
+  const n = ids.length
+  if (n < 2) return []
+  const all = attractionIdsOfDay(day)
+  const pinned = pinnedMealsOf(day)
+  const value = (id: string) => {
+    if (tierOf(shifted.params, id) === 'droppable') return 0
+    const a = city.attractions.find((x) => x.id === id)
+    return a ? scoreAttraction(a, shifted.params.interests, false, shifted.variant) : 0
+  }
+  const out: Keep[] = []
+  for (let mask = 1; mask < (1 << n) - 1; mask++) {
+    const kept = ids.filter((_, i) => mask & (1 << i))
+    const cut = ids.filter((_, i) => !(mask & (1 << i)))
+    if (n > KEEP_ENUM_MAX && cut.length > 3) continue
+    if (cut.some((id) => tierOf(shifted.params, id) === 'must')) continue
+    const rest = all.filter((id) => !cut.includes(id))
+    let found: { next: TripPlan; diff: PlanDiff } | null = null
+    // 三种顺序依次试：原顺序、早关门的排前面、按路程重排。晚到时最常见的解法是把早关门的先去、开到很晚的留到傍晚
+    const byClose = [...rest].sort((x, y) => closeOf(city, x) - closeOf(city, y))
+    for (const [order, optimize] of [[rest, false], [byClose, false], [rest, true]] as const) {
+      const built = rebuildDay(city, shifted, dayIdx, order, optimize, pinned)
+      const diff = fits(built)
+      if (diff) {
+        found = { next: { ...built, skipped: built.skipped.filter((x) => !cut.includes(x.id)).concat(cut.map((id) => ({ id, reason: '到晚了，排不下' }))) }, diff }
+        break
+      }
+    }
+    if (found) out.push({ ...found, cut, kept, value: kept.reduce((sum, id) => sum + value(id), 0) })
+  }
+  return out.sort((x, y) => y.value - x.value || x.cut.length - y.cut.length)
+}
+
 /** 一天的全部预案 */
 /** 晚多久：比计划晚一小时、两小时，以及「中午才开始」「下午才到」两个固定时刻 */
 const LATE_OFFSETS = [60, 120]
@@ -465,33 +539,39 @@ export function latePlan(city: City, plan: TripPlan, dayIdx: number): Contingenc
       base.options.push({ key: `late:${t}:reorder`, title: `${label}，调整顺序后全保留`, why: '把早关门的点排到前面', lines: describeDiff(dr, reordered, city), next: reordered })
       continue
     }
-    // 还是排不下：两种砍法都给——只砍一个就排得下的（损失最小的那个），和「从价值低的开始依次砍、留住主景点」；
-    // 砍到一站不剩不算方案（那是换天的事）
-    const fitsNonEmpty = (p: TripPlan) => !!fits(p) && remainingIdsOfDay(p, dayIdx).length > 0
-    const single = cutOptions(city, shifted, dayIdx).find((o) => fitsNonEmpty(o.next))
-    let cur = shifted
-    const cutNames: string[] = []
-    let cascade: TripPlan | null = null
-    for (let k = 0; k < 3; k++) {
-      const cs = cutOptions(city, cur, dayIdx)
-      if (cs.length < 2) break
-      cur = cs[0].next
-      cutNames.push(cs[0].a.name)
-      if (fits(cur)) { cascade = cur; break }
+    // 还是排不下：枚举「留哪几个」（不止砍一个，也不只从价值低的往上砍），两种取法都给——
+    // 先保住当天最值得去的那个点、再尽量多留；以及不管保谁、留下来的总价值最高（通常就是只砍一个）。
+    // 最值得去的那个点今天已经赶不上时，只有后一种，并说明它得换天。砍到一站不剩不算方案（那是换天的事）
+    const keeps = feasibleKeeps(city, shifted, dayIdx, fits)
+    if (keeps.length) {
+      const top = topStop(city, plan, remainingIdsOfDay(shifted, dayIdx))
+      const keepTop = top ? keeps.find((k) => !k.cut.includes(top.id)) : undefined
+      const best = keeps[0]
+      const push = (k: Keep, why: string) =>
+        base.options.push({ key: `late:${t}:cut:${k.cut.join('+')}`, title: `${label}，砍掉 ${k.cut.map((id) => nameOf(city, id)).join('、')}`, why, lines: describeDiff(k.diff, k.next, city), next: k.next })
+      const droppable = (k: Keep) => k.cut.every((id) => tierOf(plan.params, id) === 'droppable')
+      if (keepTop) {
+        const why = droppable(keepTop)
+          ? '你标了可放弃'
+          : keepTop !== best
+            ? `留住 ${top!.name}（这天最值得去的），其余排不下的砍掉`
+            : keepTop.cut.length > 1
+              ? `剩下的站挤不进闭园前；留住 ${top!.name}，先砍价值低的`
+              : '剩下的站挤不进闭园前，砍它损失最小'
+        push(keepTop, why)
+      }
+      if (best !== keepTop) {
+        push(
+          best,
+          keepTop
+            ? `只少${best.cut.length > 1 ? ` ${best.cut.length} 个` : '一个'}点，但放弃的是 ${top!.name}；想留住它看上一条，或去「某个点去不了」把它换到别天`
+            : top && best.cut.includes(top.id)
+              ? `${top.name} 今天赶不上了（闭园前排不下），可以去「某个点去不了」把它换到别天`
+              : '剩下的站挤不进闭园前，这样留下的最多',
+        )
+      }
+      continue
     }
-    if (single) {
-      base.options.push({
-        key: `late:${t}:cut:${single.a.id}`,
-        title: `${label}，砍掉 ${single.a.name}`,
-        why: single.tier === 'droppable' ? '你标了可放弃' : single.a.mustSee ? '只砍一个的话只能是它；它是必去级景点，也可以看下一条，或去「某个点去不了」换天' : '剩下的站挤不进闭园前，砍它损失最小',
-        lines: describeDiff(fits(single.next)!, single.next, city),
-        next: single.next,
-      })
-    }
-    if (cascade && cutNames.length > 1) {
-      base.options.push({ key: `late:${t}:cuts`, title: `${label}，砍掉 ${cutNames.join('、')}`, why: '先砍价值低的，留住主景点', lines: describeDiff(fits(cascade)!, cascade, city), next: cascade })
-    }
-    if (single || cascade) continue
     // 砍到不能再砍还是排不下：把赶不上闭园的点换到别天
     const conflicted = shifted.days[dayIdx].stops.filter((x) => x.kind === 'attraction' && x.warning && !plan.days[dayIdx].stops.find((b) => b.kind === x.kind && b.id === x.id)?.warning).map((x) => x.id)
     let moved = false
@@ -505,8 +585,8 @@ export function latePlan(city: City, plan: TripPlan, dayIdx: number): Contingenc
       }
     }
     if (!moved) {
-      const left = conflicted.map((id) => nameOf(city, id)).filter((n) => !cutNames.includes(n)).join('、')
-      base.options.push({ key: `late:${t}:manual`, title: `${label}，剩下的基本排不下`, why: `${cutNames.length ? `即使砍掉 ${cutNames.join('、')}，` : ''}${left || '剩下的站'}也赶不上闭园或要很晚收工。去「某个点去不了」把它换到别天，或今天改成自由活动`, lines: [], manual: true })
+      const left = conflicted.map((id) => nameOf(city, id)).join('、')
+      base.options.push({ key: `late:${t}:manual`, title: `${label}，剩下的基本排不下`, why: `${left || '剩下的站'}赶不上闭园或要很晚收工，砍掉别的点也救不回来。去「某个点去不了」把它换到别天，或今天改成自由活动`, lines: [], manual: true })
     }
   }
   if (!base.options.length) base.note = '这一天本来就排到很晚，再晚就只能砍点，用「走不动了」看先砍谁。'

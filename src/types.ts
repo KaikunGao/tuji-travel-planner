@@ -81,6 +81,8 @@ export interface Attraction {
   price: number
   /** 开放时间 "08:30-17:00" 或 "全天" */
   openHours: string
+  /** 停止入场时间 "16:30"：比闭园早的那类景点才写；没写按闭园前 20 分钟。分季节的取全年最早的一档 */
+  lastEntry?: string
   /** 每周闭馆日：0=周日 1=周一 ... 6=周六 */
   closedOn?: number[]
   /** 60-150 字的介绍 */

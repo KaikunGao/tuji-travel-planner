@@ -68,6 +68,7 @@ for (const file of files) {
     if (a.guideShare !== undefined && !(a.guideShare >= 0 && a.guideShare <= 1)) err(`${tag}: guideShare ${a.guideShare} 应在 0-1`)
     if (!(a.price >= 0 && a.price <= 2000)) err(`${tag}: price ${a.price} 不合理`)
     if (!HOURS_RE.test(a.openHours)) err(`${tag}: openHours "${a.openHours}" 格式应为 "HH:MM-HH:MM" 或 "全天"`)
+    if (a.lastEntry !== undefined && !/^\d{2}:\d{2}$/.test(a.lastEntry)) err(`${tag}: lastEntry "${a.lastEntry}" 格式应为 "HH:MM"`)
     if (a.closedOn && !a.closedOn.every((d) => d >= 0 && d <= 6)) err(`${tag}: closedOn 必须是 0-6`)
     if (!a.description || a.description.length < 40 || a.description.length > 240) err(`${tag}: description 长度 ${a.description?.length ?? 0}，应在 40-240 字`)
     if (!Array.isArray(a.tips) || a.tips.length < 2 || a.tips.length > 4) err(`${tag}: tips 应为 2-4 条`)

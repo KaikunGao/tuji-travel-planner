@@ -449,7 +449,7 @@ function AttractionStop({
                 <Stars rating={a.rating} size="xs" />
                 <span>· {a.area}</span>
                 <span>· {a.price ? `门票 ¥${a.price}` : '免费'}</span>
-                <span>· {a.openHours}</span>
+                <span>· {a.openHours}{a.lastEntry ? `（${a.lastEntry} 停止入场）` : ''}</span>
               </div>
               {!done && <div className="mt-1.5 flex flex-wrap items-center gap-2">
                 <TierPicker value={tier} onChange={onTierChange} />

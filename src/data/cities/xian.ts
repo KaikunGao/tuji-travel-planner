@@ -80,7 +80,8 @@ export const xian: City = {
       popularity: 34000,
       guideShare: 0.65,
       price: 120,
-      openHours: '07:00-19:00',
+      openHours: '07:30-17:30',
+      lastEntry: '17:00',
       description:
         '骊山脚下的唐代皇家温泉行宫，杨贵妃沐浴的海棠汤、唐玄宗的莲花汤遗址都在园内，也是「西安事变」的发生地，五间厅的弹孔至今可见。夜场实景舞剧《长恨歌》以整座骊山为幕，是西安最值得看的一场演出。',
       tips: [
@@ -240,7 +241,7 @@ export const xian: City = {
       popularity: 3362,
       guideShare: 0.09,
       price: 15,
-      openHours: '08:30-22:00',
+      openHours: '09:00-22:00',
       description:
         '北院门主街上的明清民居，四百多年、七代人居住的三院四进大宅，是西安城内保存最完整的古民居之一。院里的小剧场每天轮演皮影戏和华阴老腔，吼一嗓子就是黄土地的味道。',
       tips: [
@@ -265,7 +266,8 @@ export const xian: City = {
       popularity: 11000,
       guideShare: 0.65,
       price: 40,
-      openHours: '08:00-18:00',
+      openHours: '09:00-17:30',
+      lastEntry: '16:30',
       description:
         '玄奘为保存从印度带回的经卷主持修建的七层方塔，是唐长安留在今天最显眼的坐标。寺内古柏森森，塔身微斜而千年不倒。北广场的音乐喷泉、南广场的玄奘像和大唐不夜城连成一体，白天与夜晚是两种气质。',
       tips: [
@@ -348,7 +350,8 @@ export const xian: City = {
       popularity: 11000,
       guideShare: 0.13,
       price: 65,
-      openHours: '08:00-18:00',
+      openHours: '09:00-18:30',
+      lastEntry: '17:00',
       description:
         '收藏历代碑石墓志四千余方的「石质书库」，颜真卿、柳公权、欧阳询的碑刻真迹，六十余万字的《开成石经》，还有记录基督教入华的《大秦景教流行中国碑》。北区新馆开放后展陈大为改善，书法爱好者能逛一整天。',
       tips: [
@@ -483,7 +486,8 @@ export const xian: City = {
       popularity: 9858,
       guideShare: 0.09,
       price: 60,
-      openHours: '09:30-18:00',
+      openHours: '08:30-18:00',
+      lastEntry: '17:00',
       description:
         '唐长安三大内中最壮丽的大明宫，是故宫 4.5 倍大的宫殿遗址，如今成了城北最大的开放公园。南端复原的丹凤门气势磅礴，往北是含元殿、麟德殿的夯土台基和太液池，尺度大得让人直观感受「盛唐」两个字。',
       tips: [

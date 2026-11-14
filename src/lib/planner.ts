@@ -741,8 +741,10 @@ function scheduleOrdered(
     }
     arrive += opts.waits?.[a.id] ?? 0
     const end = arrive + a.duration
-    if (close < 1440 && arrive >= close - 20) {
-      warning = `预计到达时已接近闭园（${a.openHours}），建议把它挪到更早的时间`
+    // 停止入场：数据里写了就按它，没写按闭园前 20 分钟
+    const tooLateToEnter = a.lastEntry !== undefined && arrive > hhmmToMinutes(a.lastEntry)
+    if (close < 1440 && (arrive >= close - 20 || tooLateToEnter)) {
+      warning = tooLateToEnter && arrive < close - 20 ? `预计到达时已停止入场（${a.lastEntry} 停止入场，${a.openHours}），建议把它挪到更早的时间` : `预计到达时已接近闭园（${a.openHours}），建议把它挪到更早的时间`
       violations++
     } else if (close < 1440 && end > close) {
       const left = close - arrive

@@ -101,7 +101,7 @@ export const chongqing: City = {
       rating: 4.4,
       popularity: 18000,
       price: 20,
-      openHours: '07:30-22:30',
+      openHours: '08:00-21:00',
       description:
         '1987 年通车的「万里长江第一条空中走廊」，从新华路站用 4 分钟跨越长江到南岸上新街。从市民通勤工具变成网红项目，车厢里看渝中半岛的高楼、江面和来福士，夜景时段最惊艳。',
       tips: [
@@ -579,7 +579,7 @@ export const chongqing: City = {
       rating: 4.7,
       popularity: 17000,
       price: 125,
-      openHours: '08:00-17:30',
+      openHours: '08:30-16:30',
       description:
         '世界自然遗产「中国南方喀斯特」的核心，天龙、青龙、黑龙三座天然石桥横跨峡谷，桥高均超过 200 米，电影《满城尽带黄金甲》和《变形金刚 4》曾在此取景。坐观景电梯下到谷底，抬头是穹顶一样的巨大洞天。',
       tips: [

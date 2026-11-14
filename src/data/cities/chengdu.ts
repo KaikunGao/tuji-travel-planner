@@ -131,7 +131,8 @@ export const chengdu: City = {
       popularity: 30000,
       guideShare: 0.38,
       price: 50,
-      openHours: '08:00-18:00',
+      openHours: '09:00-18:00',
+      lastEntry: '17:00',
       description:
         '中国唯一一座君臣合祀的祠庙，刘备的惠陵和诸葛亮的武侯祠同在一座园子里，红墙竹影的小道是最出名的机位。三义庙、文臣武将廊、唐代「三绝碑」，三国迷能看一上午，春节期间的大庙会热闹非凡。',
       tips: [
@@ -184,7 +185,8 @@ export const chengdu: City = {
       popularity: 48000,
       guideShare: 0.33,
       price: 50,
-      openHours: '08:00-18:00',
+      openHours: '09:00-18:00',
+      lastEntry: '17:00',
       description:
         '杜甫流寓成都时的居所旧址，「安得广厦千万间」写于此。如今是一座 300 亩的园林博物馆，茅屋故居、工部祠、大雅堂、唐代遗址陈列馆，红墙竹径、清溪梅林，比想象中大得多，适合放慢脚步走两小时。',
       tips: [
@@ -289,9 +291,11 @@ export const chengdu: City = {
       guideShare: 0.17,
       price: 220,
       openHours: '19:30-21:30',
+      lastEntry: '20:00',
       description:
         '成都最老牌的川剧折子戏剧场，藏在文化公园里的梨园。每晚 20:00 一场，变脸、吐火、滚灯、手影、杖头木偶轮番上台，还有盖碗茶、掏耳朵的互动，90 分钟把川剧的精华看完，是外地朋友来成都的「必打卡夜场」。',
       tips: [
+        '晚场 20:00 开演，至少提前 20 分钟取票入场',
         '票价 180-380 元，提前在官方公众号或大众点评购票，周末容易售罄',
         '19:00 入场可以去后台看演员化脸谱，拍照机会多',
         '第一排能近距离看变脸，但吐火时有点热；中间靠后视野最平衡',
@@ -314,7 +318,8 @@ export const chengdu: City = {
       popularity: 115000,
       guideShare: 0.79,
       price: 55,
-      openHours: '07:30-18:00',
+      openHours: '08:00-17:30',
+      lastEntry: '16:30',
       description:
         '全球最大的大熊猫人工繁育基地，200 多只滚滚在竹林里吃、睡、爬树、打滚。月亮产房的幼崽、太阳产房的亚成年「幼儿园」是人气最高的区域，还有小熊猫在步道上大摇大摆地走过。来成都不看熊猫等于没来。',
       tips: [
@@ -445,7 +450,8 @@ export const chengdu: City = {
       popularity: 699,
       guideShare: 0.04,
       price: 20,
-      openHours: '08:00-18:00',
+      openHours: '09:00-18:00',
+      lastEntry: '17:00',
       description:
         '纪念唐代女诗人薛涛的园林，锦江边 39 米高的崇丽阁是成都的城市标志之一。园内 150 多种竹子，是全国竹类品种最多的公园，薛涛井、吟诗楼、浣笺亭散落在竹林间。开放区的露天茶座是本地人下午打牌喝茶的地方，很安逸。',
       tips: [
@@ -552,7 +558,8 @@ export const chengdu: City = {
       popularity: 35000,
       guideShare: 0.29,
       price: 80,
-      openHours: '08:00-18:00',
+      openHours: '08:30-17:00',
+      lastEntry: '16:30',
       description:
         '「青城天下幽」，中国道教发源地之一，与都江堰同列世界遗产。前山是道教宫观群：建福宫、天然图画、天师洞、上清宫一路攀登，山顶老君阁可俯瞰川西平原。全程登山约 4 小时，坐月城湖船和索道可以省一半体力。后山以瀑布溪流为主，更适合纯徒步。',
       tips: [

@@ -54,7 +54,7 @@ export function planToIcs(city: City, plan: TripPlan): { ics: string; firstDate:
         descParts.push(a.description)
         a.tips.forEach((t) => descParts.push(`💡 ${t}`))
         if (a.price) descParts.push(`门票 ¥${a.price}`)
-        descParts.push(`开放 ${a.openHours}`)
+        descParts.push(`开放 ${a.openHours}${a.lastEntry ? `，${a.lastEntry} 停止入场` : ''}`)
       }
       if (r) {
         descParts.push(`${r.cuisine} · 人均 ¥${r.avgPrice}`)

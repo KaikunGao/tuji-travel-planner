@@ -131,7 +131,7 @@ for (const r of rows) for (const c of r.checksV1) if (c.pass === false) failHist
 const cityName = (id: string) => BUILTIN_CITIES.find((c) => c.id === id)!.name
 
 const md: string[] = []
-md.push(`# 重排合理率（默认行程 × 「去不了」预案，${new Date().toISOString().slice(0, 10)}）\n`)
+md.push(`# 重排合理率（默认行程 × 「去不了」预案，${new Date().toLocaleDateString('sv-SE')}）\n`)
 md.push(`判法见 \`scripts/eval-blocked-sanity.ts\` 文件头。对象：九城 27 份默认行程的全部 ${n} 个景点位次，每个位次模拟一次「去不了」，只看预案给出的**第一个**方案。\n`)
 md.push(`## 结果\n`)
 md.push(`- **v2（修正数据口径后）第一个方案合理：${ok}/${n} = ${(ok / n * 100).toFixed(1)}%**；前两个方案至少一个合理：${eitherOk}/${n} = ${(eitherOk / n * 100).toFixed(1)}%。`)
